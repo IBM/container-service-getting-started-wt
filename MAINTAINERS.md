@@ -5,7 +5,7 @@ This guide is intended for maintainers — anybody with commit access to one or 
 ## Maintainers
 
 | Name | GitHub | email |
-|---|---|---|---|
+|---|---|---|
 | Nathan Fritze  | nfritze | nfritz@us.ibm.com |
 | Nathan LeViere | nathanleviere | njlevier@gmail.com |
 
@@ -21,7 +21,7 @@ The remainder of this document details how to merge pull requests to the reposit
 
 The project maintainers use LGTM (Looks Good To Me) in comments on the code review to
 indicate acceptance. A change requires LGTMs from one of the maintainers of each
-component affected. 
+component affected.
 
 ## Reviewing Pull Requests
 
@@ -29,7 +29,7 @@ We recommend reviewing pull requests directly within GitHub. This allows a publi
 
 During your review, consider the following points:
 
-## Does the change have impact? 
+## Does the change have impact?
 
 While fixing typos is nice as it adds to the overall quality of the project, merging a typo fix at a time can be a waste of effort. (Merging many typo fixes because somebody reviewed the entire component, however, is useful!) Other examples to be wary of:
 
@@ -37,7 +37,7 @@ Changes in variable names. Ask whether or not the change will make understanding
 
 Essentially: feel free to close issues that do not have impact.
 
-## Do the changes make sense? 
+## Do the changes make sense?
 
 If you do not understand what the changes are or what they accomplish, ask the author for clarification. Ask the author to add comments and/or clarify test case names to make the intentions clear.
 
