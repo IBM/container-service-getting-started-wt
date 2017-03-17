@@ -1,12 +1,12 @@
-# IBM Containers Service Demonstration
+# IBM Bluemix Container Service Demonstration
 
-This tutorial and demonstration is meant to showcase common usecases of the IBM Container Service
+This tutorial and demonstration is meant to showcase common usecases of the IBM Bluemix Container Service
 
 # Initial Setup
 
-Preconditions:  This doc expects a bluemix account.  Running from the cli expects that you will have the clis installed as well, as per https://console.ng.bluemix.net/docs/containers/cs_cli_install.html .
+Preconditions:  This doc expects a IBM Bluemix account.  Running from the cli expects that you will have the clis installed as well, as per https://console.ng.bluemix.net/docs/containers/cs_cli_install.html.
 
-This walkthough is a presentation for using Docker containers on Kubernetes in the IBM Containers Service.
+This walkthough is a presentation for using Docker containers on Kubernetes in the IBM Bluemix Containers Service.
 
 
 If you haven't already, provision a cluster (this can take a few minutes, so let it start first). To get the list of data centers, use `bx cs datacenters` - then create your cluster with `bx cs cluster-create --name=<name-of-cluster> --datacenter=<datacenter>`
