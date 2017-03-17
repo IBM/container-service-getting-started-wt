@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: v1
 kind: Deployment
 metadata:
   name: watson-pod
@@ -38,7 +38,7 @@ spec:
      port: 8081
      nodePort: 30081
 ---
-apiVersion: extensions/v1beta1
+apiVersion: v1
 kind: Deployment
 metadata:
   name: watson-talk-pod
