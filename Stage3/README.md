@@ -17,10 +17,10 @@ Run the following to begin this lab:
 
 
 3. Build `watson` image
-  - `docker build -t registry.stage1.ng.bluemix.net/<namespace>/watson .`
+  - `docker build -t registry.ng.bluemix.net/<namespace>/watson .`
 
 4. Push `watson` image to IBM Container Registry
-  - `docker push registry.stage1.ng.bluemix.net/<namespace>/watson`
+  - `docker push registry.ng.bluemix.net/<namespace>/watson`
 
 
 5. Change current directory to `Stage3/watson-talk`
@@ -28,12 +28,12 @@ Run the following to begin this lab:
 
 
 6. Build `watson-talk` image
-  - `docker build -t registry.stage1.ng.bluemix.net/<namespace>/watson-talk .`
+  - `docker build -t registry.ng.bluemix.net/<namespace>/watson-talk .`
 
 
 7. Push `watson` image to IBM Container Registry
 
-  - `docker push registry.stage1.ng.bluemix.net/<namespace>/watson-talk`
+  - `docker push registry.ng.bluemix.net/<namespace>/watson-talk`
 
 In `watson-deployment.yml`, update the image tag with the registry path to the image you created:
 
@@ -41,13 +41,13 @@ In `watson-deployment.yml`, update the image tag with the registry path to the i
     spec:
       containers:
         - name: watson
-          image: "registry.stage1.ng.bluemix.net/<namespace>/watson" # change to the path of the watson image
+          image: "registry.ng.bluemix.net/<namespace>/watson" # change to the path of the watson image
                                                                      #  you just pushed to the registry...
 ...
     spec:
       containers:
         - name: watson
-          image: "registry.stage1.ng.bluemix.net/<namespace>/watson-talk" # change to the path of the watson-talk image
+          image: "registry.ng.bluemix.net/<namespace>/watson-talk" # change to the path of the watson-talk image
                                                                      #  you just pushed to the registry...
 ```
 
@@ -124,4 +124,3 @@ You have to find the Public IP for the worker node to access the application. Ru
 Now that the you got the container IP and port, go to your favorite web browswer and launch the following URL to analyze the text and see output: `http://<public-IP>:30080/analyze/<YourTextHere>`
 
 If you can see JSON output on your screen, congratulations! You are done!
-

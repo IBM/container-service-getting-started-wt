@@ -1,12 +1,12 @@
-# IBM Containers Service Demonstration
+# IBM Bluemix Container Service Demonstration
 
-This tutorial and demonstration is meant to showcase common usecases of the IBM Container Service
+This tutorial and demonstration is meant to showcase common usecases of the IBM Bluemix Container Service
 
 # Initial Setup
 
-Preconditions:  This doc expects a bluemix account.  Running from the cli expects that you will have the clis installed as well, as per https://console.ng.bluemix.net/docs/containers/cs_cli_install.html .
+Preconditions:  This doc expects a IBM Bluemix account.  Running from the cli expects that you will have the clis installed as well, as per https://console.ng.bluemix.net/docs/containers/cs_cli_install.html.
 
-This walkthough is a presentation for using Docker containers on Kubernetes in the IBM Containers Service.
+This walkthough is a presentation for using Docker containers on Kubernetes in the IBM Bluemix Containers Service.
 
 
 If you haven't already, provision a cluster (this can take a few minutes, so let it start first). To get the list of data centers, use `bx cs datacenters` - then create your cluster with `bx cs cluster-create --name=<name-of-cluster> --datacenter=<datacenter>`
@@ -21,4 +21,4 @@ Stage 1 walks through creating a deploying a simple "hello world" app in Node.JS
 
 Stage 2 builds on that to expand to a more resilient setup which can survive having containers fail and recover.  In addition, it can use the Vulnerability Adviser to check for potential security and move to an update version without downtime during the replacement deploy.
 
-Stage 3 adds integration to a cloudant service, plus integration within the cluster to access the Watson tone analyzer service.
+Stage 3 adds a Bluemix service integration to the cluster. We will show you how easy to use Watson tone analyzer service from your application running in cluster.
