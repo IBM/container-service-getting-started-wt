@@ -7,7 +7,7 @@ This stage of the tutorial walks through pushing an image of an application to t
 
 If you haven't already, provision a cluster (this can take a few minutes, so let it start first). To get the list of data centers, use `bx cs datacenters` - then create your cluster with `bx cs cluster-create --name=<name-of-cluster> --datacenter=<datacenter>`
 
-Download from https://github.ibm.com/cjackso/IBM-Containers-Demo
+Download from https://github.com/IBM/container-service-getting-started-wt
 
 cd into IBM-Containers-Demo
 
