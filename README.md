@@ -4,7 +4,7 @@ This tutorial and demonstration is meant to showcase common usecases of the IBM 
 
 # Initial Setup
 
-Preconditions:  This doc expects a bluemix account.  Running from the cli expects that you will have the clis installed as well, as per https://console.stage1.ng.bluemix.net/docs/containers/cs_cli_install.html . Running from the UI requires ??? TODO ???
+Preconditions:  This doc expects a bluemix account.  Running from the cli expects that you will have the clis installed as well, as per https://console.ng.bluemix.net/docs/containers/cs_cli_install.html .
 
 This walkthough is a presentation for using Docker containers on Kubernetes in the IBM Containers Service.
 
