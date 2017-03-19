@@ -99,15 +99,15 @@ Kubernetes allows you to use a rollout to update a deployment with a new docker 
 
 First, make a change to your code and build a new docker image with a new tag:
 
-`docker build --tag registry.ng.bluemix.net/<namespace>/hw-demo:2 ../Stage1`
+`docker build --tag registry.ng.bluemix.net/<namespace>/hello-world:2 ../Stage1`
 
 Then push the image to the IBM Containers Registry:
 
-`docker push registry.ng.bluemix.net/<namespace>/hw-demo:2`
+`docker push registry.ng.bluemix.net/<namespace>/hello-world:2`
 
 Using `kubectl`, you can now update your deployment to use the latest image.  There are two ways to do this, you can either again edit the yaml using `kubectl edit deployment/<name-of-deployment>` or you can just specify a new image via a single command. Using a single command is especially useful when writing deployment automation.  To specify the new image, run the following:
 
-`kubectl set image deployment/hw-demo hw-demo=registry.ng.bluemix.net/<namespace>/hw-demo:2`
+`kubectl set image deployment/hw-demo hw-demo=registry.ng.bluemix.net/<namespace>/hello-world:2`
 
 Note that a deployment could have multiple containers, in which case each container will have its own name.  Multiple containers can be updated at the same time.  For more information see the following: https://kubernetes.io/docs/user-guide/kubectl/kubectl_set_image/
 
