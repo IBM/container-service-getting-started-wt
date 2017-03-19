@@ -14,11 +14,11 @@ cd into IBM-Containers-Demo
 Run `bx cr login` and login with your bluemix credentials. This will allow you
 to push to the IBM containers registry
 
-Build the example docker image using `docker build --tag registry.ng.bluemix.net/<namespace>/hw-demo:1 .`
+Build the example docker image using `docker build --tag registry.ng.bluemix.net/<namespace>/hello-world:1 .`
 
 Verify the image is built using `docker images`
 
-Now push that image up to the IBM registry: `docker push registry.ng.bluemix.net/<namespace>/hw-demo:1`
+Now push that image up to the IBM registry: `docker push registry.ng.bluemix.net/<namespace>/hello-world:1`
 
 If you created your cluster at the beginning of this, make sure it's ready for use. Run `bx cs clusters` and make sure that your cluster is in state "deployed".  Then use `bx cs workers <yourclustername>` and make sure that all workers are in state "deployed" with Status "Deploy Automation Successful".  Make a note of the public ip of the worker!
 
@@ -28,7 +28,7 @@ You are now ready to use kubernetes.
 
 Run `bx cs cluster-config <yourclustername>` and set the variables based on the output of the command.
 
-Start by running your image as a deployment: `kubectl run hw-demo --image=registry.ng.bluemix.net/<namespace>/hw-demo:1`
+Start by running your image as a deployment: `kubectl run hw-demo --image=registry.ng.bluemix.net/<namespace>/hello-world`
 
 This will take a bit of time. To check the status of your deployment, you can use `kubectl get pods`
 
