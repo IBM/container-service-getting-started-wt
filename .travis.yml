@@ -2,7 +2,7 @@ language: script
 
 env:
   global:
-     CF_TARGET_URL="https://api.ng.bluemix.net"
+     CF_TARGET_URL="https://api.stage1.ng.bluemix.net"
 
 script: bash -n *.sh
 
