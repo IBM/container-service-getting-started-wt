@@ -50,7 +50,8 @@ In `watson-deployment.yml`, update the image tag with the registry path to the i
           image: "registry.ng.bluemix.net/<namespace>/watson-talk" # change to the path of the watson-talk image
                                                                      #  you just pushed to the registry...
 ```
-Note that by default, the image path is set to the staging endpoint for the IBM image registry. Change this to the public registry by removing `stage1` from the image path in the deployment yaml.
+
+
 # Create a bluemix service via the cli
 
 In order to begin using the watson tone analyzer (the bluemix service this application), we must first request an instance of the analyzer in the org and space we have set up our cluster in. If you need to check what space and org you are currently using, simply run `bx login` and select the space and org you were using for stage 1 and 2 of the lab.
