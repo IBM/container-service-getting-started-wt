@@ -28,6 +28,12 @@ cd Stage3/
 echo -e "Deleting previous version of Watson Deployment if it exists"
 kubectl delete --ignore-not-found=true -f watson-deployment.yml
 
+echo -e "Unbinding previous version of Watson Tone Analyzer if it exists"
+bx cs cluster-service-unbind $CLUSTER_NAME default tone
+
+echo -e "Binding Watson Tone Service to Cluster and Pod"
+bx cs cluster-service-bind $CLUSTER_NAME default tone
+
 echo -e "Creating pods"
 kubectl create -f watson-deployment.yml
 
