@@ -1,0 +1,15 @@
+language: script
+
+env:
+  global:
+     CF_TARGET_URL="https://api.ng.bluemix.net"
+
+script: bash -n *.sh
+
+ß
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: ./deploy_rollup.sh
+    on:
+      branch: master
