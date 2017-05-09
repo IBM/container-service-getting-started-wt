@@ -22,7 +22,7 @@ If the fix is trivial or non controversial then this is not usually necessary.
 
 The project maintainers use LGTM (Looks Good To Me) in comments on the code review to
 indicate acceptance. A change requires LGTMs from two of the maintainers of each
-component affected. 
+component affected. Note that if your initial push does not pass TravisCI your change will not be approved.
 
 For more details, see the [MAINTAINERS](MAINTAINERS) page.
 
