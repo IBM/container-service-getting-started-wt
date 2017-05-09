@@ -1,4 +1,4 @@
-FROM node:6.9.2
+FROM node:6
 COPY app.js .
 COPY package.json .
 RUN npm install
