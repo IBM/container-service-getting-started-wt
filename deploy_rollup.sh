@@ -13,9 +13,9 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-echo "Deploy pods"
+echo "Deploy pods for Stage 3..."
 ./deploy.sh
 if [ $? -ne 0 ]; then
-  echo "Failed to Deploy pods to Bluemix Container Service"
+  echo "Failed to Deploy pods for stage 3 to Bluemix Container Service"
   exit 1
 fi

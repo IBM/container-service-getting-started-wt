@@ -1,8 +1,13 @@
 language: script
 
+sudo: required
+
 env:
   global:
      CF_TARGET_URL="https://api.ng.bluemix.net"
+
+services:
+  - docker
 
 script: bash -n *.sh
 
