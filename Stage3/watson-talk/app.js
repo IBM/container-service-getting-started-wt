@@ -22,6 +22,7 @@ app.get('/analyze/:string', function(req, res) {
       request.get({ url: "http://watson-service:8081/analyze?text=" + req.params.string },
       function(error, response, body) {
               if (!error && response.statusCode == 200) {
+                  res.setHeader('Content-Type', 'application/json');
                   res.send(body);
                  }
              });
