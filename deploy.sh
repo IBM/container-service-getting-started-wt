@@ -46,9 +46,10 @@ bx cs cluster-service-bind $CLUSTER_NAME default tone
 
 echo -e "Building Watson and Watson-talk images..."
 cd watson/
-docker build -t registry.ng.bluemix.net/contbot/watson .
+docker build -t registry.ng.bluemix.net/contbot/watson . &> buildout.txt
 if [ $? -ne 0 ]; then
   echo "Could not create the watson image for the build"
+  cat buildout.txt
   exit 1
 fi
 docker push registry.ng.bluemix.net/contbot/watson
@@ -58,9 +59,10 @@ if [ $? -ne 0 ]; then
 fi
 cd ..
 cd watson-talk/
-docker build -t registry.ng.bluemix.net/contbot/watson-talk .
+docker build -t registry.ng.bluemix.net/contbot/watson-talk . &> buildout.txt
 if [ $? -ne 0 ]; then
   echo "Could not create the watson-talk image for the build"
+  cat buildout.txt
   exit 1
 fi
 docker push registry.ng.bluemix.net/contbot/watson-talk
@@ -71,7 +73,7 @@ fi
 
 echo -e "Injecting image namespace into deployment yamls"
 cd ..
-sed -i "s/<namespace>/contbot/" watson-deployment.yml
+sed -i "s/<namespace>/${BLUEMIX_NAMESPACE}/" watson-deployment.yml
 if [ $? -ne 0 ] ; then
   echo "Could not inject image namespace into deployment yaml"
   exit 1
