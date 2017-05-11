@@ -1,5 +1,6 @@
 # IBM Containers Service Demonstration
-[[https://ace-docs-production-red.ng.bluemix.net/docs/api/content/homepage/images/containerServiceIcon.svg ]]
+
+![IBM Containers Logo](https://ace-docs-production-red.ng.bluemix.net/docs/api/content/homepage/images/containerServiceIcon.svg) 
 
 This tutorial and demonstration is meant to showcase common usecases of the IBM Container Service
 
