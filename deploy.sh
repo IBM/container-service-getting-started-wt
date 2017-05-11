@@ -52,10 +52,10 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 docker push registry.ng.bluemix.net/contbot/watson
-if [ $? -ne 0]; then
+if [ $? -ne 0 ]; then
   echo "Could not push the watson image for the build"
   exit 1
-fi 
+fi
 cd ..
 cd watson-talk/
 docker build -t registry.ng.bluemix.net/contbot/watson-talk .
@@ -64,12 +64,18 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 docker push registry.ng.bluemix.net/contbot/watson-talk
-if [ $? -ne 0]; then
+if [ $? -ne 0 ] ; then
   echo "Could not push the watson image for the build"
   exit 1
 fi
 
+echo -e "Injecting image namespace into deployment yamls"
+cd ..
 sed -i "s/<namespace>/${BLUEMIX_NAMESPACE}/" watson-deployment.yml
+if [ $? -ne 0 ] ; then
+  echo "Could not inject image namespace into deployment yaml"
+  exit 1
+fi
 
 echo -e "Creating pods"
 kubectl create -f watson-deployment.yml
