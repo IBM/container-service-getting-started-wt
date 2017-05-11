@@ -28,3 +28,11 @@ if [ $? -ne 0 ]; then
   echo "Failed to initialize to Bluemix Container Service"
   exit 1
 fi
+
+# Init container registry
+echo "bx cr login"
+bx cr login
+if [ $? -ne 0 ]; then
+  echo "Failed to login to the Bluemix Container Registry"
+  exit 1
+fi
