@@ -36,7 +36,7 @@ if [ $? -eq 0 ]; then
 fi
 
 echo -e "Deleting previous Watson Tone Analyzer instance if it exists"
-bx service delete tone
+bx service delete tone -f
 
 echo -e "Creating new instance of Watson Tone Analyzer named tone..."
 bx service create tone_analyzer standard tone
