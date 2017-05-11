@@ -41,13 +41,13 @@ In `watson-deployment.yml`, update the image tag with the registry path to the i
     spec:
       containers:
         - name: watson
-          image: "registry.ng.bluemix.net/contbot/watson" # change to the path of the watson image you just pushed.
+          image: "registry.ng.bluemix.net/<namespace>/watson" # change to the path of the watson image you just pushed.
                                                           # ex: image: "registry.ng.bluemix.net/<namespace>/watson"
 ...
     spec:
       containers:
-        - name: watson
-          image: "registry.ng.bluemix.net/contbot/watson-talk" # change to the path of the watson-talk image you just pushed.
+        - name: watson-talk
+          image: "registry.ng.bluemix.net/<namespace>/watson-talk" # change to the path of the watson-talk image you just pushed.
                                                                # ex: image: "registry.ng.bluemix.net/<namespace>/watson-talk"
 ```
 
