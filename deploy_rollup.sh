@@ -13,6 +13,13 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+echo "Testing yml files for generalized namespace"
+./test_yml.sh
+if [ $? -ne 0 ]; then
+  echo "Failed to find <namespace> in deployment YAML files"
+  exit 1
+fi
+
 echo "Deploy pods for Stage 3..."
 ./deploy.sh
 if [ $? -ne 0 ]; then

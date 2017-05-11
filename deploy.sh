@@ -69,6 +69,8 @@ if [ $? -ne 0]; then
   exit 1
 fi
 
+sed -i "s/<namespace>/${BLUEMIX_NAMESPACE}/" watson-deployment.yml
+
 echo -e "Creating pods"
 kubectl create -f watson-deployment.yml
 
