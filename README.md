@@ -1,6 +1,8 @@
-# IBM Containers Service Demonstration
 
 <img src="https://ace-docs-production-red.ng.bluemix.net/docs/api/content/homepage/images/containerServiceIcon.svg" width="200"> <img src="https://kubernetes.io/images/favicon.png" width="200">
+# IBM Containers Service Demonstration
+
+
 
 This tutorial and demonstration is meant to showcase common usecases of the IBM Container Service on Bluemix.
 
