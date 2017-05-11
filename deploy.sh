@@ -71,7 +71,7 @@ fi
 
 echo -e "Injecting image namespace into deployment yamls"
 cd ..
-sed -i "s/<namespace>/contbot/" watson-deployment.yml
+sed -i "s/<namespace>/${BLUEMIX_NAMESPACE}/" watson-deployment.yml
 if [ $? -ne 0 ] ; then
   echo "Could not inject image namespace into deployment yaml"
   exit 1

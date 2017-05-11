@@ -7,7 +7,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Login to Bluemix"
-./bx_login.sh
+. ./bx_login.sh
 if [ $? -ne 0 ]; then
   echo "Failed to authenticate to Bluemix Container Service"
   exit 1
