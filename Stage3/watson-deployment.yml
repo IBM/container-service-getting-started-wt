@@ -12,8 +12,8 @@ spec:
     spec:
       containers:
         - name: watson
-          image: "registry.ng.bluemix.net/<namespace>/watson"
-          imagePullPolicy: IfNotPresent
+          image: "registry.ng.bluemix.net/<namespace>/watson" # edit here!
+          imagePullPolicy: Always
           volumeMounts:
             - mountPath: /opt/service-bind
               name: service-bind-volume
@@ -52,8 +52,8 @@ spec:
     spec:
       containers:
         - name: watson-talk
-          image: "registry.ng.bluemix.net/<namespace>/watson-talk"
-          imagePullPolicy: IfNotPresent
+          image: "registry.ng.bluemix.net/<namespace>/watson-talk" # edit here!
+          imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
