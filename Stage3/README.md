@@ -1,6 +1,6 @@
-# Lab: Attaching Watson Services to a Deployment
+# Lab 3: Deploy an application with Bluemix Services
 
-In this stage, we walk through setting up an application to leverage the Watson Tone Analyzer service. If you have yet to create a cluster, please refer to stage 1 of this walkthrough.
+In this lab, we walk through setting up an application to leverage the Watson Tone Analyzer service. If you have yet to create a cluster, please refer to stage 1 of this walkthrough.
 
 We will be using the watson folder under the stage3 directory for the duration of the application.
 
@@ -124,4 +124,3 @@ You have to find the Public IP for the worker node to access the application. Ru
 Now that the you got the container IP and port, go to your favorite web browswer and launch the following URL to analyze the text and see output: `http://<public-IP>:30080/analyze/<YourTextHere>`
 
 If you can see JSON output on your screen, congratulations! You are done!
-

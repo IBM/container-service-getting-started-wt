@@ -1,4 +1,4 @@
-# Stage 1 - Initial Application Deployment
+# Lab 1 - Set Up And Deploy Your First Application
 
 This stage of the tutorial walks through pushing an image of an application to the IBM Containers Registry and deploying a basic application to a cluster
 
@@ -24,7 +24,7 @@ If you created your cluster at the beginning of this, make sure it's ready for u
 
 You are now ready to use kubernetes.
 
-# Deploying an App to a Cluster
+# Deploying You Application
 
 Run `bx cs cluster-config <yourclustername>` and set the variables based on the output of the command.
 
@@ -45,6 +45,6 @@ To find the port used on that node, now examine your new service: `kubectl descr
 
 Run `bx cs workers <name-of-cluster>` and note the public IP as `<public-IP>`
 
-You can now access your container/service via `curl <public-IP>:<nodeport>` (or your favorite web browser). If you see a "Hello SigEx users! Welcome to containers at IBM!" you're done!!!
+You can now access your container/service via `curl <public-IP>:<nodeport>` (or your favorite web browser). If you see a "Hello users! Welcome to containers at IBM!" you're done!
 
 When you're all done, you can either use this deployment in the Stage 2 of this demo or you can remove the deployment.  To remove the deployment, use `kubectl delete deployment hw-demo`, to remove the service use `kubectl delete service hw-demo`

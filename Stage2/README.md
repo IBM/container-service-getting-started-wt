@@ -1,4 +1,4 @@
-# Lab: Replica Sets and Health Checks
+# Lab: Services, Replica Sets, and Health Checks
 
 prereq: Have a running deployment with a single replica
 
@@ -252,6 +252,6 @@ After 10 secconds, view the Pod events to confirm health check failed and pod re
 
 `kubectl describe pod hw-demo-deployment`
 
-And finally, open a web browser and naviagate to `<cluster-ip>:30072/healthz` to see the endpoint operational, and `<cluster-ip>:30072` to see that the application  tries to work despite having failing nodes. 
+And finally, open a web browser and naviagate to `<cluster-ip>:30072/healthz` to see the endpoint operational, and `<cluster-ip>:30072` to see that the application  tries to work despite having failing nodes.
 
 Thus you have seen the fault tolerance having multiple replicas provides you. Stage 2 of the lab is now complete!
