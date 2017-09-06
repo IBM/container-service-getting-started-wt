@@ -1,6 +1,6 @@
 # Lab 1 - Set Up And Deploy Your First Application
 
-This stage of the tutorial walks through pushing an image of an application to the IBM Containers Registry and deploying a basic application to a cluster
+This stage of the lab walks through pushing an image of an application to the IBM Containers Registry and deploying a basic application to a cluster
 
 
 # Pushing an image to the IBM Containers Registry
