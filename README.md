@@ -30,7 +30,7 @@ There are six stages to the Lab, including an optional advanced lab and a gettin
 
 [Lab 2](https://github.com/colemanjackson/container-service-getting-started-wt/tree/dwworks-additions/Lab%202#lab-services-replica-sets-and-health-checks): Builds on Lab 1 to expand to a more resilient setup which can survive having containers fail and recover. Lab 2 will also walk through basic services you need to get started with kubernetes and the IBM Bluemix Containers Service
 
-[Lab 3](): This lab covers adding external services to a cluster. It walks through adding integration to a watson service, and discusses storing credentials of external services to the cluster.
+[Lab 3](https://github.com/colemanjackson/container-service-getting-started-wt/tree/dwworks-additions/Lab%203#lab-3-deploy-an-application-with-bluemix-services): This lab covers adding external services to a cluster. It walks through adding integration to a watson service, and discusses storing credentials of external services to the cluster.
 
 [Lab 4]() (Under Construction, Paid Only, Optional): This lab will outline how to create a highly available application, and build on the knowledge you have learned in Labs 1 - 3 to deploy clusters simultaneously to multiple availibility zones. As this requires a paid bluemix account, you may skip this lab if you are sticking to the free tier.
 
