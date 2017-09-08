@@ -24,10 +24,14 @@ After creation, before using the cluster, make sure it has completed provisionin
 
 There are four stages to the Lab.
 
-Lab 0: Provides a walkthrough for installing Bluemix command-line tools and the Kubernetes CLI. You may skip this lab if you have the containers-registry plugin, the Bluemix CLI and Kubectl already installed on your machine.
+Lab 0 (Optional): Provides a walkthrough for installing Bluemix command-line tools and the Kubernetes CLI. You may skip this lab if you have the containers-registry plugin, the Bluemix CLI and Kubectl already installed on your machine.
 
-Lab 1: Walks through creating a deploying a simple "hello world" app in Node.JS, then accessing that app.  If there are issues, it will show how to get the logs and fix them so that it works.
+Lab 1: This lab walks through creating and deploying a simple "hello world" app in Node.JS, then accessing that app. 
 
-Lab 2: Builds on that to expand to a more resilient setup which can survive having containers fail and recover.  In addition, it can use the Vulnerability Adviser to check for potential security and move to an update version without downtime during the replacement deploy. Lab 2 will also walk through basic volume control and services you need to get started with kubernetes and the IBM Bluemix Containers Service
+Lab 2: Builds on Lab 1 to expand to a more resilient setup which can survive having containers fail and recover. Lab 2 will also walk through basic services you need to get started with kubernetes and the IBM Bluemix Containers Service
 
-Lab 3: Adds integration to a watson service, and discusses storing credentials of external services to the cluster.
+Lab 3: This lab covers adding external services to a cluster. It walks through adding integration to a watson service, and discusses storing credentials of external services to the cluster.
+
+Lab 4 (Under Construction, Paid Only, Optional): This lab will outline how to create a highly available application, and build on the knowledge you have learned in Labs 1 - 3 to deploy clusters simultaneously to multiple availibility zones. As this requires a paid bluemix account, you may skip this lab if you are sticking to the free tier.
+
+Lab 5 (Under Construction): This Lab walks through securing your cluster and applications, leveraging tools like Istio and  Vulnerability Advisor to secure images and manage security in your image registry. 
