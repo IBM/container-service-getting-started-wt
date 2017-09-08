@@ -7,14 +7,15 @@ Goal: Understand how to deploy a highly availible application. It's easier than 
 
 
 1. Introduction
-  a. Background and explanation of high-availibility https://console.bluemix.net/docs/containers/cs_planning.html#cs_planning
-  b. graphic detailing high-availibility at scale
+
+  ..* Background and explanation of high-availibility https://console.bluemix.net/docs/containers/cs_planning.html#cs_planning
+  ..* graphic detailing high-availibility at scale
 
 2. Body
-  a. Application demo showing multiple worker nodes with one deployment (basic level of high availibility)
-  b. Affinity and Anti-affinity explanation https://console.bluemix.net/docs/containers/cs_planning.html#cs_planning
-  c. wasliberty anit-affinity example for paid clusters
+  ..* Application demo showing multiple worker nodes with one deployment (basic level of high availibility)
+  ..* Affinity and Anti-affinity explanation https://console.bluemix.net/docs/containers/cs_planning.html#cs_planning
+  ..* wasliberty anit-affinity example for paid clusters
   
 3. Conclusion
-  a. Review of highly availible clusters 
-  b. Review and affinty
+  ..* Review of highly availible clusters 
+  ..* Review and affinty
