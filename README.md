@@ -11,10 +11,10 @@ This lab is meant to be used with the IBM DeveloperWorks Course on the IBM Conta
 
 # Overview and Initial Setup
 
-Preconditions:  This lab expects a bluemix account.  Running from the cli expects that you will have the clis installed as well, as per https://console.ng.bluemix.net/docs/containers/cs_cli_install.html .
+Preconditions:  This lab expects a bluemix account.  Running from the cli expects that you will have the clis installed as well, as per https://console.ng.bluemix.net/docs/containers/cs_cli_install.html . If you do not yet have a bluemix account or the kubernetes cli, please do lab 0 before starting the course.
 
 This lab is an introduction to  using Docker containers on Kubernetes in the IBM Containers Service. By the end of the course
-
+you will understand the core concepts of Kubernetes, and be able to deploy your own applications on Kubernetes or the IBM Bluemix Containers Service. 
 
 If you haven't already, provision a cluster (this can take a few minutes, so let it start first). To get the list of data centers, use `bx cs datacenters` - then create your cluster with `bx cs cluster-create --name=<name-of-cluster> --datacenter=<datacenter>`
 
