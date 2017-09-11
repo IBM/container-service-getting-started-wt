@@ -50,7 +50,7 @@ To get started with this lab, Delete the previous deployments and services off o
 
   Your Instana instance will be provisioned, and now you can deploy the Instana agent. Prior to deploying it, login to your Instana customer portal and obtain your agent key. You can reach the Instana portal by visiting `https://(your instance name).instana.io/ump/instana//agentkeys/`
 
-![Image of agentkeys](https://octodex.github.com/images/yaktocat.png)
+![Image001](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Bluemix-Container-Monitoring-with-Instana-Service-Map-1024x103.png)
 
   Copy the agent key (obscured on the above screen shot). For security reasons, the agent key has to be encoded. To do this, simply issue the following command on a Linux or OSX shell:
 
