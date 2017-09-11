@@ -38,9 +38,9 @@ Goal: Understand the CI/DC offerings available to developers to create a highly 
 
   Setting up a Kubernetes cluster in Bluemix
 
-  The first step is to create a Bluemix account. After you’ve successfully logged into Bluemix,
+To get started with this lab, Delete the previous deployments and services off of your old cluster, or remove your old cluster entirely. Then, After you’ve successfully logged into Bluemix, run:
 
-  `bx cs cluster-create --name --location --workers 2 --machine-type u1c.2x4 --hardware shared --public-vlan --private-vlan`
+  `bx cs cluster-create --name=Cluster00 --location=dal10 --workers 1 --machine-type u1c.2x4 --hardware shared`
 
 # Deploying Instana Application Monitoring Agents via IBM Bluemix Container Service
 
@@ -50,7 +50,7 @@ Goal: Understand the CI/DC offerings available to developers to create a highly 
 
   Your Instana instance will be provisioned, and now you can deploy the Instana agent. Prior to deploying it, login to your Instana customer portal and obtain your agent key. You can reach the Instana portal by visiting `https://(your instance name).instana.io/ump/instana//agentkeys/`
 
-
+![Image of agentkeys](https://octodex.github.com/images/yaktocat.png)
 
   Copy the agent key (obscured on the above screen shot). For security reasons, the agent key has to be encoded. To do this, simply issue the following command on a Linux or OSX shell:
 
@@ -80,12 +80,15 @@ Goal: Understand the CI/DC offerings available to developers to create a highly 
 ```
   Meanwhile, back in the Instana UI (https://(your instance name)-instana.instana.io), you will notice the first event of host discovery. This is the worker where your containers are running. I am running the free BlueMix trial, so I only have one worker node.
 
-
+![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
   Shortly you will see a new host (in the shape of a cuboid) appear. In a few seconds, Instana’s automatic discovery will have found all running containers (with no additional configuration).
+  
+  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
 
   And this is what a map of all the running containers looks like:
+  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
 
   At this point, of course, you only see the components of your kubernetes worker nodes. There’s no actual application running in this environment. So let’s start one up.
@@ -102,14 +105,16 @@ Goal: Understand the CI/DC offerings available to developers to create a highly 
   For the sake of simplicity, let’s deploy a small sample application which has a Java Wildfly component making read-only calls into a mysql database. This sample application is provided by Arun Gupta from Amazon Web Services.
 
   After downloading the sample application, you will see the following files:
-
+```
   mysql-pod.yaml
   mysql-service.yaml
   README.md
   wildfly-rc.yaml
-  mysql-pod creates a single container pod to hold an instance of a mysql database
-  mysql-service exposes the mysql pod to the wildfly replicate set
-  wildfly-rc is a single node replicate set that takes requests from the client and issues SQL calls against mysql
+```
+where:
+* mysql-pod creates a single container pod to hold an instance of a mysql database
+* mysql-service exposes the mysql pod to the wildfly replicate set
+* wildfly-rc is a single node replicate set that takes requests from the client and issues SQL calls against mysql
   In order to deploy this sample application, let’s use a simple approach. Keep in mind that kubernetes offers many other options to deploy applications.
 
   First deploy the mysql pod:
@@ -152,12 +157,16 @@ Goal: Understand the CI/DC offerings available to developers to create a highly 
 
 
 
+  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
 
 
 
   Another way to visualize your deployment it to use the Instana Container View. Notice the mysql-pod and the wildfly-rc-(pod number). Because pods on a replica set are automatically created by the controller, the pod is named after the replicate-set concatenated by an individual ID.
 
+  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
 
 # Instana Automatic Application Discovery
@@ -168,12 +177,15 @@ Goal: Understand the CI/DC offerings available to developers to create a highly 
 
   Notice also the discovery stack (also called an “Elevator”) on the very top of the JBoss Wildfly dashboard:
 
+  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
 
   Instana discovered the host, a container running on that host, and a process running inside that container. Furthermore, Instana automatically determined that the process is a JVM and that a JBoss Wildfly application has been deployed. Each one of these discoveries is done thanks to an Instana sensor. Read more about Sensors.
 
   Select the JVM sensor by clicking on the word “JVM” in the discovery stack / elevator. Set the time window slider to be a minute (lower left-hand corner of the screen) and scroll down the JVM dashboard until you see the “Garbage Collection” tile. Notice the real time metric variation. Case in point: a lot goes on inside of a JVM (and any other application component for that matter) within a second. Imagine what you are missing if you are using a tool that averages metrics every minute.
 
+  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
 
 
@@ -217,12 +229,14 @@ Goal: Understand the CI/DC offerings available to developers to create a highly 
   ```
   While this command is running, go to your Instana Application Map to see a full end-to-end map of the employee service and its database dependency. You will also see that Instana captures traces for every request.
 
+  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
 
   Note: Each dot on the screen represents a service.
 
   Now select traces from the top menu. You will see something like this:
 
+  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
 
   Every single service. Click on the JDBC call in the lower right-hand corner (by clicking it), and you will see details of the SQL called issued against the MySQL database.
@@ -235,14 +249,16 @@ Goal: Understand the CI/DC offerings available to developers to create a highly 
   On the top of the screen is the Instana search bar. In the search bar, type the following filter:
 
 
+  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
   Notice how Instana autocompletes the search for you using Lucene search syntax.
 
+  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
 
   Select one of the erroneous traces, and expand the box highlighted in red:
 
-
+  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
   Instana is showing the exact exception that was captured when the application attempted to retrieve an employee that doesn’t exist.
 
