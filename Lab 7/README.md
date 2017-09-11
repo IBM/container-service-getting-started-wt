@@ -1,23 +1,22 @@
-# Security with the IBM Bluemix Containers Service
+# Ecosystem of Kubernetes with the IBM Bluemix Containers Service
 
 
-This section is under construction. An outline of what is to come is show below. 
+This section is under construction. An outline of what is to come is show below.
 
 # Outline
-Goal: Understand the security offerings available to developers to create a highly secure deployment in the IBM Containers Service
+Goal: Understand the overall ecosystem of plugin offerings available to developers to manage deployments in Kubernetes. This topic is a broad one, but critical for understanding of best practices and data visualization with regards to node layout and overall orchestration strategy. At the end of this lab, a user will understand package management, visualization, and deployment structure of Kubernetes deployments, and the tools used to manage each.
 
 
 1. Introduction
 
-  * Explain security as it applies to kubernetes components (deployment, pod, and container image level)
-  https://console.bluemix.net/docs/containers/cs_security.html#cs_security
-  
+  * Explain the plugin ecosystem as it applies to kubernetes components
+
 
 2. Body
-  * Network Policy Demo for Pod Level Security
-  * Using Vunerability advisor for image level security 
-  * Istio? secured connections and visilbility monitoring
-  
+  * WeaveScope Demo with IBM Containers Service
+  * Istana Demo with the IBM Containers Service
+  * Helm Demo with the IBM Containers Service
+
 3. Conclusion
-  * Review security topics above (restated reinforcement) 
+  * Review security topics above (restated reinforcement)
   * five question quiz

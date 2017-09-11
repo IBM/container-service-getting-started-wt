@@ -1,23 +1,23 @@
-# Security with the IBM Bluemix Containers Service
+# Microservices in an Orchestrated World
 
 
-This section is under construction. An outline of what is to come is show below. 
+This section is under construction. An outline of what is to come is show below.
 
 # Outline
-Goal: Understand the security offerings available to developers to create a highly secure deployment in the IBM Containers Service
+Goal: Go beyond simple containers, and understand how to manage Microservices and Service Oriented Architecture beyond Kubernetes tools
 
 
 1. Introduction
 
-  * Explain security as it applies to kubernetes components (deployment, pod, and container image level)
+  * Explain Microservices and Service Oriented Architecture as it applies to kubernetes components (deployment, pod, and container image level) (Your speech over Microservices would be a good introduction and fodder for a background)
   https://console.bluemix.net/docs/containers/cs_security.html#cs_security
-  
+
 
 2. Body
-  * Network Policy Demo for Pod Level Security
-  * Using Vunerability advisor for image level security 
-  * Istio? secured connections and visilbility monitoring
-  
+  * Explain Istio and getting started with istio
+  * Istio lab with a basic hello world application
+  *
+
 3. Conclusion
-  * Review security topics above (restated reinforcement) 
-  * five question quiz
+  * Review Microservice management topics above (restated reinforcement)
+  * 10 question quiz
