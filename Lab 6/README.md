@@ -25,63 +25,47 @@ Goal: Understand the CI/DC offerings available to developers to create a highly 
 
 
 
+# Introduction
 
 
 
-  # Istana
+
+# Instana
 
   Instana APM and BlueMix Container Service
 
-  Instana is a Dynamic Application Performance Management solution specifically designed for monitoring the service quality and performance of constantly changing microservice based applications. This blog will detail the journey of initial deployment of the Instana solution into an application running on the Bluemix Container Service, then illustrate the subsequent visibility of live service performance delivered to the DevOps teams managing the application.
+  Instana is a Dynamic Application Performance Management solution specifically designed for monitoring the service quality and performance of constantly changing microservice based applications. This lab will detail the journey of initial deployment of the Instana solution into an application running on the Bluemix Container Service, then illustrate the subsequent visibility of live service performance delivered to the DevOps teams managing the application.
 
   Setting up a Kubernetes cluster in Bluemix
 
-  The first step is to create a Bluemix account. After you’ve successfully logged into Bluemix, the left-hand navigation will take you to Containers.
+  The first step is to create a Bluemix account. After you’ve successfully logged into Bluemix,
 
+  `bx cs cluster-create --name --location --workers 2 --machine-type u1c.2x4 --hardware shared --public-vlan --private-vlan`
 
-
-  Select the Kubernetes Cluster icon. We’re going to create a standard (non-free) cluster below. If your account only allows you to create a lite (free) cluster, don’t worry — you can still follow along and deploy the Instana Agent to a lite cluster.
-
-  To create a standard cluster, set the following parameters:
-
-  Cluster name
-  Kubernetes version
-  Datacenter location
-  Machine type – a flavor with pre-defined resources per worker node in your cluster
-  Number of workers – 1 to n based on capacity requirements, and can be scaled up or down after the cluster is running
-  Private and Public VLAN – choose networks for worker nodes (we’ll create for you if you don’t have any yet)
-  Hardware – clusters and worker nodes are always single-tenant and isolated to you, but you can choose the level of isolation to meet your needs (shared workers have multi-tenant hypervisor and hardware whereas dedicated worker nodes are single-tenant down to the hardware level)
-
-
-  See the Bluemix documentation for more details on cluster creation.
-
-  Once you are satisfied with your selections, click on the Create Cluster button.
-
-  To create a cluster from the command line, use the following command:
-
-  bx cs cluster-create --name --location --workers 2 --machine-type u1c.2x4 --hardware shared --public-vlan --private-vlan
-  Deploying Instana Application Monitoring Agents via IBM Bluemix Container Service
+# Deploying Instana Application Monitoring Agents via IBM Bluemix Container Service
 
   Now that the environment is provisioned, you have a blank canvas into which you can deploy your containerized application.
 
   The next step is to deploy the Instana agent. Prior to installing the agent, please request a trial of Instana at https://www.instana.com/.
 
-  Your Instana instance will be provisioned, and now you can deploy the Instana agent. Prior to deploying it, login to your Instana customer portal and obtain your agent key. You can reach the Instana portal by visiting https://(your instance name).instana.io/ump/instana//agentkeys/
+  Your Instana instance will be provisioned, and now you can deploy the Instana agent. Prior to deploying it, login to your Instana customer portal and obtain your agent key. You can reach the Instana portal by visiting `https://(your instance name).instana.io/ump/instana//agentkeys/`
 
 
 
   Copy the agent key (obscured on the above screen shot). For security reasons, the agent key has to be encoded. To do this, simply issue the following command on a Linux or OSX shell:
 
-  /bin/echo -n "The Key" | base64
+  `/bin/echo -n "The Key" | base64`
   Now you are ready to prepare your deployment file. The Instana agent runs on a kubernetes cluster as a daemon set.
 
   Download the instana-agent.yml file and make two edits within the file. Note that the YAML (.yml) files are very syntax sensitive. instana-agent.yml
 
   After your Instana agent file is ready, all you need to do is run a kubectl deploy command:
 
-  kubectl -f create instana-agent.yml
+  `kubectl -f create instana-agent.yml`
+
   Within a few seconds, you will see the following response:
 
+```txt
   namespace "instana-agent" created
   secret "instana-agent-secret" created
   daemonset "instana-agent" created
@@ -93,7 +77,7 @@ Goal: Understand the CI/DC offerings available to developers to create a highly 
   NAME	READY	STATUS	RESTARTS	AGE
   po/instana-agent-893p6	1/1	Running	0	1m
   If the value for “READY” isn’t 1/1, please wait until the agent is fully deployed.
-
+```
   Meanwhile, back in the Instana UI (https://(your instance name)-instana.instana.io), you will notice the first event of host discovery. This is the worker where your containers are running. I am running the free BlueMix trial, so I only have one worker node.
 
 
@@ -108,12 +92,12 @@ Goal: Understand the CI/DC offerings available to developers to create a highly 
 
   Adding a sample application will allow you to see all the things Instana can do with an application deployed onto Bluemix:
 
-  Automatically discovers details about applications
-  Tracks application performance and scalability
-  Gather metrics at one second resolution
-  Detect errors within 3 seconds of occurrence
-  Capture 100% of service calls
-  Deploying a Sample Application
+  * Automatically discovers details about applications
+  * Tracks application performance and scalability
+  * Gather metrics at one second resolution
+  * Detect errors within 3 seconds of occurrence
+  * Capture 100% of service calls
+  * Deploying a Sample Application
 
   For the sake of simplicity, let’s deploy a small sample application which has a Java Wildfly component making read-only calls into a mysql database. This sample application is provided by Arun Gupta from Amazon Web Services.
 
@@ -130,20 +114,20 @@ Goal: Understand the CI/DC offerings available to developers to create a highly 
 
   First deploy the mysql pod:
 
-  kubectl -f mysql-pod.yaml
+  `kubectl -f mysql-pod.yaml`
   Then deploy the mysql service:
 
-  kubectl -f mysql-service.yaml
+  `kubectl -f mysql-service.yaml`
   Lastly, deploy the wildfly replica set:
 
-  kubectl -f wildfly-rc.yaml
+  `kubectl -f wildfly-rc.yaml`
   If it all went well, you can issue the following command:
 
-  kubectl get all
+  `kubectl get all`
   And the response should be:
 
 
-
+```txt
   NAME	READY	STATUS	RESTARTS	AGE
   po/mysql-pod	1/1	Running	0	1m
   po/wildfly-rc-b52f5	1/1	Running	0	41s
@@ -160,7 +144,9 @@ Goal: Understand the CI/DC offerings available to developers to create a highly 
   NAME	CLUSTER-IP	EXTERNAL-IP	PORT(S)	AGE
   svc/kubernetes	10.10.10.1	<none>	443/TCP	40m
   svc/mysql-service	10.10.10.71	<none>	3306:30306/TCP	55s
-  * Note that svc/kubernetes is a component of BlueMix.
+
+  ```
+  Note:  svc/kubernetes is a component of Bluemix.
 
   Better yet, switch over to your Instana instance and you will notice that now there are two extra containers on the stack, as illustrated in the following image captures.
 
@@ -174,7 +160,7 @@ Goal: Understand the CI/DC offerings available to developers to create a highly 
 
 
 
-  Instana Automatic Application Discovery
+# Instana Automatic Application Discovery
 
   While this is a simple application, the automatic discovery was automatic. And the same principles of automatic discovery apply to very complex applications as well.
 
@@ -186,13 +172,13 @@ Goal: Understand the CI/DC offerings available to developers to create a highly 
 
   Instana discovered the host, a container running on that host, and a process running inside that container. Furthermore, Instana automatically determined that the process is a JVM and that a JBoss Wildfly application has been deployed. Each one of these discoveries is done thanks to an Instana sensor. Read more about Sensors.
 
-  Select the JVM sensor by clicking on the word “JVM” in the discovery stack / elevator. Set the time window slider to be a minute (lower left-hand corner of the screen) and scroll down the JVM dashboard until you see the “Garbage Collection” tile. Notice the real time metric variation. Case in point: a lot goes on inside of a JVM (and any other application component for that matter) within a second. Imagine what you are missing if you are using a tool that averages metrics every minute. For more examples, see my colleague’s blog about Real-time monitoring.
+  Select the JVM sensor by clicking on the word “JVM” in the discovery stack / elevator. Set the time window slider to be a minute (lower left-hand corner of the screen) and scroll down the JVM dashboard until you see the “Garbage Collection” tile. Notice the real time metric variation. Case in point: a lot goes on inside of a JVM (and any other application component for that matter) within a second. Imagine what you are missing if you are using a tool that averages metrics every minute.
 
 
 
 
 
-  Generating Load on our sample application
+# Generating Load on our sample application
 
   For as great as Instana auto-discovery and infrastructure monitoring is, we are just getting started. We now need to generate load on our sample application. You may choose to expose the wildfly replicate set via a service, which is a bit more complicated, but easily achieved. I opted for connecting to the running pod via ssh and generating the traffic on the pod itself.
 
@@ -262,6 +248,6 @@ Goal: Understand the CI/DC offerings available to developers to create a highly 
 
   This has just scratched the surface of the capabilities and value of Instana. You can try this on your own, or feel free to reach to me personally at pedro.pacheco@instana.com if you have any questions.
 
-  # Conclusion of Instana Lab
+# Conclusion of Instana Lab
 
   IBM Bluemix Container Service makes it easy to set up a Kubernetes cluster to host your containerized applications. When running such applications in production, operational visibility and performance monitoring is required to ensure that applications are running as expected. Instana’s Dynamic APM delivers just such visibility and performance management for dynamic containerized applications running in the cloud.
