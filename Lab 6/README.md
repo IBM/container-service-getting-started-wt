@@ -19,24 +19,18 @@ Goal: Understand the CI/DC offerings available to developers to create a highly 
   * Instana monitoring and visualization for DevOps Enablement
   * IBM Managed DevOps Service Pipeline w/ IBM Containers Service
 
-3. Conclusion
-  * Review CI/DC topics above (restated reinforcement)
-  * five question quiz
-
-
-
 # Introduction
 
+This stage of the lab introduces useful ways to apply devops and CI/DC to your cluster for cluster quality management, as well as use Containerized environments in CI/DC pipelines.
+
+In CI/DC, it is incredibly useful to see a visual representation of the performance and quality of your running clusters. To accomplish this, a performace visualizer is often used, and that's what you're installing today. This lab will detail the journey of initial deployment of the Instana solution into an application running on the Bluemix Container Service.
 
 
+# Jenkins with Kubernetes
 
 # Instana
 
-  Instana APM and BlueMix Container Service
-
-  Instana is a Dynamic Application Performance Management solution specifically designed for monitoring the service quality and performance of constantly changing microservice based applications. This lab will detail the journey of initial deployment of the Instana solution into an application running on the Bluemix Container Service, then illustrate the subsequent visibility of live service performance delivered to the DevOps teams managing the application.
-
-  Setting up a Kubernetes cluster in Bluemix
+  Instana is a Dynamic Application Performance Management solution specifically designed for monitoring the service quality and performance of constantly changing microservice based applications.
 
 To get started with this lab, Delete the previous deployments and services off of your old cluster, or remove your old cluster entirely. Then, After you’ve successfully logged into Bluemix, run:
 
@@ -50,11 +44,12 @@ To get started with this lab, Delete the previous deployments and services off o
 
   Your Instana instance will be provisioned, and now you can deploy the Instana agent. Prior to deploying it, login to your Instana customer portal and obtain your agent key. You can reach the Instana portal by visiting `https://(your instance name).instana.io/ump/instana//agentkeys/`
 
-![Image001](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Bluemix-Container-Monitoring-with-Instana-Service-Map-1024x103.png)
+![Image001](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Bluemix-Instana-Agent-Installation-Panel-1024x662.png)
 
   Copy the agent key (obscured on the above screen shot). For security reasons, the agent key has to be encoded. To do this, simply issue the following command on a Linux or OSX shell:
 
   `/bin/echo -n "The Key" | base64`
+
   Now you are ready to prepare your deployment file. The Instana agent runs on a kubernetes cluster as a daemon set.
 
   Download the instana-agent.yml file and make two edits within the file. Note that the YAML (.yml) files are very syntax sensitive. instana-agent.yml
@@ -69,26 +64,28 @@ To get started with this lab, Delete the previous deployments and services off o
   namespace "instana-agent" created
   secret "instana-agent-secret" created
   daemonset "instana-agent" created
-  To make sure the agent deployed correctly, please issue the following command:
-
-  kubectl get all --namespace instana-agent
-  You should receive the following response:
-
-  NAME	READY	STATUS	RESTARTS	AGE
-  po/instana-agent-893p6	1/1	Running	0	1m
-  If the value for “READY” isn’t 1/1, please wait until the agent is fully deployed.
 ```
-  Meanwhile, back in the Instana UI (https://(your instance name)-instana.instana.io), you will notice the first event of host discovery. This is the worker where your containers are running. I am running the free BlueMix trial, so I only have one worker node.
+To make sure the agent deployed correctly, please issue the following command:
 
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+  `kubectl get all --namespace instana-agent`
+You should receive the following response:
+
+
+```
+  NAME	READY	 STATUS	RESTARTS	AGE
+  po/instana-agent-893p6	1/1	Running	0	1m
+```
+  Meanwhile, back in the Instana UI (https://(your instance name)-instana.instana.io), you will notice the first event of host discovery. This is the worker where your containers are running.
+
+![Image 002](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/IBM-Bluemix-Container-Service-on-an-Instana-Container-Map-1024x542.png)
 
   Shortly you will see a new host (in the shape of a cuboid) appear. In a few seconds, Instana’s automatic discovery will have found all running containers (with no additional configuration).
-  
-  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+
+  ![Image 003](https://octodex.github.com/images/yaktocat.png)
 
 
   And this is what a map of all the running containers looks like:
-  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+  ![Image 004](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Managing-Bluemix-Container-Service-Container-List.png)
 
 
   At this point, of course, you only see the components of your kubernetes worker nodes. There’s no actual application running in this environment. So let’s start one up.
@@ -102,7 +99,7 @@ To get started with this lab, Delete the previous deployments and services off o
   * Capture 100% of service calls
   * Deploying a Sample Application
 
-  For the sake of simplicity, let’s deploy a small sample application which has a Java Wildfly component making read-only calls into a mysql database. This sample application is provided by Arun Gupta from Amazon Web Services.
+  For this lab, you will deploy a small sample application which has a Java Wildfly component, making read-only calls into a mysql database. You can get this application from  This sample application is provided by Arun Gupta from Amazon Web Services.
 
   After downloading the sample application, you will see the following files:
 ```
@@ -119,13 +116,13 @@ where:
 
   First deploy the mysql pod:
 
-  `kubectl -f mysql-pod.yaml`
+  `kubectl create -f mysql-pod.yaml`
   Then deploy the mysql service:
 
-  `kubectl -f mysql-service.yaml`
+  `kubectl create -f mysql-service.yaml`
   Lastly, deploy the wildfly replica set:
 
-  `kubectl -f wildfly-rc.yaml`
+  `kubectl create -f wildfly-rc.yaml`
   If it all went well, you can issue the following command:
 
   `kubectl get all`
@@ -137,14 +134,8 @@ where:
   po/mysql-pod	1/1	Running	0	1m
   po/wildfly-rc-b52f5	1/1	Running	0	41s
 
-
-
-
   NAME	DESIRED	CURRENT	READY	AGE
   rc/wildfly-rc	1	1	1	41s
-
-
-
 
   NAME	CLUSTER-IP	EXTERNAL-IP	PORT(S)	AGE
   svc/kubernetes	10.10.10.1	<none>	443/TCP	40m
@@ -188,81 +179,6 @@ where:
   ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
 
-
-
-# Generating Load on our sample application
-
-  For as great as Instana auto-discovery and infrastructure monitoring is, we are just getting started. We now need to generate load on our sample application. You may choose to expose the wildfly replicate set via a service, which is a bit more complicated, but easily achieved. I opted for connecting to the running pod via ssh and generating the traffic on the pod itself.
-
-  To do that, first you will need the pod name.
-
-  `kubectl get pods`
-
-  ```txt
-  NAME	READY	STATUS	RESTARTS	AGE
-  mysql-pod	1/1	Running	0	20m
-  wildfly-rc-b52f5	1/1	Running	0	19m
-
-  ```
-  Now issue the following command:
-
-  `kubectl -it exec wildfly-rc-b52f5 /bin/bash`
-
-  When you see this:
-
-  `[jboss@wildfly-rc-b52f5 ~]$`
-  you are officially inside the running pod. For the record, accessing a POD or a container via SSH is frowned upon by the purist. But after all, we are just trying to show how to monitor a kubernetes application, not to teach you about kubernetes.
-
-  Now issue the following command:
-
-  `curl localhost:8080/employees/resources/employees`
-  This command will return an XML file with all employees on our sample database.
-  You may also get to specific employees by issuing:
-
-  `curl localhost:8080/employees/resources/employee/<n>`, where <n> is the employee number.
-  If you choose a high number, such as 100, you will notice an error. This is there to simulate an application issue.
-
-  An easy way to generate for constant load is to issue this command:
-
-  ```txt
-  for i in `seq 1 20`; do curl localhost:8080/employees/resources/employees;done
-  ```
-  While this command is running, go to your Instana Application Map to see a full end-to-end map of the employee service and its database dependency. You will also see that Instana captures traces for every request.
-
-  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-
-
-  Note: Each dot on the screen represents a service.
-
-  Now select traces from the top menu. You will see something like this:
-
-  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-
-
-  Every single service. Click on the JDBC call in the lower right-hand corner (by clicking it), and you will see details of the SQL called issued against the MySQL database.
-
-  If you actually generated some erroneous calls (with a request greater than 100 – i.e., `curl localhost:8080/employees/resources/employee/100 `),
-  you will also see traces that are prefixed with a lightning bolt. These are traces where an error has been detected. You may also get to those by using our dynamic filtering capability.
-
-  Focusing in on a Specific Entity
-
-  On the top of the screen is the Instana search bar. In the search bar, type the following filter:
-
-
-  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-
-  Notice how Instana autocompletes the search for you using Lucene search syntax.
-
-  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-
-
-  Select one of the erroneous traces, and expand the box highlighted in red:
-
-  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-
-  Instana is showing the exact exception that was captured when the application attempted to retrieve an employee that doesn’t exist.
-
-  This has just scratched the surface of the capabilities and value of Instana. You can try this on your own, or feel free to reach to me personally at pedro.pacheco@instana.com if you have any questions.
 
 # Conclusion of Instana Lab
 

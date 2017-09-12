@@ -1,7 +1,7 @@
 # Security with the IBM Bluemix Containers Service
 
 
-This section is under construction. An outline of what is to come is show below. 
+This section is under construction. An outline of what is to come is show below.
 
 # Outline
 Goal: Understand the security offerings available to developers to create a highly secure deployment in the IBM Containers Service
@@ -15,9 +15,9 @@ Goal: Understand the security offerings available to developers to create a high
 
 2. Body
   * Network Policy Demo for Pod Level Security
-  * Using Vunerability advisor for image level security 
-  * Istio? secured connections and visilbility monitoring
-  
+  * Using Vunerability advisor for image level security
+
+
 3. Conclusion
-  * Review security topics above (restated reinforcement) 
+  * Review security topics above (restated reinforcement)
   * five question quiz
