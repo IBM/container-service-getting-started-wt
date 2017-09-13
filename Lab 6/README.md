@@ -36,6 +36,8 @@ To get started with this lab, Delete the previous deployments and services off o
 
   `bx cs cluster-create --name=Cluster00 --location=dal10 --workers 1 --machine-type u1c.2x4 --hardware shared`
 
+  Wait until the cluster sets up with a single worker, then proceed.
+
 # Deploying Instana Application Monitoring Agents via IBM Bluemix Container Service
 
   Now that the environment is provisioned, you have a blank canvas into which you can deploy your containerized application.
