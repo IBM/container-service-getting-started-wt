@@ -32,7 +32,7 @@ To get started with this lab, Delete the previous deployments and services off o
   Now you are ready to prepare your deployment file. The Instana agent runs on a kubernetes cluster as a daemon set.
 
   Download the instana-agent.yml file, located  here: http://www.instana.com/media/instana-agent.yml_.txt 
-  and make two edits within the file. Note that the YAML (.yml) files are very syntax sensitive. instana-agent.yml
+  and make two edits within the file. Note that the YAML (.yml) files are very syntax sensitive.
 
   After your Instana agent file is ready, all you need to do is run a kubectl deploy command:
 
