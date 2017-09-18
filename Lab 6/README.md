@@ -1,32 +1,9 @@
 # CI/DC with the IBM Bluemix Containers Service
 
 
-This section is under construction. An outline of what is to come is show below.
-
-# Outline
-Goal: Understand the CI/DC offerings available to developers to create a highly secure deployment in the IBM Containers Service
-
-
-1. Introduction
-
-  * Explain CI/DC as it applies to kubernetes components (deployment, pod, and container image level)
-  https://console.bluemix.net/docs/containers/cs_security.html#cs_security
-
-
-2. Body
-
-  * Discuss common CI/DC pipelines
-  * Instana monitoring and visualization for DevOps Enablement
-  * IBM Managed DevOps Service Pipeline w/ IBM Containers Service
-
-# Introduction
-
-This stage of the lab introduces useful ways to apply devops and CI/DC to your cluster for cluster quality management, as well as use Containerized environments in CI/DC pipelines.
+This section of the lab is designed to get you thinking about CI/DC and montioring DevOps flows with Containers. By the end of this lab, you will understand the CI/DC offerings available to developers to create a highly secure deployment in the IBM Containers Service
 
 In CI/DC, it is incredibly useful to see a visual representation of the performance and quality of your running clusters. To accomplish this, a performace visualizer is often used, and that's what you're installing today. This lab will detail the journey of initial deployment of the Instana solution into an application running on the Bluemix Container Service.
-
-
-# Jenkins with Kubernetes
 
 # Instana
 
@@ -36,7 +13,7 @@ To get started with this lab, Delete the previous deployments and services off o
 
   `bx cs cluster-create --name=Cluster00 --location=dal10 --workers 1 --machine-type u1c.2x4 --hardware shared`
 
-  Wait until the cluster sets up with a single worker, then proceed.
+  Wait until the cluster sets up with a single worker, then proceed
 
 # Deploying Instana Application Monitoring Agents via IBM Bluemix Container Service
 
@@ -83,11 +60,12 @@ You should receive the following response:
 
   Shortly you will see a new host (in the shape of a cuboid) appear. In a few seconds, Instana’s automatic discovery will have found all running containers (with no additional configuration).
 
-  ![Image 003](https://octodex.github.com/images/yaktocat.png)
+  ![Image 003](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Managing-Bluemix-Container-Service-Container-List.png)
 
 
   And this is what a map of all the running containers looks like:
   ![Image 004](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Managing-Bluemix-Container-Service-Container-List.png)
+  ![Image 005](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Managing-Bluemix-Container-Service-Full-Container-Map-1024x376.png)
 
 
   At this point, of course, you only see the components of your kubernetes worker nodes. There’s no actual application running in this environment. So let’s start one up.
@@ -150,16 +128,16 @@ where:
 
 
 
-  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+  ![Image 006](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Managing-Bluemix-Container-Service-Individual-Container-Running-Multiple-Servers.png)
+  ![Image 007](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Managing-Bluemix-Container-Service-JBoss-Data-1024x373.png)
+  ![Image008](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/MySQL-DB-Container-Dashboard-while-Managing-IBM-Bluemix-Container-Service-1024x370.png)
 
 
 
 
   Another way to visualize your deployment it to use the Instana Container View. Notice the mysql-pod and the wildfly-rc-(pod number). Because pods on a replica set are automatically created by the controller, the pod is named after the replicate-set concatenated by an individual ID.
 
-  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+  ![Image 009](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Instana-Container-Map-Sorted-by-Kubernetes-Pod-name-1024x390.png)
 
 
 # Instana Automatic Application Discovery
@@ -170,15 +148,15 @@ where:
 
   Notice also the discovery stack (also called an “Elevator”) on the very top of the JBoss Wildfly dashboard:
 
-  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+  ![Image 010](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Instana-Application-Discovery-Stack-in-Bluemix-Container-Service.png)
 
 
   Instana discovered the host, a container running on that host, and a process running inside that container. Furthermore, Instana automatically determined that the process is a JVM and that a JBoss Wildfly application has been deployed. Each one of these discoveries is done thanks to an Instana sensor. Read more about Sensors.
 
   Select the JVM sensor by clicking on the word “JVM” in the discovery stack / elevator. Set the time window slider to be a minute (lower left-hand corner of the screen) and scroll down the JVM dashboard until you see the “Garbage Collection” tile. Notice the real time metric variation. Case in point: a lot goes on inside of a JVM (and any other application component for that matter) within a second. Imagine what you are missing if you are using a tool that averages metrics every minute.
 
-  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-  ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+  ![Image 011](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Managing-Bluemix-Container-Service-Instana-Time-Slider.png)
+  ![Image 012](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Managing-Bluemix-Container-Service-JVM-GC-1024x288.png)
 
 
 
