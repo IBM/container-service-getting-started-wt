@@ -22,7 +22,7 @@ After creation, before using the cluster, make sure it has completed provisionin
 
 #  Lab Breakdown
 
-There are six stages to the Lab, including an optional advanced lab and a getting started lab.
+There are nine stages to the Lab, including an optional advanced lab and a getting started lab.
 
 [Lab 0](https://github.com/colemanjackson/container-service-getting-started-wt/tree/dwworks-additions/Lab%200#lab-0-getting-the-ibm-bluemix-containers-service) (Optional): Provides a walkthrough for installing Bluemix command-line tools and the Kubernetes CLI. You may skip this lab if you have the containers-registry plugin, the Bluemix CLI and Kubectl already installed on your machine.
 
