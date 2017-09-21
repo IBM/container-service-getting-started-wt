@@ -5,8 +5,6 @@ This lab is intended to help you understand the overall ecosystem of plugin offe
 This section is under construction. An outline of what is to come is show below.
 
 
-
-
 # WeaveScope:  Visualizing your Cluster Mappings
 
 Weave Scope provides a visual diagram of your resources within a Kubernetes cluster, including services, pods, containers, processes, nodes, and more. Weave Scope provides interactive metrics for CPU and memory and also provides tools to tail and exec into a container. Complete the following steps to learn how to deploy WeaveScope securely and access it from a web browser locally.

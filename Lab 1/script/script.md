@@ -33,12 +33,12 @@ metadata:
 ```
 To label a running pod
 ```
-  [root@kubem00 ~]# kubectl label pod mynginx type=webserver
+  kubectl label pod mynginx type=webserver
   pod "mynginx" labeled
 ```
 To list pods based on labels
 ```
-  [root@kubem00 ~]# kubectl get pods -l type=webserver
+  kubectl get pods -l type=webserver
   NAME      READY     STATUS    RESTARTS   AGE
   mynginx   1/1       Running   0          21m
 
@@ -91,12 +91,12 @@ spec:
 ```
 and create the deployment
 ```
-[root@kubem00 ~]# kubectl create -f nginx-deploy.yaml
+kubectl create -f nginx-deploy.yaml
 deployment "nginx" created
 ```
 The deployment creates the following objects
 ```
-[root@kubem00 ~]# kubectl get all -l run=nginx
+kubectl get all -l run=nginx
 
 NAME           DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 deploy/nginx   3         3         3            3           4m
@@ -109,3 +109,54 @@ po/nginx-664452237-h8dh0   1/1       Running   0          4m
 po/nginx-664452237-ncsh1   1/1       Running   0          4m
 po/nginx-664452237-vts63   1/1       Running   0          4m
 ```
+
+# services
+
+Services
+
+Kubernetes pods, as containers, are ephemeral. Replication Controllers create and destroy pods dynamically, e.g. when scaling up or down or when doing rolling updates. While each pod gets its own IP address, even those IP addresses cannot be relied upon to be stable over time. This leads to a problem: if some set of pods provides functionality to other pods inside the Kubernetes cluster, how do those pods find out and keep track of which other?
+
+A Kubernetes Service is an abstraction which defines a logical set of pods and a policy by which to access them. The set of pods targeted by a Service is usually determined by a label selector. Kubernetes offers a simple Endpoints API that is updated whenever the set of pods in a service changes.
+
+To create a service for our nginx webserver, edit the nginx-service.yaml file
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    run: nginx
+spec:
+  selector:
+    run: nginx
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 80
+  type: ClusterIP
+```
+Create the service
+
+`kubectl create -f nginx-service.yaml`
+service "nginx" created
+```
+kubectl get service -l run=nginx
+NAME      CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+nginx     10.254.60.24   <none>        8000/TCP    38s
+
+```
+Describe the service:
+```
+kubectl describe service nginx
+Name:                   nginx
+Namespace:              default
+Labels:                 run=nginx
+Selector:               run=nginx
+Type:                   ClusterIP
+IP:                     10.254.60.24
+Port:                   <unset> 8000/TCP
+Endpoints:              172.30.21.3:80,172.30.4.4:80,172.30.53.4:80
+Session Affinity:       None
+No events.
+```
+The above service is associated to our previous nginx pods. Pay attention to the service selector run=nginx field. It tells Kubernetes that all pods with the label run=nginx are associated to this service, and should have traffic distributed amongst them. In other words, the service provides an abstraction layer, and it is the input point to reach all of the associated pods.

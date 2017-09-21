@@ -133,9 +133,6 @@ where:
   ![Image 007](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Managing-Bluemix-Container-Service-JBoss-Data-1024x373.png)
   ![Image008](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/MySQL-DB-Container-Dashboard-while-Managing-IBM-Bluemix-Container-Service-1024x370.png)
 
-
-
-
   Another way to visualize your deployment it to use the Instana Container View. Notice the mysql-pod and the wildfly-rc-(pod number). Because pods on a replica set are automatically created by the controller, the pod is named after the replicate-set concatenated by an individual ID.
 
   ![Image 009](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Instana-Container-Map-Sorted-by-Kubernetes-Pod-name-1024x390.png)
