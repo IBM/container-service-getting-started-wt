@@ -34,4 +34,8 @@ There are six stages to the Lab, including an optional advanced lab and a gettin
 
 [Lab 4](https://github.com/colemanjackson/container-service-getting-started-wt/tree/dwworks-additions/Lab%204#highly-available-deployments-with-the-ibm-bluemix-containers-service) (Under Construction, Paid Only, Optional): This lab will outline how to create a highly available application, and build on the knowledge you have learned in Labs 1 - 3 to deploy clusters simultaneously to multiple availibility zones. As this requires a paid bluemix account, you may skip this lab if you are sticking to the free tier.
 
-[Lab 5](https://github.com/colemanjackson/container-service-getting-started-wt/tree/dwworks-additions/Lab%205#security-with-the-ibm-bluemix-containers-service) (Under Construction): This Lab walks through securing your cluster and applications, leveraging tools like Istio and  Vulnerability Advisor to secure images and manage security in your image registry. 
+[Lab 5](https://github.com/colemanjackson/container-service-getting-started-wt/tree/dwworks-additions/Lab%205#security-with-the-ibm-bluemix-containers-service): This Lab walks through securing your cluster and applications using network policies, and will later add leveraging tools Vulnerability Advisor to secure images and manage security in your image registry.
+
+[Lab 6](): This lab walks through using Instana for CI/DC montioring and network patrolling of your cluster
+[Lab 7](): This lab walks through the Kubernetes ecosystem to introduce you to node visualizers like WeaveScope, and package content handling with Helm.
+[Lab 8]() (Under Construction): This lab walks through Microservice architecture at large, and provides a jumping off point to learn Istio!
