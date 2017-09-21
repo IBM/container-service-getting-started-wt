@@ -21,3 +21,7 @@ Goal: Go beyond simple containers, and understand how to manage Microservices an
 3. Conclusion
   * Review Microservice management topics above (restated reinforcement)
   * 10 question quiz
+
+
+
+  Need Help Deciding on decent content

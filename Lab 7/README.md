@@ -4,26 +4,8 @@ This lab is intended to help you understand the overall ecosystem of plugin offe
 
 This section is under construction. An outline of what is to come is show below.
 
-# Outline
-Goal:
 
 
-1. Introduction
-
-  * Explain the plugin ecosystem as it applies to kubernetes components
-
-
-2. Body
-  * WeaveScope Demo with IBM Containers Service
-  * Istana Demo with the IBM Containers Service -> devops lab
-  * Helm Demo with the IBM Containers Service
-
-3. Conclusion
-  * Review security topics above (restated reinforcement)
-  * five question quiz
-
-
-#Helm: Get your dependicies in Order
 
 # WeaveScope:  Visualizing your Cluster Mappings
 
@@ -76,3 +58,54 @@ Handling connection for 4040
 ```
 
 Finally, open your web browser to http://localhost:4040. Choose to view topology diagrams or tables of the Kubernetes resources in the cluster. If you see a web UI, congratulations, you successfully set up WeaveScope!
+
+When you're ready, delete your current cluster and create a new one, and let it provision. Or, clear every service, pod, and deployment from your cluster. When you've decided, continue on to learn about Helm.
+
+
+# Helm and the IBM Bluemix Containers Service: Dependency Management
+
+Helm is an interesting tool to manage Kubernetes charts. Charts are curated Kubernetes applications, designed to work with Helm. I like to think of Kubernetes charts as cooking recipes, however, I need Helm to create my family’s favorite dishes out of these recipes, as Helm allows me to customize the recipes to create exactly what my family wants.
+For this, I recommend you to deploy a paid IBM Bluemix Container Service cluster. Your kubectl should be configured to work with the cluster. If you don’t, you can follow these steps to deploy your cluster and these steps to setup the bx and kubectl CLI. It is also important to make sure you have permissions to deploy persistent storage as the WordPress chart uses persistent storage by default. Let’s begin the lab:
+
+
+1. Install Helm: https://github.com/kubernetes/helm/blob/master/docs/install.md
+2. Install the WordPress chart:
+```
+helm install --name my-wordpress-release --set wordpressUsername=admin,wordpressPassword=password,mariadb.mariadbRootPassword=secretpassword,persistence.storageClass=ibmc-file-bronze,mariadb.persistence.storageClass=ibmc-file-bronze stable/wordpress
+```
+Note the simple parameters we passed into helm install to specify the name of the installation, and the configuration parameters based on the WordPress chart’s values.yaml file. I had to use a specific storage class given IBM Bluemix Container Service doesn’t support the alpha storage class (yet).
+
+3. Wait a minute or two to allow everything to reach running. Follow the output from the helm install command to locate the load balancer service IP.
+```
+# linsun at linsun in ~/workspace/k8s-yamls on git:master ✖︎ [16:30:48]
+→ export SERVICE_IP=$(kubectl get svc --namespace default my-wordpress-release-wordpress -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+```
+4. Open your favorite browser and visit `http://$SERVICE_IP/admin or http://$SERVICE_IP/`
+
+That’s it! You should have an working WordPress application running now.
+
+Now let’s look at the set of Kubernetes resources that are deployed as the result of the WordPress chart installation.
+
+```
+→ kubectl get deployment,pvc,secrets,svc,pods
+NAME                                     DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+deploy/my-wordpress-release-mariadb     1         1         1            1           5h
+deploy/my-wordpress-release-wordpress   1         1         1            1           5h
+NAME                                  STATUS    VOLUME                                     CAPACITY   ACCESSMODES   STORAGECLASS       AGE
+pvc/my-wordpress-release-mariadb     Bound     pvc-e869506a-2abd-11e7-90d4-82fbcdd809af   20Gi       RWO           ibmc-file-bronze   5h
+pvc/my-wordpress-release-wordpress   Bound     pvc-e8689f1f-2abd-11e7-90d4-82fbcdd809af   20Gi       RWO           ibmc-file-bronze   5h
+NAME                                      TYPE                                  DATA      AGE
+secrets/my-wordpress-release-mariadb     Opaque                                2         5h
+secrets/my-wordpress-release-wordpress   Opaque                                3         5h
+NAME                                  CLUSTER-IP     EXTERNAL-IP     PORT(S)                      AGE
+svc/my-wordpress-release-mariadb     10.10.10.176   <none>          3306/TCP                     5h
+svc/my-wordpress-release-wordpress   10.10.10.171   169.46.90.147   80:30420/TCP,443:32287/TCP   5h
+NAME                                                  READY     STATUS    RESTARTS   AGE
+po/my-wordpress-release-mariadb-1596346107-fxdrg     1/1       Running   1          5h
+po/my-wordpress-release-wordpress-1704943544-0rbzs   1/1       Running   1          5h
+
+```
+Obviously, that is a lot of resources, including 2 persistent volume claims. As you can see, with Helm and Helm charts, users can easily deploy interesting applications like WordPress onto Kubernetes with one simple command -helm install, with their preferred ways as long as the configuration parameters are exposed in the values.yaml file. For example, for the WordPress chart, I can choose to enable ingress, change service type, disable persistence, or configure CPU and memory for the pods, etc.
+
+
+Tools like Helm and charts are fascinating as they enable developers to quickly deploy curated Kubernetes applications and share them with many other users for reuse in each user’s preferred way.

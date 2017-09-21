@@ -31,7 +31,7 @@ To get started with this lab, Delete the previous deployments and services off o
 
   Now you are ready to prepare your deployment file. The Instana agent runs on a kubernetes cluster as a daemon set.
 
-  Download the instana-agent.yml file, located  here: http://www.instana.com/media/instana-agent.yml_.txt 
+  Download the instana-agent.yml file, located  here: http://www.instana.com/media/instana-agent.yml_.txt
   and make two edits within the file. Note that the YAML (.yml) files are very syntax sensitive.
 
   After your Instana agent file is ready, all you need to do is run a kubectl deploy command:
@@ -163,4 +163,4 @@ where:
 
 # Conclusion of Instana Lab
 
-  IBM Bluemix Container Service makes it easy to set up a Kubernetes cluster to host your containerized applications. When running such applications in production, operational visibility and performance monitoring is required to ensure that applications are running as expected. Instana’s Dynamic APM delivers just such visibility and performance management for dynamic containerized applications running in the cloud.
+  IBM Bluemix Container Service makes it easy to set up a Kubernetes cluster to host your containerized applications. When running such applications in production, operational visibility and performance monitoring is required to ensure that applications are running as expected. Instana’s Dynamic APM delivers just such visibility and performance management for dynamic containerized applications running in the cloud. In our next lab, you'll learn other tools like Instana which can be useful for cluster data visualization, not just monitoring.
