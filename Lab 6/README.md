@@ -40,7 +40,7 @@ To get started with this lab, Delete the previous deployments and services off o
 
   Within a few seconds, you will see the following response:
 
-```txt
+``` txt
   namespace "instana-agent" created
   secret "instana-agent-secret" created
   daemonset "instana-agent" created

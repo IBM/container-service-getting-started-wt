@@ -110,14 +110,14 @@ kind: Config
 users:
 - name: admin
   user:
-    client-certificate: admin.pem
-    client-key: admin-key.pem
+    client-certificate: admin.pem # So does this one...
+    client-key: admin-key.pem     # and this one...
 ____________________________________
 ```
-The .pem file is in the same location as the kube-config.yml for the kubeconfig. simply swap the local path of the `certificate-authority` to the absolute path you copied from your kubeconfig line. An example is shown below:
+The .pem file is in the same location as the kube-config.yml for the kubeconfig. simply swap the local path of the `certificate-authority` to the absolute path you copied from your kubeconfig line. Do the same for `client-certificate` and `client-key`. An example is shown below:
 
 
-/Users/ColemanIBMDevMachine/.bluemix/plugins/container-service/clusters/Cluster02-admin/
+
 
 ``` yml
 apiVersion: v1
@@ -137,11 +137,25 @@ kind: Config
 users:
 - name: admin
   user:
-    client-certificate: admin.pem
-    client-key: admin-key.pem
+    client-certificate: /Users/ColemanIBMDevMachine/.bluemix/plugins/container-service/clusters/Cluster02-admin/admin.pem
+    client-key: /Users/ColemanIBMDevMachine/.bluemix/plugins/container-service/clusters/Cluster02-admin/admin-key.pem
 ____________________________________
 ```
-Save the file, and then try the `kubefed init` command again.
+Save the file, and then try the `kubefed init` command again. You should see output similar to the text below:
 
+```
+________________________________________________________________________________
+| ~/.bluemix/plugins/container-service/clusters/Cluster02 @ colemans-mbp (ColemanIBMDevMachine)
+| => kubefed init fellowship --host-cluster-context=Cluster02 --dns-provider="coredns" --dns-zone-name="example.com."
+Creating a namespace federation-system for federation system components... done
+Creating federation control plane service......
+```
 
 # Deploying an Application to a Federated Cluster
+
+
+The API for Federated Deployment is compatible with the API for traditional Kubernetes Deployment. You can create a Deployment by sending a request to the federation data layer.
+You can do that using kubectl by running:
+`kubectl --context=federation-cluster create -f mydeployment.yaml`
+
+The `–context=federation-cluster` flag tells kubectl to submit the request to the Federation apiserver instead of sending it to a Kubernetes cluster.
