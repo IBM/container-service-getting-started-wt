@@ -262,6 +262,6 @@ You should now see red colored star ratings approximately 50% of the time when y
 
 Note: With the Envoy sidecar implementation, you may need to refresh the productpage multiple times to see the proper output.
 
-#Final thoughts
+# Final thoughts
 
-congratulations. You just finished the entire lab on Kubernetes, the IBM Containers Service, and the larger Microservices ecosystem.
+Congratulations. You just finished the entire lab on Kubernetes, the IBM Containers Service, and the larger Microservices ecosystem.
