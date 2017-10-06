@@ -1,7 +1,6 @@
 # Highly Available Deployments With the IBM Bluemix Containers Service
 
-The goal of this lab is to begin to understand how to deploy a highly available application. It's easier than many think, but can be expensive if deploying across multiple AZs. The example in this lab shows how to deploy an application across two worker nodes in the same AZ (a basic level of high availability, to explore the concepts) it will also include anti- affinity so the pod replicas of the deployment spread across worker nodes, thus giving basic high availability to the application.
-
+The goal of this lab is to begin to understand how to deploy a highly available application. It's easier than many think, but can be expensive if deploying across multiple AZs. The example in this lab shows how to deploy an application across two worker nodes in the same AZ (a basic level of high availability, to explore the concepts).
 
 # Federated Kubernetes Cluster: Two Worker Nodes Running the Same Application
 
@@ -159,3 +158,37 @@ You can do that using kubectl by running:
 `kubectl --context=federation-cluster create -f mydeployment.yaml`
 
 The `–context=federation-cluster` flag tells kubectl to submit the request to the Federation apiserver instead of sending it to a Kubernetes cluster.
+
+This example will deploy a simple nginx image to your federated cluster. The configuration file is shown below:
+
+```yml
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 10 # tells deployment to run 10 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      # unlike pod-nginx.yaml, the name is not included in the meta data as a unique name is
+      # generated from the deployment name
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+```
+save it as deployment.yaml locally.
+
+Once you have saved the nginx configuration file, deploy it to your federated cluster:
+
+`kubectl --context=federeation-cluster -f path/to/deployment.yaml`
+
+
+If it works, congrats! You have successfully deployed a basic application across two worker nodes using federation.
