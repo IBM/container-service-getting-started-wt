@@ -218,7 +218,7 @@ app.get('/healthz', function(req, res) {
 To try the HTTP liveness check, first, cd into the Stage2 directory, then create and push the sigex-demo-health image to the IBM registry:
 
 ```
-docker build --tag registry.ng.bluemix.net/<namespace>/health-check-demo `
+docker build --tag registry.ng.bluemix.net/<namespace>/health-check-demo .
 docker push registry.ng.bluemix.net/<namespace>/health-check-demo
 ```
 
