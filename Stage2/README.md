@@ -223,7 +223,7 @@ docker push registry.ng.bluemix.net/<namespace>/health-check-demo
 ```
 
 
-Replace the correct namespace in the sigex-demo-health.yml file under the image tag:
+Replace the correct namespace in the healthcheck.yml file under the image tag:
 
 ```yml
 spec:
