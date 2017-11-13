@@ -31,7 +31,7 @@ Run the following to begin this lab:
   - `docker build -t registry.ng.bluemix.net/<namespace>/watson-talk .`
 
 
-7. Push `watson` image to IBM Container Registry
+7. Push `watson-talk` image to IBM Container Registry
 
   - `docker push registry.ng.bluemix.net/<namespace>/watson-talk`
 
@@ -54,11 +54,11 @@ In `watson-deployment.yml`, update the image tag with the registry path to the i
 
 # Create a bluemix service via the cli
 
-In order to begin using the watson tone analyzer (the bluemix service this application), we must first request an instance of the analyzer in the org and space we have set up our cluster in. If you need to check what space and org you are currently using, simply run `bx login` and select the space and org you were using for stage 1 and 2 of the lab.
+In order to begin using the watson tone analyzer (the bluemix service for this application), we must first request an instance of the analyzer in the org and space we have set up our cluster in. If you need to check what space and org you are currently using, simply run `bx login` and select the space and org you were using for stage 1 and 2 of the lab.
 
-Once we know our space and org, run `cf create-service tone_analyzer standard tone`, where `tone` is the name we will use for the watson tone analyzer service
+Once we know our space and org, run `bx cf create-service tone_analyzer standard tone`, where `tone` is the name we will use for the watson tone analyzer service
 
-Run `cf services` to ensure a service named tone was created. You should see output like the following:
+Run `bx cf services` to ensure a service named tone was created. You should see output like the following:
 
 ```
 Invoking 'cf services'...
@@ -73,7 +73,7 @@ tone    tone_analyzer   standard                create succeeded
 
 # Bind a Service to a Cluster
 
-Run `bx cs cluster-service-bind <name-of-cluster> default <name-of-service>` to bind the service to your cluster. This command will create a secret for the service.
+Run `bx cs cluster-service-bind <name-of-cluster> default tone` to bind the service to your cluster. This command will create a secret for the service.
 
 Verify the secret was created by running `kubectl get secrets`
 
@@ -97,17 +97,20 @@ Once the YAML configuration is updated, build the application using the yaml:
   - `kubectl create -f watson-deployment.yml`
 
 Verify the pod has been created:
-  'kubectl get pods'
+
+`kubectl get pods`
 
 At this time, verify the secret was created and grab the json secret file to configure your application. Note that for this demo, this has been done for you:
+
 `kubectl exec <pod_name> -it /bin/bash`
 
 `cd /opt/service-bind`
 
 `ls`
 
-If the volume containing the secrets has been mounted, a file named binding should be in your CLI output. Cat the file and use it to configure your application to use the service.
-'cat binding'
+If the volume containing the secrets has been mounted, a file named `binding` should be in your CLI output. Cat the file and use it to configure your application to use the service.
+
+`cat binding`
 
 # Putting It All Together - Run the Application and Service
 
