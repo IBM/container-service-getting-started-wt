@@ -45,6 +45,6 @@ To find the port used on that node, now examine your new service: `kubectl descr
 
 Run `bx cs workers <name-of-cluster>` and note the public IP as `<public-IP>`
 
-You can now access your container/service via `curl <public-IP>:<nodeport>` (or your favorite web browser). If you see a "Hello SigEx users! Welcome to containers at IBM!" you're done!!!
+You can now access your container/service via `curl <public-IP>:<nodeport>` (or your favorite web browser). If you see a "Hello world! Your app is up and running in a cluster!" you're done!
 
 When you're all done, you can either use this deployment in the Stage 2 of this demo or you can remove the deployment.  To remove the deployment, use `kubectl delete deployment hello-world`, to remove the service use `kubectl delete service hello-world`
