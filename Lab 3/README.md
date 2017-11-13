@@ -1,6 +1,6 @@
-# Lab: Attaching Watson Services to a Deployment
+# Lab 3: Deploy an application with Bluemix Services
 
-In this stage, we walk through setting up an application to leverage the Watson Tone Analyzer service. If you have yet to create a cluster, please refer to stage 1 of this walkthrough.
+In this lab, we walk through setting up an application to leverage the Watson Tone Analyzer service. If you have yet to create a cluster, please refer to stage 1 of this walkthrough.
 
 We will be using the watson folder under the stage3 directory for the duration of the application.
 

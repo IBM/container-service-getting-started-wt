@@ -1,6 +1,6 @@
-# Stage 1 - Initial Application Deployment
+# Lab 1 - Set Up And Deploy Your First Application
 
-This stage of the tutorial walks through pushing an image of an application to the IBM Containers Registry and deploying a basic application to a cluster
+This stage of the lab walks through pushing an image of an application to the IBM Containers Registry and deploying a basic application to a cluster
 
 
 # Pushing an image to the IBM Containers Registry
@@ -24,7 +24,7 @@ If you created your cluster at the beginning of this, make sure it's ready for u
 
 You are now ready to use kubernetes.
 
-# Deploying an App to a Cluster
+# Deploying You Application
 
 Run `bx cs cluster-config <yourclustername>` and set the variables based on the output of the command.
 
