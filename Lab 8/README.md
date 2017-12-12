@@ -1,19 +1,14 @@
 # Microservices in an Orchestrated World
 
-# Under Construction; please come back later.
+In this final lab, you will go beyond simple containers and understand how to manage Microservices and Service Oriented Architecture beyond Kubernetes tools. This lab will introduce Istio as a way to manage and dissect container and cluster traffic. It will use nearly everything you have learned in the previous labs, so please complete the previous labs if you have not already.
 
-In this final lab, you will go beyond simple containers, and understand how to manage Microservices and Service Oriented Architecture beyond Kubernetes tools. This Lab will introduce Istio as a way to manage and dissect container and cluster traffic. It will use nearly everything you have learned in the previous lab, so please complete the previous labs if you have not already.
+# Before you begin: Install Istio
 
-
-
-# Before you Begin: Install Istio
-
-Installation steps
 You can use the Istio Helm chart to install, or follow the steps below.
 
-For the pre0.2 release, Istio must be installed in the same Kubernetes namespace as the applications. Instructions below will deploy Istio in the default namespace. They can be modified for deployment in a different namespace.
+Istio is installed in a `istio-system` namespace that can manage microservices in all other namsepaces.
 
-1.	Go to the Istio release page, to download the installation file corresponding to your OS or run
+1.	Go to the [Istio release page](https://github.com/istio/istio/releases), to download the installation file corresponding to your OS or run
 
 `curl -L https://git.io/getIstio | sh -`
 to download and extract the latest release automatically (on MacOS and Ubuntu).
