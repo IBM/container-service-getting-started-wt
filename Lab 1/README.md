@@ -1,30 +1,30 @@
-# Lab 1 - Set Up And Deploy Your First Application
+# Lab 1 - Set up and deploy your first application
 
-This stage of the lab walks through pushing an image of an application to the IBM Containers Registry and deploying a basic application to a cluster
+This lab walks through pushing an image of an application to IBM Cloud Container Registry and deploying a basic application to a cluster.
 
 
-# Pushing an image to the IBM Containers Registry
+# Pushing an image to IBM Cloud Container Registry
 
-If you haven't already, provision a cluster (this can take a few minutes, so let it start first). To get the list of data centers, use `bx cs datacenters` - then create your cluster with `bx cs cluster-create --name=<name-of-cluster> --datacenter=<datacenter>`
+If you haven't already, provision a cluster (this can take a few minutes, so let it start first). Create your cluster with `bx cs cluster-create --name=<name-of-cluster>`
 
 Download from https://github.com/IBM/container-service-getting-started-wt
 
 cd into IBM-Containers-Demo
 
-Run `bx cr login` and login with your bluemix credentials. This will allow you
-to push to the IBM containers registry
+Run `bx cr login` and login with your IBM Cloud credentials. This will allow you
+to push to the IBM Cloud Container Registry.
 
 Build the example docker image using `docker build --tag registry.ng.bluemix.net/<namespace>/hello-world .`
 
 Verify the image is built using `docker images`
 
-Now push that image up to the IBM registry: `docker push registry.ng.bluemix.net/<namespace>/hello-world`
+Now push that image up to IBM Cloud Container Registry: `docker push registry.ng.bluemix.net/<namespace>/hello-world`
 
 If you created your cluster at the beginning of this, make sure it's ready for use. Run `bx cs clusters` and make sure that your cluster is in state "deployed".  Then use `bx cs workers <yourclustername>` and make sure that all workers are in state "deployed" with Status "Deploy Automation Successful".  Make a note of the public ip of the worker!
 
-You are now ready to use kubernetes.
+You are now ready to use Kubernetes.
 
-# Deploying You Application
+# Deploying your application
 
 Run `bx cs cluster-config <yourclustername>` and set the variables based on the output of the command.
 
@@ -47,4 +47,4 @@ Run `bx cs workers <name-of-cluster>` and note the public IP as `<public-IP>`
 
 You can now access your container/service via `curl <public-IP>:<nodeport>` (or your favorite web browser). If you see a "Hello world! Your app is up and running in a cluster!" you're done!
 
-When you're all done, you can either use this deployment in the Stage 2 of this demo or you can remove the deployment.  To remove the deployment, use `kubectl delete deployment hello-world`, to remove the service use `kubectl delete service hello-world`
+When you're all done, you can either use this deployment in the Lab 2 of this demo or you can remove the deployment.  To remove the deployment, use `kubectl delete deployment hello-world`, to remove the service use `kubectl delete service hello-world`
