@@ -1,11 +1,21 @@
 
 <img src="https://ace-docs-production-red.ng.bluemix.net/docs/api/content/homepage/images/containerServiceIcon.svg" width="200"> <img src="https://kubernetes.io/images/favicon.png" width="200">
-# Developer Works Lab: IBM Cloud Container Service and Kubernetes
+# IBM Cloud Container Service Lab 
+
+# Introduction
+
+IBM Cloud provides the capability to run applications in containers on Kubernetes. The IBM Cloud Container Service runs Kubernetes clusters which deliver the following: 
+
+* powerful tools
+* an intuitive user experience 
+* built-in security and isolation to enable rapid delivery of secure applications 
+* cloud services including cognitive capabilities from Watson
+* the capability to manage dedicated cluster resources for both stateless applications and stateful workloads
+
+Note: This workshop leverages the IBM Cloud Container Service but the core workshop procedure should work on any Kubernetes environment. The exception to this is the initial setup (Lab 0) of the IBM Cloud account and provisioning of a new Kubernetes cluster on the IBM Cloud. 
 
 
 Preconditions:  This doc expects a IBM Cloud account and all [CLIs installed](https://console.ng.bluemix.net/docs/containers/cs_cli_install.html).
-
-This walkthough is a presentation for using Docker containers on Kubernetes in IBM Cloud Container Service.
 
 # Overview and Initial Setup
 
@@ -30,11 +40,11 @@ After creation, before using the cluster, make sure it has completed provisionin
 
 [Lab 4](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%204) (Under Construction, Paid Only, Optional): This lab will outline how to create a highly available application, and build on the knowledge you have learned in Labs 1 - 3 to deploy clusters simultaneously to multiple availibility zones. As this requires a paid IBM Cloud account, skip this lab if you are sticking to the free tier.
 
-[Lab 5](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%205): This lab walks through securing your cluster and applications using network policies, and will later add leveraging tools Vulnerability Advisor to secure images and manage security in your image registry.
+[Lab 5](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%205): This lab walks through securing your cluster and applications using network policies, and will later add leveraging tools like Vulnerability Advisor to secure images and manage security in your image registry.
 
-[Lab 6](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%206): This lab walks through using Instana for CI/CD monitoring and network patrolling of your cluster
+[Lab 6](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%206): This lab walks through using Instana for CI/CD monitoring and network patrolling of your cluster.
 
 [Lab 7](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%207): This lab walks through the Kubernetes ecosystem to introduce you to node visualizers like WeaveScope, and package content handling with Helm.
 
-[Lab 8](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%208): This lab walks through microservice architecture at large, and provides a jumping off point to learn Istio!
+[Lab 8](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%208): This lab walks through microservice architecture at large, and provides a jumping off point to learn Istio.
 

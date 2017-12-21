@@ -1,14 +1,14 @@
-# Lab 0: Getting the IBM Bluemix Containers Service
+# Lab 0: Getting the IBM Cloud Container Service
 
 
-Before you begin learning, you will need to install the required CLIs to create and manage your Kubernetes clusters in IBM Bluemix Container Service, and to deploy containerized apps to your cluster.
+Before you begin learning, you will need to install the required CLIs to create and manage your Kubernetes clusters in IBM Cloud Container Service, and to deploy containerized apps to your cluster.
 
 This lab includes the information for installing these CLIs and plug-ins:
 
 
 ``` txt
-Bluemix CLI version 0.5.0 or later
-IBM Bluemix Container Service plug-in
+IBM Cloud CLI version 0.5.0 or later
+IBM Cloud Container Service plug-in
 Kubernetes CLI version 1.5.6 or later
 Optional: Bluemix Container Registry plug-in
 Optional: Docker version 1.9. or later
@@ -19,22 +19,22 @@ If you have the CLIs and plug-ins, you can skip this lab and proceed to the next
 
 To install the CLIs:
 
-As a prerequisite for the IBM Bluemix Container Service plug-in, install the bluemix command-line interface, located at https://clis.ng.bluemix.net/ui/home.html. Once installed, you can access bluemix from your command-line with the prefix `bx`.
+As a prerequisite for the IBM Cloud Container Service plug-in, install the bluemix command-line interface, located at https://clis.ng.bluemix.net/ui/home.html. Once installed, you can access bluemix from your command-line with the prefix `bx`.
 
 Log in to the Bluemix CLI with `bx login`. Enter your Bluemix credentials when prompted.
 
 
 
-Note: If you have a federated ID, use `bx login --sso` to log in to the Bluemix CLI. Enter your user name and use the provided URL in your CLI output to retrieve your one-time passcode. You know you have a federated ID when the login fails without the `--sso` and succeeds with the `--sso` option.
+Note: If you have a federated ID, use `bx login --sso` to log in to the IBM Cloud CLI. Enter your user name and use the provided URL in your CLI output to retrieve your one-time passcode. You know you have a federated ID when the login fails without the `--sso` and succeeds with the `--sso` option.
 
 # Install the Containers Service Plugin
 
-To create Kubernetes clusters and manage worker nodes, install the IBM Bluemix Container Service plug-in with `bx plugin install container-service -r Bluemix`. The prefix for running commands by using the IBM Bluemix Container Service plug-in is `bx cs`.
+To create Kubernetes clusters and manage worker nodes, install the IBM Cloud Container Service plug-in with `bx plugin install container-service -r Bluemix`. The prefix for running commands by using the IBM Cloud Container Service plug-in is `bx cs`.
 
 To verify that the plug-in is installed properly, run the following command:
 `bx plugin list`
 
-The IBM Bluemix Container Service plug-in is displayed in the results as `container-service`.
+The IBM Cloud Container Service plug-in is displayed in the results as `container-service`.
 
 
 # Download the Kubernetes CLI.
@@ -61,7 +61,7 @@ Convert the binary file to an executable. `chmod +x /usr/local/bin/kubectl`
 
 # Download the Container Registry Plugin
 
-To manage a private image repository, install the Bluemix Container Registry plug-in. Use this plug-in to set up your own namespace in a multi-tenant, highly available, and scalable private image registry that is hosted by IBM, and to store and share Docker images with other users. Docker images are required to deploy containers into a cluster. The prefix for running registry commands is bx cr.
+To manage a private image repository, install the Cloud Container Registry plug-in. Use this plug-in to set up your own namespace in a multi-tenant, highly available, and scalable private image registry that is hosted by IBM, and to store and share Docker images with other users. Docker images are required to deploy containers into a cluster. The prefix for running registry commands is bx cr.
 
 
 `bx plugin install container-registry -r Bluemix`
