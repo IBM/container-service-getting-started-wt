@@ -1,6 +1,6 @@
 
 <img src="https://ace-docs-production-red.ng.bluemix.net/docs/api/content/homepage/images/containerServiceIcon.svg" width="200"> <img src="https://kubernetes.io/images/favicon.png" width="200">
-# Developer Works Lab: IBM Cloud Container Service and Kubernetes
+# IBM Cloud Container Service Lab 
 
 # Introduction
 
