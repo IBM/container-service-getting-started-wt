@@ -9,12 +9,14 @@ If you haven't already, provision a cluster (this can take a few minutes, so let
 
 Download from https://github.com/IBM/container-service-getting-started-wt
 
-cd into IBM-Containers-Demo
+cd into Lab 1 `cd "Lab 1"`
 
 Run `bx cr login` and login with your IBM Cloud credentials. This will allow you
 to push to the IBM Cloud Container Registry.
 
-Build the example docker image using `docker build --tag registry.ng.bluemix.net/<namespace>/hello-world .`
+In order to upload our images to the IBM Cloud Container Registry, we first need to create a namespace with the following: `bx cr namespace-add <my_namespace>`
+
+Build the example docker image using `docker build --tag registry.ng.bluemix.net/<my_namespace>/hello-world .`
 
 Verify the image is built using `docker images`
 
