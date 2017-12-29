@@ -13,7 +13,7 @@ Run the following to begin this lab:
 
 
 2. Change current directory to `Stage3/watson`
-  - `cd Stage3/watson`
+  - `cd "Lab 3/watson"`
 
 
 3. Build `watson` image
@@ -24,7 +24,7 @@ Run the following to begin this lab:
 
 
 5. Change current directory to `Stage3/watson-talk`
-  - `cd Stage3/watson-talk`
+  - `cd ../watson-talk`
 
 
 6. Build `watson-talk` image
@@ -35,7 +35,7 @@ Run the following to begin this lab:
 
   - `docker push registry.ng.bluemix.net/<namespace>/watson-talk`
 
-In `watson-deployment.yml`, update the image tag with the registry path to the image you created:
+In `watson-deployment.yml`, update the image tag with the registry path to the image you created in the following two sections:
 
 ```yml
     spec:
@@ -93,7 +93,7 @@ Now that the service is bound to the cluster, we want to expose the secret to ou
 ```
 
 Once the YAML configuration is updated, build the application using the yaml:
-  - `cd Stage3`
+  - `cd "Lab 3"`
   - `kubectl create -f watson-deployment.yml`
 
 Verify the pod has been created:
