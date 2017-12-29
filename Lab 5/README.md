@@ -199,7 +199,7 @@ $ calicoctl get profile k8s_ns.advanced-policy-demo -o yaml
     - action: deny
       destination: {}
       source: {}
-        ```
+```
 We can see that this is the case by running another pod in the Namespace and attempting to access the nginx Service.
 ```
 $ kubectl run --namespace=advanced-policy-demo access --rm -ti --image busybox /bin/sh
