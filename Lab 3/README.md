@@ -2,7 +2,7 @@
 
 In this lab, we walk through setting up an application to leverage the Watson Tone Analyzer service. If you have yet to create a cluster, please refer to stage 1 of this walkthrough.
 
-We will be using the watson folder under the stage3 directory for the duration of the application.
+We will be using the watson folder under the Lab 3 directory for the duration of the application.
 
 # Lab steps
 
@@ -12,7 +12,7 @@ Run the following to begin this lab:
   - `bx cr login`
 
 
-2. Change current directory to `Stage3/watson`
+2. Change current directory to `"Lab 3/watson"`
   - `cd "Lab 3/watson"`
 
 
@@ -23,7 +23,7 @@ Run the following to begin this lab:
   - `docker push registry.ng.bluemix.net/<namespace>/watson`
 
 
-5. Change current directory to `Stage3/watson-talk`
+5. Change current directory to `"Lab 3/watson-talk"`
   - `cd ../watson-talk`
 
 
