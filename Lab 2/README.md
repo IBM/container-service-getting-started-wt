@@ -1,6 +1,6 @@
 # Lab: Services, Replica Sets, and Health Checks
 
-prereq: Have a running deployment with a single replica
+prereq: Have a running deployment with a single replica. Lab 1 will help you setup a deployment with a single replica if you don't have one running. 
 
 In this stage of the demo, we introduce how to update the number of replicas a deployment has, and how to rollout an update safely on kubernetes. We also will introduce how to perform a simple health check.
 
@@ -99,7 +99,7 @@ Kubernetes allows you to use a rollout to update a deployment with a new docker 
 
 First, make a change to your code and build a new docker image with a new tag:
 
-`docker build --tag registry.ng.bluemix.net/<namespace>/hello-world:2 ../Stage1`
+`docker build --tag registry.ng.bluemix.net/<namespace>/hello-world:2 .`
 
 Then push the image to the IBM Containers Registry:
 

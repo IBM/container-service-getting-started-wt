@@ -11,7 +11,8 @@ Before you begin:
 Target the Kubernetes CLI to the cluster. Include the --admin option with the bx cs cluster-config command, which is used to download the certificates and permission files. This download also includes the keys for the Administrator rbac role, which you need to run Calico commands.
 
 
-bx cs cluster-config <cluster_name>
+`bx cs cluster-config <cluster_name>`
+
 Note: Calico CLI version 1.4.0 is supported.
 
 To add network policies:
@@ -199,7 +200,7 @@ $ calicoctl get profile k8s_ns.advanced-policy-demo -o yaml
     - action: deny
       destination: {}
       source: {}
-        ```
+```
 We can see that this is the case by running another pod in the Namespace and attempting to access the nginx Service.
 ```
 $ kubectl run --namespace=advanced-policy-demo access --rm -ti --image busybox /bin/sh
