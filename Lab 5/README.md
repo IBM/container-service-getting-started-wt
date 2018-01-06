@@ -11,7 +11,7 @@ Before you begin:
 Target the Kubernetes CLI to the cluster. Include the --admin option with the bx cs cluster-config command, which is used to download the certificates and permission files. This download also includes the keys for the Administrator rbac role, which you need to run Calico commands.
 
 
-`bx cs cluster-config <cluster_name>`
+`bx cs cluster-config <cluster_name> --admin`
 
 Note: Calico CLI version 1.4.0 is supported.
 
