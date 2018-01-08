@@ -1,4 +1,4 @@
-# Lab 3: Deploy an application with Bluemix Services
+# Lab 3: Deploy an application with IBM Cloud Services
 
 In this lab, we walk through setting up an application to leverage the Watson Tone Analyzer service. If you have yet to create a cluster, please refer to stage 1 of this walkthrough.
 
