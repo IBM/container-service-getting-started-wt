@@ -1,4 +1,4 @@
-# CI/CD with the IBM Bluemix Containers Service
+# CI/CD with the IBM Cloud Containers Service
 
 
 This section of the lab is designed to get you thinking about CI/CD and montioring DevOps flows with Containers. By the end of this lab, you will understand the CI/CD offerings available to developers to create a highly secure deployment in the IBM Containers Service
