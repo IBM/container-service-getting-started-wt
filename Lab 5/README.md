@@ -1,4 +1,4 @@
-# Security with the IBM Bluemix Containers Service
+# Security with the IBM Cloud Containers Service
 
 
 This lab is intended to introduce a user to kubernetes-specific security features used to limit the attack surface and harden your cluster against network threats. You can use built-in security features for risk analysis and security protection. These features help you to protect your cluster infrastructure and network communication, isolate your compute resources, and ensure security compliance across your infrastructure components and container deployments.
