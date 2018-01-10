@@ -140,7 +140,7 @@ you will understand the core concepts of Kubernetes and be able to deploy your o
 
 If you haven't already, provision a cluster (this can take a few minutes, so let it start first) with `bx cs cluster-create --name <name-of-cluster>`
 
-After creation, before using the cluster, make sure it has completed provisioning and is ready for use. Run `bx cs clusters` and make sure that your cluster is in state "deployed".  Then use `bx cs workers <name-of-cluster>` and make sure that all worker nodes are in state "deployed" with Status "Deploy Automation Successful".
+After creation, before using the cluster, make sure it has completed provisioning and is ready for use. Run `bx cs clusters` and make sure that your cluster is in state "deployed".  Then use `bx cs workers <name-of-cluster>` and make sure that all worker nodes are in state "normal" with Status "Ready".
 
 #  Lab overview
 
