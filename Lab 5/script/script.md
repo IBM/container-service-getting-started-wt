@@ -1,7 +1,5 @@
 
-# Understand the security offerings available to developers to create a highly secure deployment in the IBM Containers Service
-
-
+# Understand the security offerings available to developers to create a highly secure deployment in IBM Cloud Container Service
 
 Every Kubernetes cluster is set up with a network plug-in that is called Calico. Default network policies are set up to secure the public network interface of every worker node. You can use Calico and native Kubernetes capabilities to configure more network policies for a cluster when you have unique security requirements. These network policies specify the network traffic that you want to allow or block to and from a pod in a cluster.
 

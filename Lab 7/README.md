@@ -60,7 +60,7 @@ Finally, open your web browser to http://localhost:4040. Choose to view topology
 When you're ready, delete your current cluster and create a new one, and let it provision. Or, clear every service, pod, and deployment from your cluster. When you've decided, continue on to learn about Helm.
 
 
-# Helm and the IBM Cloud Containers Service: Dependency Management
+# Helm and the IBM Cloud Container Service: Dependency Management
 
 Helm is an interesting tool to manage Kubernetes charts. Charts are curated Kubernetes applications, designed to work with Helm. I like to think of Kubernetes charts as cooking recipes, however, I need Helm to create my family’s favorite dishes out of these recipes, as Helm allows me to customize the recipes to create exactly what my family wants.
 For this, I recommend you to deploy a paid IBM Cloud Container Service cluster. Your kubectl should be configured to work with the cluster. If you don’t, you can follow these steps to deploy your cluster and these steps to setup the bx and kubectl CLI. It is also important to make sure you have permissions to deploy persistent storage as the WordPress chart uses persistent storage by default. Let’s begin the lab:
