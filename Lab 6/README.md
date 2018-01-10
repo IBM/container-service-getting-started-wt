@@ -1,7 +1,7 @@
 # CI/CD with the IBM Cloud Container Service
 
 
-This section of the lab is designed to get you thinking about CI/CD and monitoring DevOps flows with Containers. By the end of this lab, you will understand the CI/CD offerings available to developers to create a highly secure deployment in IBM Container Service
+This section of the lab is designed to get you thinking about CI/CD and monitoring DevOps flows with Containers. By the end of this lab, you will understand the CI/CD offerings available to developers to create a highly secure deployment in IBM Cloud Container Service.
 
 In CI/CD, it is incredibly useful to see a visual representation of the performance and quality of your running clusters. To accomplish this, a performace visualizer is often used, and that's what you're installing today. This lab will detail the journey of initial deployment of the Instana solution into an application running on the IBM Cloud Container Service.
 

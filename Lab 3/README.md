@@ -19,7 +19,7 @@ Run the following to begin this lab:
 3. Build `watson` image
   - `docker build -t registry.ng.bluemix.net/<namespace>/watson .`
 
-4. Push `watson` image to IBM Container Registry
+4. Push `watson` image to IBM Cloud Container Registry
   - `docker push registry.ng.bluemix.net/<namespace>/watson`
 
 
@@ -31,7 +31,7 @@ Run the following to begin this lab:
   - `docker build -t registry.ng.bluemix.net/<namespace>/watson-talk .`
 
 
-7. Push `watson-talk` image to IBM Container Registry
+7. Push `watson-talk` image to IBM Cloud Container Registry
 
   - `docker push registry.ng.bluemix.net/<namespace>/watson-talk`
 
