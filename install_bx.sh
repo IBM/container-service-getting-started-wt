@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Download Bluemix CLI"
+echo "Download IBM Cloud CLI"
 wget --quiet --output-document=/tmp/Bluemix_CLI_amd64.tar.gz  http://public.dhe.ibm.com/cloud/bluemix/cli/bluemix-cli/latest/Bluemix_CLI_amd64.tar.gz
 tar -xf /tmp/Bluemix_CLI_amd64.tar.gz --directory=/tmp
 
@@ -12,8 +12,8 @@ chmod +x /tmp/Bluemix_CLI/bin/cfcli/*
 
 export PATH="/tmp/Bluemix_CLI/bin:$PATH"
 
-# Install Armada CS plugin
-echo "Install the Bluemix container-service plugin"
+# Install IBM Cloud CS plugin
+echo "Install the IBM Cloud Container Service plugin"
 bx plugin install container-service -r Bluemix
 bx plugin install container-registry -r Bluemix
 

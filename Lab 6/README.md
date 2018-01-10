@@ -1,21 +1,21 @@
-# CI/CD with the IBM Cloud Containers Service
+# CI/CD with the IBM Cloud Container Service
 
 
-This section of the lab is designed to get you thinking about CI/CD and montioring DevOps flows with Containers. By the end of this lab, you will understand the CI/CD offerings available to developers to create a highly secure deployment in the IBM Containers Service
+This section of the lab is designed to get you thinking about CI/CD and monitoring DevOps flows with Containers. By the end of this lab, you will understand the CI/CD offerings available to developers to create a highly secure deployment in IBM Cloud Container Service.
 
-In CI/CD, it is incredibly useful to see a visual representation of the performance and quality of your running clusters. To accomplish this, a performace visualizer is often used, and that's what you're installing today. This lab will detail the journey of initial deployment of the Instana solution into an application running on the Bluemix Container Service.
+In CI/CD, it is incredibly useful to see a visual representation of the performance and quality of your running clusters. To accomplish this, a performace visualizer is often used, and that's what you're installing today. This lab will detail the journey of initial deployment of the Instana solution into an application running on the IBM Cloud Container Service.
 
 # Instana
 
   Instana is a Dynamic Application Performance Management solution specifically designed for monitoring the service quality and performance of constantly changing microservice based applications.
 
-To get started with this lab, Delete the previous deployments and services off of your old cluster, or remove your old cluster entirely. Then, After you’ve successfully logged into Bluemix, run:
+To get started with this lab, Delete the previous deployments and services off of your old cluster, or remove your old cluster entirely. Then, After you’ve successfully logged into IBM Cloud, run:
 
   `bx cs cluster-create --name=Cluster00 --location=dal10 --workers 1 --machine-type u1c.2x4 --hardware shared`
 
   Wait until the cluster sets up with a single worker, then proceed
 
-# Deploying Instana Application Monitoring Agents via IBM Bluemix Container Service
+# Deploying Instana Application Monitoring Agents via IBM Cloud Container Service
 
   Now that the environment is provisioned, you have a blank canvas into which you can deploy your containerized application.
 
@@ -71,7 +71,7 @@ You should receive the following response:
 
   At this point, of course, you only see the components of your kubernetes worker nodes. There’s no actual application running in this environment. So let’s start one up.
 
-  Adding a sample application will allow you to see all the things Instana can do with an application deployed onto Bluemix:
+  Adding a sample application will allow you to see all the things Instana can do with an application deployed onto IBM Cloud:
 
   * Automatically discovers details about applications
   * Tracks application performance and scalability
@@ -123,7 +123,7 @@ where:
   svc/mysql-service	10.10.10.71	<none>	3306:30306/TCP	55s
 
   ```
-  Note:  svc/kubernetes is a component of Bluemix.
+  Note:  svc/kubernetes is a component of IBM Cloud.
 
   Better yet, switch over to your Instana instance and you will notice that now there are two extra containers on the stack, as illustrated in the following image captures.
 
@@ -160,4 +160,4 @@ where:
 
 # Conclusion of Instana Lab
 
-  IBM Bluemix Container Service makes it easy to set up a Kubernetes cluster to host your containerized applications. When running such applications in production, operational visibility and performance monitoring is required to ensure that applications are running as expected. Instana’s Dynamic APM delivers just such visibility and performance management for dynamic containerized applications running in the cloud. In our next lab, you'll learn other tools like Instana which can be useful for cluster data visualization, not just monitoring.
+  IBM Cloud Container Service makes it easy to set up a Kubernetes cluster to host your containerized applications. When running such applications in production, operational visibility and performance monitoring is required to ensure that applications are running as expected. Instana’s Dynamic APM delivers just such visibility and performance management for dynamic containerized applications running in the cloud. In our next lab, you'll learn other tools like Instana which can be useful for cluster data visualization, not just monitoring.

@@ -101,7 +101,7 @@ First, make a change to your code and build a new docker image with a new tag:
 
 `docker build --tag registry.ng.bluemix.net/<namespace>/hello-world:2 .`
 
-Then push the image to the IBM Containers Registry:
+Then push the image to the IBM Cloud Container Registry:
 
 `docker push registry.ng.bluemix.net/<namespace>/hello-world:2`
 

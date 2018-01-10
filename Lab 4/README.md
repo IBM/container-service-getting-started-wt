@@ -1,4 +1,4 @@
-# Highly Available Deployments With the IBM Cloud Containers Service
+# Highly Available Deployments with IBM Cloud Container Service
 
 The goal of this lab is to begin to understand how to deploy a highly available application. It's easier than many think, but can be expensive if deploying across multiple AZs. The example in this lab shows how to deploy an application across two worker nodes in the same AZ (a basic level of high availability, to explore the concepts).
 
