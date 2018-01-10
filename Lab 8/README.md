@@ -265,4 +265,4 @@ Note: With the Envoy sidecar implementation, you may need to refresh the product
 
 # Final thoughts
 
-Congratulations. You just finished the entire lab on Kubernetes, the IBM Containers Service, and the larger Microservices ecosystem.
+Congratulations. You just finished the entire lab on Kubernetes, IBM Cloud Container Service, and the larger microservices ecosystem.

@@ -1,15 +1,15 @@
 #!/bin/bash
-echo "Install Bluemix CLI"
+echo "Install IBM Cloud CLI"
 . ./install_bx.sh
 if [ $? -ne 0 ]; then
-  echo "Failed to install Bluemix Container Service CLI prerequisites"
+  echo "Failed to install IBM Cloud Container Service CLI prerequisites"
   exit 1
 fi
 
-echo "Login to Bluemix"
+echo "Login to IBM Cloud"
 . ./bx_login.sh
 if [ $? -ne 0 ]; then
-  echo "Failed to authenticate to Bluemix Container Service"
+  echo "Failed to authenticate to IBM Cloud Container Service"
   exit 1
 fi
 
@@ -23,6 +23,6 @@ fi
 echo "Deploy pods for Stage 3..."
 . ./deploy.sh
 if [ $? -ne 0 ]; then
-  echo "Failed to Deploy pods for stage 3 to Bluemix Container Service"
+  echo "Failed to Deploy pods for stage 3 to IBM Cloud Container Service"
   exit 1
 fi

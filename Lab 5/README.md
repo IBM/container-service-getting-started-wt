@@ -1,4 +1,4 @@
-# Security with the IBM Cloud Containers Service
+# Security with IBM Cloud Container Service
 
 
 This lab is intended to introduce a user to kubernetes-specific security features used to limit the attack surface and harden your cluster against network threats. You can use built-in security features for risk analysis and security protection. These features help you to protect your cluster infrastructure and network communication, isolate your compute resources, and ensure security compliance across your infrastructure components and container deployments.
@@ -19,7 +19,7 @@ To add network policies:
 
 Install the Calico CLI, from here: https://github.com/projectcalico/calicoctl/releases/tag/v1.4.0?cm_mc_uid=63538519175715059979315&cm_mc_sid_50200000=1506013543
 
-Tip: If you are using Windows, install the Calico CLI in the same directory as the Bluemix CLI. This setup saves you some filepath changes when you run commands later.
+Tip: If you are using Windows, install the Calico CLI in the same directory as the IBM Cloud CLI. This setup saves you some filepath changes when you run commands later.
 
 For OSX and Linux users, complete the following steps.
 

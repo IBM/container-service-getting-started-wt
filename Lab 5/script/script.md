@@ -1,7 +1,5 @@
 
-# Understand the security offerings available to developers to create a highly secure deployment in the IBM Containers Service
-
-
+# Understand the security offerings available to developers to create a highly secure deployment in IBM Cloud Container Service
 
 Every Kubernetes cluster is set up with a network plug-in that is called Calico. Default network policies are set up to secure the public network interface of every worker node. You can use Calico and native Kubernetes capabilities to configure more network policies for a cluster when you have unique security requirements. These network policies specify the network traffic that you want to allow or block to and from a pod in a cluster.
 
@@ -32,7 +30,7 @@ allow-all-outbound	//Allows all outbound traffic.
 allow-icmp	 //Allows incoming icmp packets (pings).
 allow-kubelet-port	//Allows all incoming traffic to port 10250, which is the port that is used by the kubelet. This policy allows kubectl logs and kubectl exec to work properly in the Kubernetes cluster.
 allow-node-port-dnat	//Allows incoming nodeport, load balancer, and ingress service traffic to the pods that those services are exposing.
-allow-sys-mgmt	//Allows incoming connections for specific Bluemix Infrastructure (SoftLayer) systems that are used to manage the worker nodes.
+allow-sys-mgmt	//Allows incoming connections for specific IBM Cloud Infrastructure (SoftLayer) systems that are used to manage the worker nodes.
 allow-vrrp  	//Allow vrrp packets, which are used to monitor and move virtual IP addresses between worker nodes.
 ```
 
