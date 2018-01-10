@@ -52,9 +52,9 @@ In `watson-deployment.yml`, update the image tag with the registry path to the i
 ```
 
 
-# Create a bluemix service via the cli
+# Create an IBM Cloud service via the cli
 
-In order to begin using the watson tone analyzer (the bluemix service for this application), we must first request an instance of the analyzer in the org and space we have set up our cluster in. If you need to check what space and org you are currently using, simply run `bx login`. Then use `bx target --cf` to select the space and org you were using for stage 1 and 2 of the lab.
+In order to begin using the watson tone analyzer (the IBM Cloud service for this application), we must first request an instance of the analyzer in the org and space we have set up our cluster in. If you need to check what space and org you are currently using, simply run `bx login`. Then use `bx target --cf` to select the space and org you were using for stage 1 and 2 of the lab.
 
 Once we have set our space and org, run `bx cf create-service tone_analyzer standard tone`, where `tone` is the name we will use for the watson tone analyzer service.
 

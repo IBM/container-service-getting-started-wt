@@ -32,7 +32,7 @@ allow-all-outbound	//Allows all outbound traffic.
 allow-icmp	 //Allows incoming icmp packets (pings).
 allow-kubelet-port	//Allows all incoming traffic to port 10250, which is the port that is used by the kubelet. This policy allows kubectl logs and kubectl exec to work properly in the Kubernetes cluster.
 allow-node-port-dnat	//Allows incoming nodeport, load balancer, and ingress service traffic to the pods that those services are exposing.
-allow-sys-mgmt	//Allows incoming connections for specific Bluemix Infrastructure (SoftLayer) systems that are used to manage the worker nodes.
+allow-sys-mgmt	//Allows incoming connections for specific IBM Cloud Infrastructure (SoftLayer) systems that are used to manage the worker nodes.
 allow-vrrp  	//Allow vrrp packets, which are used to monitor and move virtual IP addresses between worker nodes.
 ```
 

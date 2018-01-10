@@ -17,7 +17,7 @@ echo "Deploy pods"
 echo "bx login -a $CF_TARGET_URL"
 bx login -a "$CF_TARGET_URL" -o "$CF_ORG" -s "$CF_SPACE" --apikey "$BLUEMIX_API_KEY"
 if [ $? -ne 0 ]; then
-  echo "Failed to authenticate to Bluemix"
+  echo "Failed to authenticate to IBM Cloud"
   exit 1
 fi
 
@@ -25,7 +25,7 @@ fi
 echo "bx cs init"
 bx cs init
 if [ $? -ne 0 ]; then
-  echo "Failed to initialize to Bluemix Container Service"
+  echo "Failed to initialize to IBM Cloud Container Service"
   exit 1
 fi
 
@@ -33,6 +33,6 @@ fi
 echo "bx cr login"
 bx cr login
 if [ $? -ne 0 ]; then
-  echo "Failed to login to the Bluemix Container Registry"
+  echo "Failed to login to the IBM Cloud Container Registry"
   exit 1
 fi

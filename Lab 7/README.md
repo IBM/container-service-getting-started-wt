@@ -1,4 +1,4 @@
-# Ecosystem of Kubernetes with the IBM Bluemix Containers Service
+# Ecosystem of Kubernetes with the IBM Cloud Container Service
 
 This lab is intended to help you understand the overall ecosystem of plugin offerings available to developers to manage deployments in Kubernetes. This topic is a broad one, but critical for understanding of best practices and data visualization with regards to node layout and overall orchestration strategy. At the end of this lab, a user will understand package management, visualization, and deployment structure of Kubernetes deployments, and the tools used to manage each.
 
@@ -21,11 +21,11 @@ Deploy one of the provided RBAC permissions configuration file in the cluster.
 To enable read/write permissions:
 
 
-`kubectl apply -f "https://raw.githubusercontent.com/IBM-Bluemix/kube-samples/master/weave-scope/weave-scope-rbac.yaml"`
+`kubectl apply -f "https://raw.githubusercontent.com/IBM-Cloud/kube-samples/master/weave-scope/weave-scope-rbac.yaml"`
 To enable read-only permissions:
 
 
-`kubectl apply -f "https://raw.githubusercontent.com/IBM-Bluemix/kube-samples/master/weave-scope/weave-scope-rbac-readonly.yaml"`
+`kubectl apply -f "https://raw.githubusercontent.com/IBM-Cloud/kube-samples/master/weave-scope/weave-scope-rbac-readonly.yaml"`
 Output:
 
 ```txt
@@ -60,10 +60,10 @@ Finally, open your web browser to http://localhost:4040. Choose to view topology
 When you're ready, delete your current cluster and create a new one, and let it provision. Or, clear every service, pod, and deployment from your cluster. When you've decided, continue on to learn about Helm.
 
 
-# Helm and the IBM Bluemix Containers Service: Dependency Management
+# Helm and the IBM Cloud Containers Service: Dependency Management
 
 Helm is an interesting tool to manage Kubernetes charts. Charts are curated Kubernetes applications, designed to work with Helm. I like to think of Kubernetes charts as cooking recipes, however, I need Helm to create my family’s favorite dishes out of these recipes, as Helm allows me to customize the recipes to create exactly what my family wants.
-For this, I recommend you to deploy a paid IBM Bluemix Container Service cluster. Your kubectl should be configured to work with the cluster. If you don’t, you can follow these steps to deploy your cluster and these steps to setup the bx and kubectl CLI. It is also important to make sure you have permissions to deploy persistent storage as the WordPress chart uses persistent storage by default. Let’s begin the lab:
+For this, I recommend you to deploy a paid IBM Cloud Container Service cluster. Your kubectl should be configured to work with the cluster. If you don’t, you can follow these steps to deploy your cluster and these steps to setup the bx and kubectl CLI. It is also important to make sure you have permissions to deploy persistent storage as the WordPress chart uses persistent storage by default. Let’s begin the lab:
 
 
 1. Install Helm: https://github.com/kubernetes/helm/blob/master/docs/install.md
@@ -71,7 +71,7 @@ For this, I recommend you to deploy a paid IBM Bluemix Container Service cluster
 ```
 helm install --name my-wordpress-release --set wordpressUsername=admin,wordpressPassword=password,mariadb.mariadbRootPassword=secretpassword,persistence.storageClass=ibmc-file-bronze,mariadb.persistence.storageClass=ibmc-file-bronze stable/wordpress
 ```
-Note the simple parameters we passed into helm install to specify the name of the installation, and the configuration parameters based on the WordPress chart’s values.yaml file. I had to use a specific storage class given IBM Bluemix Container Service doesn’t support the alpha storage class (yet).
+Note the simple parameters we passed into helm install to specify the name of the installation, and the configuration parameters based on the WordPress chart’s values.yaml file. I had to use a specific storage class given IBM Cloud Container Service doesn’t support the alpha storage class (yet).
 
 3. Wait a minute or two to allow everything to reach running. Follow the output from the helm install command to locate the load balancer service IP.
 ```
