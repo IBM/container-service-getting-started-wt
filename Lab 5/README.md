@@ -47,6 +47,7 @@ For Linux and OS X, create the '/etc/calico' directory. For Windows, any directo
 
 
 `mkdir -p /etc/calico/`
+
 Create a 'calicoctl.cfg' file.
 
 Linux and OS X:
@@ -88,13 +89,16 @@ Linux and OS X:
 
 
 `dirname $KUBECONFIG`
+
 Output example:
 
 `/home/sysadmin/.bluemix/plugins/container-service/clusters/<cluster_name>-admin/`
+
 Windows:
 
 
 `echo %KUBECONFIG%`
+
 Output example:
 
 `C:/Users/<user>/.bluemix/plugins/container-service/<cluster_name>-admin/kube-config-prod-<location>-<cluster_name>.yml`
@@ -112,7 +116,9 @@ Windows:
 Open the directory you retrieved in the last step.
 
 `C:\Users\.bluemix\plugins\container-service\<cluster_name>-admin\`
+
 Locate the `ca-*pem_file` file.
+
 Verify that the Calico configuration is working correctly.
 
 Linux and OS X:
