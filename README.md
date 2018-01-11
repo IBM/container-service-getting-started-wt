@@ -5,7 +5,9 @@
 
 Hey, are you looking for a containers 101 course? Check out our [Docker Essentials](https://developer.ibm.com/courses/all/docker-essentials-extend-your-apps-with-containers/).
 
-Containers allow you to run securely isolated applications with quotas on system resources. Containers started out as an individual feature delivered with the linux kernel. Docker launched with making containers easy to use and developers quickly latched onto that idea. Containers have also sparked an interest in microservice architecture, a design pattern for developing applications in which complex applications are down into smaller, composable pieces which work together. In this course, you'll see how IBM Cloud Container Service gives you control of application deployments, while minimizing your time with infrastructure management.
+Containers allow you to run securely isolated applications with quotas on system resources. Containers started out as an individual feature delivered with the linux kernel. Docker launched with making containers easy to use and developers quickly latched onto that idea. Containers have also sparked an interest in microservice architecture, a design pattern for developing applications in which complex applications are down into smaller, composable pieces which work together. 
+
+This lab is an introduction to using Docker containers on Kubernetes in the IBM Cloud Container Service. By the end of the course, you will understand the core concepts of Kubernetes and be able to deploy your own applications on Kubernetes in the IBM Cloud Container Service. In this course, you'll see how the IBM Cloud Container Service gives you control of application deployments, while minimizing your time with infrastructure management.
 
 # Virtual machines
 
@@ -31,6 +33,14 @@ This is a list of some of the namespaces that are commonly used and visible to t
 Traditional applications are run on native hardware. A single application does not typically use the full resources of a single machine. We try to run multiple applications on a single machine to avoid wasting resources. We could run multiple copies of the same application, but to provide isolation we use VMs to run multiple application instances (VMs) on the same hardware. These VMs have full operating system stacks which make them relatively large and inefficient due to duplication both at runtime and on disk.
 
 Containers allow you to share the host OS. This reduces duplication while still providing the isolation. Containers also allow you to drop unneeded files such as system libraries and binaries to save space and reduce your attack surface. If SSHD or LIBC are not installed, they cannot be exploited.
+
+# Get set up
+
+Before we dive into Kubernetes, you need to provision a cluster for your containerized app. Then you won't have to wait for it to be ready for the subsequent labs. 
+
+1. Preconditions: This lab expects an IBM Cloud account. Running from the CLI expects that you will have the CLIs installed as well, as per https://console.ng.bluemix.net/docs/containers/cs_cli_install.html. If you do not yet have an IBM Cloud account or the Kubernetes CLI, do [lab 0](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%200) before starting the course.
+2. If you haven't already, provision a cluster (this can take a few minutes, so let it start first) with `bx cs cluster-create --name <name-of-cluster>`
+3. After creation, before using the cluster, make sure it has completed provisioning and is ready for use. Run `bx cs clusters` and make sure that your cluster is in state "deployed".  Then use `bx cs workers <name-of-cluster>` and make sure that all worker nodes are in state "normal" with Status "Ready".
 
 # Kubernetes and containers: an overview
 
@@ -129,18 +139,6 @@ IBM Cloud provides the capability to run applications in containers on Kubernete
 * Cloud services including cognitive capabilities from Watson
 * Capability to manage dedicated cluster resources for both stateless applications and stateful workloads
 
-Preconditions:  This doc expects a IBM Cloud account and all [CLIs installed](https://console.ng.bluemix.net/docs/containers/cs_cli_install.html).
-
-# Overview and initial setup
-
-Preconditions:  This lab expects a IBM Cloud account.  Running from the CLI expects that you will have the CLIs installed as well, as per https://console.ng.bluemix.net/docs/containers/cs_cli_install.html. If you do not yet have a IBM Cloud account or the Kubernetes CLI, please do [lab 0](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%200) before starting the course.
-
-This lab is an introduction to  using Docker containers on Kubernetes in the IBM Cloud Container Service. By the end of the course
-you will understand the core concepts of Kubernetes and be able to deploy your own applications on Kubernetes in the IBM Cloud Container Service.
-
-If you haven't already, provision a cluster (this can take a few minutes, so let it start first) with `bx cs cluster-create --name <name-of-cluster>`
-
-After creation, before using the cluster, make sure it has completed provisioning and is ready for use. Run `bx cs clusters` and make sure that your cluster is in state "deployed".  Then use `bx cs workers <name-of-cluster>` and make sure that all worker nodes are in state "normal" with Status "Ready".
 
 #  Lab overview
 
