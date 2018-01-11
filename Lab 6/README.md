@@ -1,17 +1,16 @@
-# CI/CD with the IBM Cloud Container Service
+# Continuous Integration and Continuous Delivery with the IBM Cloud Container Service
 
-
-This section of the lab is designed to get you thinking about CI/CD and monitoring DevOps flows with Containers. By the end of this lab, you will understand the CI/CD offerings available to developers to create a highly secure deployment in IBM Cloud Container Service.
+This section of the lab is designed to get you thinking about Continuous Integration and Continuous Delivery (CI/CD) and monitoring DevOps flows with Containers. By the end of this lab, you will understand the CI/CD offerings available to developers to create a highly secure deployment in IBM Cloud Container Service.
 
 In CI/CD, it is incredibly useful to see a visual representation of the performance and quality of your running clusters. To accomplish this, a performace visualizer is often used, and that's what you're installing today. This lab will detail the journey of initial deployment of the Instana solution into an application running on the IBM Cloud Container Service.
 
 # Instana
 
-  Instana is a Dynamic Application Performance Management solution specifically designed for monitoring the service quality and performance of constantly changing microservice based applications.
+Instana is a Dynamic Application Performance Management solution specifically designed for monitoring the service quality and performance of constantly changing microservice based applications.
 
-To get started with this lab, Delete the previous deployments and services off of your old cluster, or remove your old cluster entirely. Then, After you’ve successfully logged into IBM Cloud, run:
+To get started with this lab, delete the previous deployments and services off of your old cluster, or remove your old cluster entirely. Then, after you’ve successfully logged into IBM Cloud, run:
 
-  `bx cs cluster-create --name=Cluster00 --location=dal10 --workers 1 --machine-type u1c.2x4 --hardware shared`
+`bx cs cluster-create --name=Cluster00 --location=dal10 --workers 1 --machine-type u2c.2x4`
 
   Wait until the cluster sets up with a single worker, then proceed
 
