@@ -157,37 +157,40 @@ View the details of all network policies for the cluster.
 
 # Lab Test: Define a Calico network policy
 
-Defining a Calico network policy for Kubernetes clusters is simple once the Calico cli is installed.  
+Defining a Calico network policy for Kubernetes clusters is simple once the Calico CLI is installed.  
 This part of the lab walks through using the Calico APIs directly in conjunction with Kubernetes `NetworkPolicy` in order to define more complex network policies.
 
-Begin by creating a network policy object:
+Begin by creating a namespace in your Kubernetes cluster:
 
 `kubectl create ns advanced-policy-demo`
+
 And then enable isolation on the namespace.
 
 `kubectl annotate ns advanced-policy-demo "net.beta.kubernetes.io/network-policy={\"ingress\":{\"isolation\":\"DefaultDeny\"}}"`
-Run an nginx service.
 
-We’ll run an nginx service in the namespace.
-```
-kubectl run --namespace=advanced-policy-demo nginx --replicas=2 --image=nginx
-kubectl expose --namespace=advanced-policy-demo deployment nginx --port=80
-```
-Check using calicoctl
+Now, run an nginx service in the namespace that you created.
+
+`kubectl run --namespace=advanced-policy-demo nginx --replicas=2 --image=nginx`
+`kubectl expose --namespace=advanced-policy-demo deployment nginx --port=80`
 
 Now that we’ve created a namespace and a set of pods, we should see those objects show up in the Calico API using calicoctl.
 
-We can see that the namespace has a corresponding profile.
+We can see that the namespace has a corresponding network profile.
+
+`calicoctl get profile -o wide`
+
 ```
-$ calicoctl get profile -o wide
 NAME                          TAGS
 k8s_ns.advanced-policy-demo   k8s_ns.advanced-policy-demo
 k8s_ns.default                k8s_ns.default
 k8s_ns.kube-system            k8s_ns.kube-system
 ```
-Because we’ve enabled isolation on the namespace, the profile denies all ingress traffic and allows all egress traffic.
+
+Because we’ve enabled isolation on the namespace, the profile denies all ingress traffic and allows all egress traffic. Inspect the YAML file to verify.
+
+`calicoctl get profile k8s_ns.advanced-policy-demo -o yaml`
+
 ```
-$ calicoctl get profile k8s_ns.advanced-policy-demo -o yaml
 - apiVersion: v1
   kind: profile
   metadata:
@@ -205,17 +208,18 @@ $ calicoctl get profile k8s_ns.advanced-policy-demo -o yaml
       source: {}
 ```
 We can see that this is the case by running another pod in the namespace and attempting to access the nginx service.
+
 ```
 $ kubectl run --namespace=advanced-policy-demo access --rm -ti --image busybox /bin/sh
 Waiting for pod advanced-policy-demo/access-472357175-y0m47 to be running, status is Pending, pod ready: false
-```
 If you don't see a command prompt, try pressing enter.
-```
 / # wget -q --timeout=5 nginx -O -
 wget: download timed out
 / #
 ```
+
 We can also see that the two nginx pods are represented as WorkloadEndpoints in the Calico API.
+
 ```
 calicoctl get workloadendpoint
 
@@ -224,7 +228,9 @@ k8s-node-01   k8s            advanced-policy-demo.nginx-701339712-x1uqe   eth0
 k8s-node-02   k8s            advanced-policy-demo.nginx-701339712-xeeay   eth0
 k8s-node-01   k8s            kube-system.kube-dns-v19-mjd8x               eth0
 ```
+
 Taking a closer look, we can see that they reference the correct profile for the namespace, and that the correct label information has been filled in. Notice that the endpoint also includes a special label calico/k8s_ns, which is automatically populated with the pod’s Kubernetes namespace.
+
 ```
 $ calicoctl get wep --workload advanced-policy-demo.nginx-701339712-x1uqe -o yaml
 - apiVersion: v1
@@ -247,6 +253,7 @@ $ calicoctl get wep --workload advanced-policy-demo.nginx-701339712-x1uqe -o yam
     - k8s_ns.advanced-policy-demo
 
 ```
+
 Now, create a new Kubernetes config yaml file, this time with `kind: NetworkPolicy`. The sample below shows an example network policy which allows traffic.
 
 Create a file named `networkpol.yaml`, and enter the following information into the file:
