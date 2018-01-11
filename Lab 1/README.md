@@ -16,9 +16,11 @@ To push an image:
 2. cd into Lab 1 `cd "Lab 1"`
 
 3. Log in to the IBM Cloud CLI with `bx login`. To specify an IBM Cloud region, include the API endpoint.
+
 Note: If you have a federated ID, use `bx login --sso` to log in to the IBM Cloud CLI. You know you have a federated ID when the login fails without the `--sso` and succeeds with the `--sso` option.
 
 4. Run `bx cr login` and login with your IBM Cloud credentials. This will allow you to push images to the IBM Cloud Container Registry.
+
 Tip: This course's commands show the `ng` region. You replace `ng` with the region outputted from the `bx cr login` command.
 
 5. In order to upload our images to the IBM Cloud Container Registry, we first need to create a namespace with the following: `bx cr namespace-add <my_namespace>`
@@ -38,7 +40,9 @@ You are now ready to use Kubernetes to deploy the hello-world application.
 1. Run `bx cs cluster-config <yourclustername>` and set the variables based on the output of the command.
 
 2. Start by running your image as a deployment: `kubectl run hello-world --image=registry.ng.bluemix.net/<namespace>/hello-world`
+
 This action will take a bit of time. To check the status of your deployment, you can use `kubectl get pods`
+
 You should see output similar to the following:
 ```
 => kubectl get pods
