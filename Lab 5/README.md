@@ -141,21 +141,19 @@ Examine the existing network policies.
 
 View the Calico host endpoint.
 
-
 `calicoctl get hostendpoint -o yaml`
+
 View all of the Calico and Kubernetes network policies that were created for the cluster. This list includes policies that might not be applied to any pods or hosts yet. For a network policy to be enforced, it must find a Kubernetes resource that matches the selector that was defined in the Calico network policy.
 
-
 `calicoctl get policy -o wide`
+
 View details for a network policy.
 
-
 `calicoctl get policy -o yaml <policy_name>`
+
 View the details of all network policies for the cluster.
 
-
 `calicoctl get policy -o yaml`
-Create the Calico network policies to allow or block traffic.
 
 # Lab Test: Define a Calico network policy
 
