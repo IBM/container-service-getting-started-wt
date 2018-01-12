@@ -31,7 +31,7 @@ Tip: This course's commands show the `ng` region. You replace `ng` with the regi
 
 8. Now push that image up to IBM Cloud Container Registry: `docker push registry.ng.bluemix.net/<namespace>/hello-world`
 
-9. If you created your cluster at the beginning of this, make sure it's ready for use. Run `bx cs clusters` and make sure that your cluster is in state "deployed".  Then use `bx cs workers <yourclustername>` and make sure that all workers are in state "deployed" with Status "Deploy Automation Successful".  Make a note of the public IP of the worker!
+9. If you created your cluster at the beginning of this, make sure it's ready for use. Run `bx cs clusters` and make sure that your cluster is in state "Normal".  Then use `bx cs workers <yourclustername>` and make sure that all workers are in state "normal" with Status "Ready".  Make a note of the public IP of the worker!
 
 You are now ready to use Kubernetes to deploy the hello-world application.
 
@@ -49,12 +49,12 @@ You should see output similar to the following:
 NAME                          READY     STATUS              RESTARTS   AGE
 hello-world-562211614-0g2kd   0/1       ContainerCreating   0          1m
 ```
-3. Once the status reads `Running`, expose that deployment as a service, accessed through the ip of the workers.  Our example listens on port 8080.  run `kubectl expose deployment/hello-world --type="NodePort" --port=8080`
+3. Once the status reads `Running`, expose that deployment as a service, accessed through the IP of the worker nodes.  Our example listens on port 8080.  run `kubectl expose deployment/hello-world --type="NodePort" --port=8080`
 
-4. To find the port used on that node, now examine your new service: `kubectl describe service <name-of-deployment>`, take note of the "NodePort:" line as `<nodeport>`
+4. To find the port used on that worker node, now examine your new service: `kubectl describe service <name-of-deployment>`, take note of the "NodePort:" line as `<nodeport>`
 
 5. Run `bx cs workers <name-of-cluster>` and note the public IP as `<public-IP>`
 
 6. You can now access your container/service via `curl <public-IP>:<nodeport>` (or your favorite web browser). If you see a "Hello world! Your app is up and running in a cluster!" you're done!
 
-When you're all done, you can either use this deployment in the Lab 2 of this demo, or you can remove the deployment and stop taking the course.  To remove the deployment, use `kubectl delete deployment hello-world`, to remove the service use `kubectl delete service hello-world`
+When you're all done, you can either use this deployment in the Lab 2 of this demo, or you can remove the deployment and thus stop taking the course.  To remove the deployment, use `kubectl delete deployment hello-world`, to remove the service use `kubectl delete service hello-world`
