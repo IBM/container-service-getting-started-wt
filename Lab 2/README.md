@@ -99,11 +99,19 @@ hello-world-562211614-zsp0j   1/1       Running   0          2m
 
 Kubernetes allows you to use a rollout to update an app deployment with a new docker image.  This allows you to easily update the running image and also allows you to easily undo a rollout if a problem is discovered after deployment.
 
+Before you begin: Ensure that you have the image tagged with `1` and pushed:
+```
+docker build --tag registry.ng.bluemix.net/<namespace>/hello-world:1 .
+
+docker push registry.ng.bluemix.net/<namespace>/hello-world:1
+```
+
+To update and roll back:
 1. First, make a change to your code and build a new docker image with a new tag:
 
 `docker build --tag registry.ng.bluemix.net/<namespace>/hello-world:2 .`
 
-2 .Then push the image to the IBM Cloud Container Registry:
+2. Then push the image to the IBM Cloud Container Registry:
 
 `docker push registry.ng.bluemix.net/<namespace>/hello-world:2`
 
@@ -174,80 +182,78 @@ hello-world-3254495675   10        10        10        1m
 
 # Checking the health of apps
 
-The kubelet uses liveness probes to know when to restart a Container. For example, liveness probes could catch a deadlock, where an application is running, but unable to make progress. Restarting a Container in such a state can help to make the application more available despite bugs.
+Kubernetes uses availability checks (liveness probes) to know when to restart a container. For example, liveness probes could catch a deadlock, where an application is running, but unable to make progress. Restarting a container in such a state can help to make the application more available despite bugs.
 
-The kubelet uses readiness probes to know when a Container is ready to start accepting traffic. A Pod is considered ready when all of its Containers are ready. One use of this signal is to control which Pods are used as backends for Services. When a Pod is not ready, it is removed from Service load balancers.
+Also Kubernetes uses readiness checks to know when a container is ready to start accepting traffic. A pod is considered ready when all of its containers are ready. One use of this check is to control which pods are used as backends for services. When a pod is not ready, it is removed from load balancers.
 
-In this example, we have defined a HTTP liveness probe, to check health of the container every 5 seconds:
-```yml
-...
-livenessProbe:
-  httpGet:
-    path: /healthz
-    port: 8080
-    httpHeaders:
-      - name: x-Custom-Header
-        value: Awesome
-  initialDelaySeconds: 5
-  periodSeconds: 5
-...
-```
+In this example, we have defined a HTTP liveness probe, to check health of the container every 5 seconds. For the first 10-15 seconds the `/healthz` return a `200` response and will fail afterward. Kubernetes will automatically restart the service.  
 
-For the first 10-15 seconds the `/healthz` return a `200` response and will fail afterward. Kubernetes will automatically restart the service.  For reference, the following changes were made to the app.js from the Stage1 file:
+1.  Open the `<username_home_directory>/container-service-getting-started-wt/Stage2/healthcheck.yml` file with a text editor. This configuration script combines a few steps from the previous lesson to create a deployment and a service at the same time. App developers can use these scripts when updates are made or to troubleshoot issues by re-creating the pods:
 
-```javascript
-....
-var delay = 10000 + Math.floor(Math.random() * 5000)
-....
-app.get('/healthz', function(req, res) {
-  if ((Date.now() - startTime) > delay) {
-    res.status(500).send({
-      error: 'Timeout, Health check error!'
-    })
-  } else {
-    res.send('OK!')
-  }
-})
-....
-```
+    1.  Update the details for the image in your private registry namespace.
 
-To try the HTTP liveness check, first, cd into the Stage2 directory, then create and push the sigex-demo-health image to the IBM Cloud Container Registry:
+        ```
+        image: "registry.<region>.bluemix.net/<namespace>/hello-world:2"
+        ```
 
-```
-docker build --tag registry.ng.bluemix.net/<namespace>/health-check-demo .
-docker push registry.ng.bluemix.net/<namespace>/health-check-demo
-```
+    2.  Note the HTTP liveness probe that check health of the container every 5 seconds.
 
+        ```
+        livenessProbe:
+                    httpGet:
+                      path: /healthz
+                      port: 8080
+                    initialDelaySeconds: 5
+                    periodSeconds: 5
+        ```
 
-Replace the correct namespace in the healthcheck.yml file under the image tag:
+    3.  In the **Service** section, note the `NodePort`. Rather than generating a random NodePort like you did in the previous lesson, you can specify a port in the 30000 - 32767 range. This example uses 30072.
 
-```yml
-spec:
-      containers:
-        - name: hello-world-container
-          image: "registry.ng.bluemix.net/<namespace>/health-check-demo" # replace here
-          imagePullPolicy: Always
-          livenessProbe:
-            httpGet:
-              path: /healthz
-              port: 8080
-            initialDelaySeconds: 5
-            periodSeconds: 5
-```
+2.  Run the configuration script in the cluster. When the deployment and the service are created, the app is available for anyone to see:
+
+  ```
+  kubectl apply -f <username_home_directory>/container-service-getting-started-wt/Stage2/healthcheck.yml
+  ```
+
+  Now that all the deployment work is done, check how everything turned out. You might notice that because more instances are running, things might run a bit slower.
+
+3.  Open a browser and check out the app. To form the URL, combine the IP with the NodePort that was specified in the configuration script. To get the public IP address for the worker node:
+
+  ```
+  bx cs workers <cluster-name>
+  ```
+
+In a browser, you'll see a success message. If you do not see this text, don't worry. This app is designed to go up and down.
+
+  For the first 10 - 15 seconds, a 200 message is returned, so you know that the app is running successfully. After those 15 seconds, a timeout message is displayed, as is designed in the app.
 
 
-Once the yml file is updated, create a Pod:
+4.  Launch your Kubernetes dashboard with the default port 8001:
+    1.  Set the proxy with the default port number.
 
-`kubectl create -f healthcheck.yml`
+        ```
+        kubectl proxy
+        ```
 
-Run `kubectl get pods` and verify that the image was provisioned to the pod correctly.
+        Output:
 
-Get the ip of your cluster by running `bx cs workers <clustername>`, your nodeport will be 30072.
+        ```
+        Starting to serve on 127.0.0.1:8001
+        ```
 
-After 10 secconds, view the Pod events to confirm health check failed and pod restarted:
+    2.  Open the following URL in a web browser to see the Kubernetes dashboard:
 
-`kubectl describe pod hello-world-deployment`
+        ```
+        http://localhost:8001/ui
+        ```
 
-And finally, open a web browser and naviagate to `<cluster-ip>:30072/healthz` to see the endpoint operational, and `<cluster-ip>:30072` to see that the application  tries to work despite having failing nodes.
+5. In the **Workloads** tab, you can see the resources that you created. From this tab, you can continually refresh and see that the health check is working. In the **Pods** section, you can see how many times the pods are restarted when the containers in them are re-created. You might happen to catch errors in the dashboard, indicating that the health check caught a problem. Give it a few minutes and refresh again. You see the number of restarts changes for each pod.
 
-Thus you have seen the fault tolerance having multiple replicas provides you. Stage 2 of the lab is now complete!
+6. Ready to delete what you created before you continue? This time, you can use the same configuration script to delete both of the resources you created.
+
+kubectl delete -f <username_home_directory>/container-service-getting-started-wt/Stage2/healthcheck.yml
+
+7. When you are done exploring the Kubernetes dashboard, in your CLI, enter CTRL+C to exit the `proxy` command.
+
+
+Congratulations! You deployed the second version of the app. You had to use fewer commands, learned how health check works, and edited a deployment, which is great! Lab 2 is now complete.
