@@ -5,9 +5,21 @@
 
 Hey, are you looking for a containers 101 course? Check out our [Docker Essentials](https://developer.ibm.com/courses/all/docker-essentials-extend-your-apps-with-containers/).
 
-Containers allow you to run securely isolated applications with quotas on system resources. Containers started out as an individual feature delivered with the linux kernel. Docker launched with making containers easy to use and developers quickly latched onto that idea. Containers have also sparked an interest in microservice architecture, a design pattern for developing applications in which complex applications are down into smaller, composable pieces which work together. 
+Containers allow you to run securely isolated applications with quotas on system resources. Containers started out as an individual feature delivered with the linux kernel. Docker launched with making containers easy to use and developers quickly latched onto that idea. Containers have also sparked an interest in microservice architecture, a design pattern for developing applications in which complex applications are down into smaller, composable pieces which work together.
 
-This lab is an introduction to using Docker containers on Kubernetes in the IBM Cloud Container Service. By the end of the course, you will understand the core concepts of Kubernetes and be able to deploy your own applications on Kubernetes in the IBM Cloud Container Service. In this course, you'll see how the IBM Cloud Container Service gives you control of application deployments, while minimizing your time with infrastructure management.
+Watch this [video](https://www.youtube.com/watch?v=wlBhtc31I8c) to learn about production uses of containers.
+
+# Objectives
+
+This lab is an introduction to using Docker containers on Kubernetes in the IBM Cloud Container Service. By the end of the course, you'll achieve these objectives:
+* Understand core concepts of Kubernetes
+* Build a Docker image and deploy an application on Kubernetes in the IBM Cloud Container Service 
+* Control application deployments, while minimizing your time with infrastructure management
+* Add AI services to extend your app 
+* Secure and monitor your cluster and app
+
+# Prerequisites 
+* A Pay-As-You-Go or Subscription [IBM Cloud account](https://console.bluemix.net/registration/)
 
 # Virtual machines
 
@@ -40,9 +52,10 @@ Containers allow you to share the host OS. This reduces duplication while still 
 
 Before we dive into Kubernetes, you need to provision a cluster for your containerized app. Then you won't have to wait for it to be ready for the subsequent labs. 
 
-1. Preconditions: This lab expects an IBM Cloud account. Running from the CLI expects that you will have the CLIs installed as well, as per https://console.ng.bluemix.net/docs/containers/cs_cli_install.html. If you do not yet have an IBM Cloud account or the Kubernetes CLI, do [lab 0](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%200) before starting the course.
-2. If you haven't already, provision a cluster (this can take a few minutes, so let it start first) with `bx cs cluster-create --name <name-of-cluster>`
-3. After creation, before using the cluster, make sure it has completed provisioning and is ready for use. Run `bx cs clusters` and make sure that your cluster is in state "deployed".  Then use `bx cs workers <name-of-cluster>` and make sure that all worker nodes are in state "normal" with Status "Ready".
+1. You must install the CLIs per https://console.ng.bluemix.net/docs/containers/cs_cli_install.html. If you do not yet have these CLIs and the Kubernetes CLI, do [lab 0](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%200) before starting the course.
+2. If you haven't already, provision a cluster. This can take a few minutes, so let it start first: `bx cs cluster-create --name <name-of-cluster>`
+3. After creation, before using the cluster, make sure it has completed provisioning and is ready for use. Run `bx cs clusters` and make sure that your cluster is in state "deployed".  
+4. Then use `bx cs workers <name-of-cluster>` and make sure that all worker nodes are in state "normal" with Status "Ready".
 
 # Kubernetes and containers: an overview
 
