@@ -156,6 +156,3 @@ IBM Cloud provides the capability to run applications in containers on Kubernete
 
 [Lab 6](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%206): This lab walks through using Instana for CI/CD monitoring and network patrolling of your cluster.
 
-[Lab 7](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%207): This lab walks through the Kubernetes ecosystem to introduce you to node visualizers like WeaveScope, and package content handling with Helm.
-
-[Lab 8](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%208): This lab walks through microservice architecture at large, and provides a jumping off point to learn Istio.
