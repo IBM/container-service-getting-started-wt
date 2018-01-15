@@ -1,6 +1,10 @@
 # Highly available deployments with IBM Cloud Container Service
 
-The goal of this lab is to learn how to deploy a highly available application. It's easier than many think but can be expensive if deploying across multiple availability zones. In order to explore the concepts, this lab shows how to deploy an application across two worker nodes in the same availability zone, which is a basic level of high availability.
+The goal of this lab is to learn how to deploy a highly available application. It's easier than many think but can be expensive if deploying across multiple availability zones. In order to explore the concepts, this lab shows how to deploy an application across two worker nodes in the same availability zone, which is a basic level of high availability. 
+
+### note
+
+This section requires a paid cluster, and is thus optional for learning purposes. It contains highly useful real-world examples of Kubernetes and is thus valuable, but you will not see questions relating to this chapter on the exam. 
 
 # Federated Kubernetes cluster: Two clusters running the same application
 
