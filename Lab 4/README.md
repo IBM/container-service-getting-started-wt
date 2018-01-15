@@ -1,14 +1,14 @@
-# Highly Available Deployments with IBM Cloud Container Service
+# Highly available deployments with IBM Cloud Container Service
 
-The goal of this lab is to begin to understand how to deploy a highly available application. It's easier than many think, but can be expensive if deploying across multiple AZs. The example in this lab shows how to deploy an application across two worker nodes in the same AZ (a basic level of high availability, to explore the concepts).
+The goal of this lab is to learn how to deploy a highly available application. It's easier than many think but can be expensive if deploying across multiple availability zones. In order to explore the concepts, this lab shows how to deploy an application across two worker nodes in the same availability zone, which is a basic level of high availability.
 
-# Federated Kubernetes Cluster: Two Worker Nodes Running the Same Application
+# Federated Kubernetes cluster: Two clusters running the same application
 
-To get started, create a paid cluster with two workers and wait for it to provision.
+To get started, create a paid cluster with two workers and wait for it to provision. If this is your first paid cluster, then you do not need to specify the public vlan and the private vlan.
 
-`bx cs cluster-create --name Cluster02 --machine-type b1c.4x16 --location dal10 --workers 2 --public-vlan 1900401 --private-vlan 1900403 --location dal10`
+`bx cs cluster-create --name <cluster-name> --machine-type b2c.4x16 --location <location> --workers 2 --public-vlan <public-vlan> --private-vlan <private-vlan>`
 
-While waiting, you need to download kubefed, which will allow you to set up a kubernetes federated cluster.
+While waiting, you need to download kubefed, which will allow you to set up a Kubernetes federated cluster.
 As this is for lab purposes only, we will be using an IBM liberty image as a basic template for an imaged application.
 
 Download the kubefed tarfile using curl:
@@ -44,7 +44,7 @@ You’ll need to provide the kubeconfig context (called name in the entry above)
 
 At this time, export the kubeconfig file for the admin user of the cluster using `bx cs cluster-config <nameOfCluster> --admin`, make a note of it for error handling later.
 
-# Deploy a Federation Control Plane
+# Deploy a federation control plane
 
 To deploy a federation control plane on your host cluster, run `kubefed init` command. When you use `kubefed init`, you must provide the following:
 
@@ -150,7 +150,7 @@ Creating a namespace federation-system for federation system components... done
 Creating federation control plane service......
 ```
 
-# Deploying an Application to a Federated Cluster
+# Deploying an application to a federated cluster
 
 
 The API for Federated Deployment is compatible with the API for traditional Kubernetes Deployment. You can create a Deployment by sending a request to the federation data layer.
