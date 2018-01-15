@@ -94,6 +94,9 @@ hello-world-562211614-vz5qw   1/1       Running   0          2m
 hello-world-562211614-zksw3   1/1       Running   0          2m
 hello-world-562211614-zsp0j   1/1       Running   0          2m
 ```
+Tip! Another way to improve availability is to [add clusters and regions]( https://console.bluemix.net/docs/containers/cs_planning.html#cs_planning_cluster_config) to your deployment, as show in the following diagram: 
+
+![HA with more clusters and regions](../images/cluster_ha_roadmap.png) 
 
 # Updating and rolling back apps
 
