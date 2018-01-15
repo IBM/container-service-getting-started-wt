@@ -32,6 +32,8 @@ This is a list of some of the namespaces that are commonly used and visible to t
 
 Traditional applications are run on native hardware. A single application does not typically use the full resources of a single machine. We try to run multiple applications on a single machine to avoid wasting resources. We could run multiple copies of the same application, but to provide isolation we use VMs to run multiple application instances (VMs) on the same hardware. These VMs have full operating system stacks which make them relatively large and inefficient due to duplication both at runtime and on disk.
 
+![Containers versus VMs](images/container-vs-vm.jpg)
+
 Containers allow you to share the host OS. This reduces duplication while still providing the isolation. Containers also allow you to drop unneeded files such as system libraries and binaries to save space and reduce your attack surface. If SSHD or LIBC are not installed, they cannot be exploited.
 
 # Get set up
@@ -100,6 +102,9 @@ Kubernetes Infrastructure defines a resource for every purpose. Each resource is
 * Services  is an abstraction which defines a logical set of Pods and a policy by which to access them - sometimes called a micro-service.
 * Stateful Sets is the workload API object used to manage stateful applications.   
 * and more...
+
+
+![Relationship of pods, nodes, and containers](/images/container-pod-node-master-relationship.jpg)
 
 Kubernetes does not have the concept of an application. It has simple building blocks that you are required to compose. Kubernetes is a cloud native platform where the internal resource model is the same as the end user resource model.
 
