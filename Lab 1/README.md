@@ -8,6 +8,7 @@ Learn how to push an image of an application to IBM Cloud Container Registry and
 If you haven't already:
 1. Install the CLIs and Docker, as described in the "Prerequesite" section.  
 2. Provision a cluster: 
+
    ```bx cs cluster-create --name <name-of-cluster>```
 
 To push an image:
@@ -15,9 +16,11 @@ To push an image:
 1. Download from https://github.com/IBM/container-service-getting-started-wt
 
 2. Change directory to Lab 1: 
+
    ```cd "Lab 1"```
 
 3. Log in to the IBM Cloud CLI: 
+
    ```bx login```
    
    To specify an IBM Cloud region, include the API endpoint.
@@ -29,15 +32,19 @@ To push an image:
    **Tip:** This course's commands show the `ng` region. Replace `ng` with the region outputted from the `bx cr login` command.
 
 5. In order to upload images to the IBM Cloud Container Registry, you first need to create a namespace with the following command: 
-   ```bx cr namespace-add <my_namespace>```
 
+   ```bx cr namespace-add <my_namespace>```
+   
 6. Build the example Docker image: 
+
    ```docker build --tag registry.ng.bluemix.net/<my_namespace>/hello-world```
 
 7. Verify the image is built: 
+
    ```docker images```
 
 8. Now push that image up to IBM Cloud Container Registry: 
+
    ```docker push registry.ng.bluemix.net/<namespace>/hello-world```
 
 9. If you created your cluster at the beginning of this, make sure it's ready for use. 
@@ -52,20 +59,24 @@ You are now ready to use Kubernetes to deploy the hello-world application.
 1. Run `bx cs cluster-config <yourclustername>`, and set the variables based on the output of the command.
 
 2. Start by running your image as a deployment: 
+
    ```kubectl run hello-world --image=registry.ng.bluemix.net/<namespace>/hello-world```
 
    This action will take a bit of time. To check the status of your deployment, you can use `kubectl get pods`.
 
    You should see output similar to the following:
+   
    ```
    => kubectl get pods
    NAME                          READY     STATUS              RESTARTS   AGE
    hello-world-562211614-0g2kd   0/1       ContainerCreating   0          1m
    ```
 3. Once the status reads `Running`, expose that deployment as a service, accessed through the IP of the worker nodes.  The example for this course listens on port 8080.  Run:
+
    ```kubectl expose deployment/hello-world --type="NodePort" --port=8080```
 
 4. To find the port used on that worker node, examine your new service: 
+
    ```kubectl describe service <name-of-deployment>```
 
    Take note of the "NodePort:" line as `<nodeport>`
