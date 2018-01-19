@@ -25,10 +25,10 @@ As this is for lab purposes only, we will be using an IBM Liberty image as a bas
 
    3. Copy the extracted binaries to one of the directories in your `$PATH` and set the executable permission on those binaries:
 
-      ```sudo cp kubernetes/client/bin/kubefed /usr/local/bin
-      sudo chmod +x /usr/local/bin/kubefed
-      sudo cp kubernetes/client/bin/kubectl /usr/local/bin
-      sudo chmod +x /usr/local/bin/kubectl```
+      `sudo cp kubernetes/client/bin/kubefed /usr/local/bin`
+      `sudo chmod +x /usr/local/bin/kubefed`
+      `sudo cp kubernetes/client/bin/kubectl /usr/local/bin`
+      `sudo chmod +x /usr/local/bin/kubectl`
 
 # Choose a host cluster
 
