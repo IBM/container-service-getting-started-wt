@@ -73,8 +73,10 @@ Now that the service is bound to the cluster, you want to expose the secret to y
               name: service-bind-volume
       volumes:
         - name: service-bind-volume
-          secret:bhpratt-alpine
-            secretName: binding-tone # from the kubectl get secrets command above
+          secret:
+            defaultMode: 420
+            secretName: binding-tone
+            # from the kubectl get secrets command above
 ```
 
 1. Build the application using the yaml:
