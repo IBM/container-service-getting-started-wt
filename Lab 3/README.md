@@ -75,7 +75,7 @@ Now that the service is bound to the cluster, you want to expose the secret to y
         - name: service-bind-volume
           secret:
             defaultMode: 420
-            secretName: 2a5baa4b-a52d-4911-9019-69ac01afbb7f-key0 
+            secretName: binding-tone
             # from the kubectl get secrets command above
 ```
 
