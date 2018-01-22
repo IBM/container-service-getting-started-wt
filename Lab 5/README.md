@@ -1,125 +1,125 @@
-# Security with IBM Cloud Container Service
+# Lab 5: Security with IBM Cloud Container Service
 
-This lab is intended to introduce a user to Kubernetes-specific security features used to limit the attack surface and harden your cluster against network threats. You can use built-in security features for risk analysis and security protection. These features help you protect your cluster infrastructure and network communication, isolate your compute resources, and ensure security compliance across your infrastructure components and container deployments.
+In this lab, get an introduction to Kubernetes-specific security features that are used to limit the attack surface and harden your cluster against network threats. You can use built-in security features for risk analysis and security protection. These features help you protect your cluster infrastructure and network communication, isolate your compute resources, and ensure security compliance across your infrastructure components and container deployments.
 
 # Network policies and Kubernetes: Adding network policies
 In most cases, the default policies do not need to be changed. Only advanced security scenarios might require changes. If you find that you must make changes, install the Calico CLI and create your own network policies.
 
 Before you begin:
 
-Target the Kubernetes CLI to the cluster. Include the --admin option with the bx cs cluster-config command, which is used to download the certificates and permission files. This download also includes the keys for the Administrator RBAC role, which you need to run Calico commands.
+Target the Kubernetes CLI to the cluster. Include the `--admin` option with the `bx cs cluster-config` command, which is used to download the certificates and permission files. This download also includes the keys for the Administrator RBAC role, which you need to run Calico commands.
 
+```bx cs cluster-config <cluster_name> --admin```
 
-`bx cs cluster-config <cluster_name> --admin`
-
-Note: Calico CLI version 1.6.1 is supported.
+**Note:** Calico CLI, Version 1.6.1, is supported.
 
 To add network policies:
 
-Install the Calico CLI, from here: https://github.com/projectcalico/calicoctl/releases/tag/v1.6.1
+1. Install the [Calico CLI](https://github.com/projectcalico/calicoctl/releases/tag/v1.6.1).
 
-Tip: If you are using Windows, install the Calico CLI in the same directory as the IBM Cloud CLI. This setup saves you some filepath changes when you run commands later.
+   **Tip:** If you are using Windows, install the Calico CLI in the same directory as the IBM Cloud CLI. This setup saves you some filepath changes when you run commands later.
 
-For OSX and Linux users, complete the following steps.
+2. *For OS X and Linux users*, move the executable file to the /usr/local/bin directory:
+   - Linux:
 
-Move the executable file to the /usr/local/bin directory.
-
-Linux:
-
-`mv /<path_to_file>/calicoctl /usr/local/bin/calicoctl`
-
-OSX:
-`mv /<path_to_file>/calico-darwin-amd64 /usr/local/bin/calicoctl`
+      ```mv /<path_to_file>/calicoctl /usr/local/bin/calicoctl```
+   
+   - OS X:
+   
+      ```mv /<path_to_file>/calico-darwin-amd64 /usr/local/bin/calicoctl```
 
 
-Next, convert the binary file to an executable.
+3. Convert the binary file to an executable:
 
+   ```chmod +x /usr/local/bin/calicoctl```
 
-`chmod +x /usr/local/bin/calicoctl`
-
-
-Verify that the Calico commands run properly by checking the Calico CLI client version. Use `calicoctl version`
+4. Verify that the Calico commands run properly by checking the Calico CLI client version:
+   
+   ```calicoctl version```
 
 
 # Configure the Calico CLI.
 
-For Linux and OS X, create the '/etc/calico' directory. For Windows, any directory can be used.
+1. *For OS X and Linux*, create the /etc/calico directory:
 
+   ```mkdir -p /etc/calico/```
 
-`mkdir -p /etc/calico/`
+   *For Windows*, any directory can be used.
 
-Create a 'calicoctl.cfg' file.
+2. Create a calicoctl.cfg file.
 
-Linux and OS X:
+   OS X and Linux:
 
-`sudo vi /etc/calico/calicoctl.cfg`
+      ```sudo vi /etc/calico/calicoctl.cfg```
 
-Windows: Create the file with a text editor.
+   Windows: Create the file with a text editor.
 
-Enter the following information in the calicoctl.cfg file.
+3. Enter the following information in the calicoctl.cfg file:
 
-```
-apiVersion: v1
-kind: calicoApiConfig
-metadata:
-spec:
-  etcdEndpoints: <ETCD_URL>
-  etcdKeyFile: <CERTS_DIR>/admin-key.pem
-  etcdCertFile: <CERTS_DIR>/admin.pem
-  etcdCACertFile: <CERTS_DIR>/<ca-*pem_file>
-```
+   ```
+   apiVersion: v1
+   kind: calicoApiConfig
+   metadata:
+   spec:
+     etcdEndpoints: <ETCD_URL>
+     etcdKeyFile: <CERTS_DIR>/admin-key.pem
+     etcdCertFile: <CERTS_DIR>/admin.pem
+     etcdCACertFile: <CERTS_DIR>/<ca-*pem_file>
+   ```
 
-Retrieve the <ETCD_URL>.
+4. Retrieve the <ETCD_URL>.
 
-Linux and OS X:
+   OS X and Linux:
 
-`kubectl get cm -n kube-system calico-config -o yaml | grep "etcd_endpoints:" | awk '{ print $2 }'`
-Output example: `https://169.1.1.1:30001`
+      ```kubectl get cm -n kube-system calico-config -o yaml | grep "etcd_endpoints:" | awk '{ print $2 }'```
+      
+   Output example: 
+   
+      ```https://169.1.1.1:30001```
 
-Windows:
+   Windows:
+   1. Get the calico configuration values from the config map:
+   
+      ```kubectl get cm -n kube-system calico-config -o yaml```
 
-Get the calico configuration values from the config map.
+   2. In the data section, locate the etcd_endpoints value. Example: https://169.1.1.1:30001.
+   
+5. Retrieve the <CERTS_DIR>, the directory that the Kubernetes certificates are downloaded in.
 
-`kubectl get cm -n kube-system calico-config -o yaml`
+   OS X and Linux:
 
-In the data section, locate the etcd_endpoints value. Example: https://169.1.1.1:30001
-Retrieve the <CERTS_DIR>, the directory that the Kubernetes certificates are downloaded in.
+      ```dirname $KUBECONFIG```
 
-Linux and OS X:
+   Output example:
 
+      ```/home/sysadmin/.bluemix/plugins/container-service/clusters/<cluster_name>-admin/```
 
-`dirname $KUBECONFIG`
+   Windows:
 
-Output example:
+      ```echo %KUBECONFIG%```
 
-`/home/sysadmin/.bluemix/plugins/container-service/clusters/<cluster_name>-admin/`
+   Output example:
 
-Windows:
+      ```C:/Users/<user>/.bluemix/plugins/container-service/<cluster_name>-admin/kube-config-prod-<location>-<cluster_name>.yml```
 
+   **Note:** To get the directory path, remove the file name kube-config-prod-<location>-<cluster_name>.yml from the end of the output.
 
-`echo %KUBECONFIG%`
+6. Retrieve the ca-*pem_file.
 
-Output example:
+   Linux and OS X:
 
-`C:/Users/<user>/.bluemix/plugins/container-service/<cluster_name>-admin/kube-config-prod-<location>-<cluster_name>.yml`
-Note: To get the directory path, remove the file name kube-config-prod-<location>-<cluster_name>.yml from the end of the output.
+      ```
+      ls `dirname $KUBECONFIG` | grep ca-*.pem
+      ```
+   Windows:
 
-Retrieve the `ca-*pem_file`.
+   1. Open the directory you retrieved in the last step.
 
-Linux and OS X:
+      ```C:\Users\.bluemix\plugins\container-service\<cluster_name>-admin\```
 
-```
-ls `dirname $KUBECONFIG` | grep ca-*.pem
-```
-Windows:
+   2. Locate the ca-*pem_file file.
 
-Open the directory you retrieved in the last step.
-
-`C:\Users\.bluemix\plugins\container-service\<cluster_name>-admin\`
-
-Locate the `ca-*pem_file` file.
-
-Verify that the Calico configuration is working correctly.
+7. Verify that the Calico configuration is working correctly.
 
 Linux and OS X:
 
