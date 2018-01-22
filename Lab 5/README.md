@@ -148,7 +148,7 @@ To add network policies:
    ```calicoctl get policy -o wide```
 
 11. View details for a network policy:
-
+   
    ```calicoctl get policy -o yaml <policy_name>```
 
 12. View the details of all network policies for the cluster:
