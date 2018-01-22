@@ -19,7 +19,7 @@ To add network policies:
 
    **Tip:** If you are using Windows, install the Calico CLI in the same directory as the IBM Cloud CLI. This setup saves you some filepath changes when you run commands later.
 
-2. *For OS X and Linux users*, move the executable file to the /usr/local/bin directory:
+2. For OS X and Linux users, move the executable file to the /usr/local/bin directory:
    - Linux:
 
       ```mv /<path_to_file>/calicoctl /usr/local/bin/calicoctl```
@@ -40,11 +40,11 @@ To add network policies:
 
 # Configure the Calico CLI
 
-1. *For OS X and Linux*, create the /etc/calico directory:
+1. For OS X and Linux, create the /etc/calico directory:
 
    ```mkdir -p /etc/calico/```
 
-   *For Windows*, any directory can be used.
+   For Windows, any directory can be used.
 
 2. Create a calicoctl.cfg file.
 
