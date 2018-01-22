@@ -38,7 +38,7 @@ To add network policies:
    ```calicoctl version```
 
 
-# Configure the Calico CLI.
+# Configure the Calico CLI
 
 1. *For OS X and Linux*, create the /etc/calico directory:
 
@@ -106,7 +106,7 @@ To add network policies:
 
 6. Retrieve the ca-*pem_file.
 
-   Linux and OS X:
+   OS X and Linux:
 
       ```
       ls `dirname $KUBECONFIG` | grep ca-*.pem
@@ -121,61 +121,60 @@ To add network policies:
 
 7. Verify that the Calico configuration is working correctly.
 
-Linux and OS X:
+   OS X and Linux:
 
-`calicoctl get nodes`
+      ```calicoctl get nodes```
 
-Windows:
+   Windows:
 
-`calicoctl get nodes --config=<path_to_>/calicoctl.cfg`
+      ```calicoctl get nodes --config=<path_to_>/calicoctl.cfg```
 
-Output:
-```
-NAME
-kube-dal10-crc21191ee3997497ca90c8173bbdaf560-w1.cloud.ibm
-kube-dal10-crc21191ee3997497ca90c8173bbdaf560-w2.cloud.ibm
-kube-dal10-crc21191ee3997497ca90c8173bbdaf560-w3.cloud.ibm
+   Output:
+      ```
+      NAME
+      kube-dal10-crc21191ee3997497ca90c8173bbdaf560-w1.cloud.ibm
+      kube-dal10-crc21191ee3997497ca90c8173bbdaf560-w2.cloud.ibm
+      kube-dal10-crc21191ee3997497ca90c8173bbdaf560-w3.cloud.ibm
+      ```
 
-```
-Examine the existing network policies.
+8. Examine the existing network policies.
 
-View the Calico host endpoint.
+9. View the Calico host endpoint:
 
-`calicoctl get hostendpoint -o yaml`
+   ```calicoctl get hostendpoint -o yaml```
 
-View all of the Calico and Kubernetes network policies that were created for the cluster. This list includes policies that might not be applied to any pods or hosts yet. For a network policy to be enforced, it must find a Kubernetes resource that matches the selector that was defined in the Calico network policy.
+10. View all of the Calico and Kubernetes network policies that were created for the cluster. This list includes policies that might not be applied to any pods or hosts yet. For a network policy to be enforced, it must find a Kubernetes resource that matches the selector that was defined in the Calico network policy.
 
-`calicoctl get policy -o wide`
+   ```calicoctl get policy -o wide```
 
-View details for a network policy.
+11. View details for a network policy:
 
-`calicoctl get policy -o yaml <policy_name>`
+   ```calicoctl get policy -o yaml <policy_name>```
 
-View the details of all network policies for the cluster.
+12. View the details of all network policies for the cluster:
 
-`calicoctl get policy -o yaml`
+   ```calicoctl get policy -o yaml```
 
-# Lab Test: Define a Calico network policy
+# Define a Calico network policy
 
-Defining a Calico network policy for Kubernetes clusters is simple once the Calico CLI is installed.  
-This part of the lab walks through using the Calico APIs directly in conjunction with Kubernetes `NetworkPolicy` in order to define more complex network policies.
+Defining a Calico network policy for Kubernetes clusters is simple once the Calico CLI is installed. In this part of the lab, walk through using the Calico APIs directly in conjunction with Kubernetes `NetworkPolicy` in order to define more complex network policies.
 
-Begin by creating a namespace in your Kubernetes cluster:
+1. Begin by creating a namespace in your Kubernetes cluster:
 
-`kubectl create ns advanced-policy-demo`
+   ```kubectl create ns advanced-policy-demo```
 
-And then enable isolation on the namespace.
+2. Enable isolation on the namespace:
 
-`kubectl annotate ns advanced-policy-demo "net.beta.kubernetes.io/network-policy={\"ingress\":{\"isolation\":\"DefaultDeny\"}}"`
+   ```kubectl annotate ns advanced-policy-demo "net.beta.kubernetes.io/network-policy={\"ingress\":{\"isolation\":\"DefaultDeny\"}}"```
 
-Now, run an nginx service in the namespace that you created.
+3. Run an nginx service in the namespace that you created:
 
-`kubectl run --namespace=advanced-policy-demo nginx --replicas=2 --image=nginx`
-`kubectl expose --namespace=advanced-policy-demo deployment nginx --port=80`
+   ```kubectl run --namespace=advanced-policy-demo nginx --replicas=2 --image=nginx```
+   ```kubectl expose --namespace=advanced-policy-demo deployment nginx --port=80```
 
-Now that we’ve created a namespace and a set of pods, we should see those objects show up in the Calico API using calicoctl.
+Now that you’ve created a namespace and a set of pods, you should see those objects show up in the Calico API using `calicoctl`.
 
-We can see that the namespace has a corresponding network profile.
+You can see that the namespace has a corresponding network profile.
 
 `calicoctl get profile -o wide`
 
@@ -186,7 +185,7 @@ k8s_ns.default                k8s_ns.default
 k8s_ns.kube-system            k8s_ns.kube-system
 ```
 
-Because we’ve enabled isolation on the namespace, the profile denies all ingress traffic and allows all egress traffic. Inspect the YAML file to verify.
+Because you’ve enabled isolation on the namespace, the profile denies all ingress traffic and allows all egress traffic. Inspect the YAML file to verify.
 
 `calicoctl get profile k8s_ns.advanced-policy-demo -o yaml`
 
@@ -207,7 +206,7 @@ Because we’ve enabled isolation on the namespace, the profile denies all ingre
       destination: {}
       source: {}
 ```
-We can see that this is the case by running another pod in the namespace and attempting to access the nginx service.
+You can see that this is the case by running another pod in the namespace and attempting to access the nginx service.
 
 ```
 $ kubectl run --namespace=advanced-policy-demo access --rm -ti --image busybox /bin/sh
@@ -218,7 +217,7 @@ wget: download timed out
 / #
 ```
 
-We can also see that the two nginx pods are represented as WorkloadEndpoints in the Calico API.
+You can also see that the two nginx pods are represented as WorkloadEndpoints in the Calico API.
 
 ```
 calicoctl get workloadendpoint
@@ -229,7 +228,7 @@ k8s-node-02   k8s            advanced-policy-demo.nginx-701339712-xeeay   eth0
 k8s-node-01   k8s            kube-system.kube-dns-v19-mjd8x               eth0
 ```
 
-Taking a closer look, we can see that they reference the correct profile for the namespace, and that the correct label information has been filled in. Notice that the endpoint also includes a special label calico/k8s_ns, which is automatically populated with the pod’s Kubernetes namespace.
+Taking a closer look, you can see that they reference the correct profile for the namespace, and that the correct label information has been filled in. Notice that the endpoint also includes a special label calico/k8s_ns, which is automatically populated with the pod’s Kubernetes namespace.
 
 ```
 $ calicoctl get wep --workload advanced-policy-demo.nginx-701339712-x1uqe -o yaml
@@ -254,39 +253,39 @@ $ calicoctl get wep --workload advanced-policy-demo.nginx-701339712-x1uqe -o yam
 
 ```
 
-Now, create a new Kubernetes config yaml file, this time with `kind: NetworkPolicy`. The sample below shows an example network policy which allows traffic.
+1. Now, create a new Kubernetes config yaml file, this time with `kind: NetworkPolicy`. The following example shows a network policy that allows traffic.
 
-Create a file named `networkpol.yaml`, and enter the following information into the file:
+2. Create a file named `networkpol.yaml`, and enter the following information into the file:
 
-```
-kind: NetworkPolicy
-apiVersion: extensions/v1beta1
-metadata:
-  name: access-nginx
-  namespace: advanced-policy-demo
-spec:
-  podSelector:
-    matchLabels:
-      run: nginx
-  ingress:
-    - from:
-      - podSelector:
-          matchLabels: {}
-```
+   ```
+   kind: NetworkPolicy
+   apiVersion: extensions/v1beta1
+   metadata:
+     name: access-nginx
+     namespace: advanced-policy-demo
+   spec:
+     podSelector:
+       matchLabels:
+         run: nginx
+     ingress:
+       - from:
+         - podSelector:
+             matchLabels: {}
+   ```
 
-Apply the policies to the cluster.
+3. Apply the policies to the cluster.
 
-Linux and OS X:
+   OS X and Linux:
 
-`calicoctl apply -f networkpol.yaml`
+      ```calicoctl apply -f networkpol.yaml```
 
-It now shows up as a policy object in the Calico API.
+   It now shows up as a policy object in the Calico API.
 
-```
-$ calicoctl get policy -o wide
-NAME                                ORDER   SELECTOR
-advanced-policy-demo.access-nginx   1000    calico/k8s_ns == 'advanced-policy-demo' && run == 'nginx'
-k8s-policy-no-match                 2000    has(calico/k8s_ns)
-```
+      ```
+      $ calicoctl get policy -o wide
+      NAME                                ORDER   SELECTOR
+      advanced-policy-demo.access-nginx   1000    calico/k8s_ns == 'advanced-policy-demo' && run == 'nginx'
+      k8s-policy-no-match                 2000    has(calico/k8s_ns)
+      ```
 
-Congrats! You just defined your first network policy, and entered into your first forary into network security and network hardening.
+Congrats! You just defined your first network policy, and entered into your first foray into network security and network hardening.
