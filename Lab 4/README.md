@@ -6,7 +6,7 @@ The goal of this lab is to learn how to deploy a highly available application. I
 
 This section requires a paid cluster, and is thus optional for learning purposes. It contains highly useful real-world examples of Kubernetes and is thus valuable, but you will not see questions relating to this lab on the exam. 
 
-# Federated Kubernetes cluster: Two clusters running the same application
+# 1. Federated Kubernetes cluster: Two clusters running the same application
 
 1. To get started, create a paid cluster with two workers and wait for it to provision. If this is your first paid cluster, then you do not need to specify the public vlan and the private vlan.
 
@@ -30,7 +30,7 @@ As this is for lab purposes only, we will be using an IBM Liberty image as a bas
       `sudo cp kubernetes/client/bin/kubectl /usr/local/bin`
       `sudo chmod +x /usr/local/bin/kubectl`
 
-# Choose a host cluster
+# 2. Choose a host cluster
 
 You need to choose one of your Kubernetes worker node clusters to be the host cluster. The host cluster hosts the components that make up your federation control plane. Ensure that you have a kubeconfig entry in your local kubeconfig that corresponds to the host cluster. 
 
@@ -54,7 +54,7 @@ You need to choose one of your Kubernetes worker node clusters to be the host cl
    
    Make a note of it for error handling later.
 
-# Deploy a federation control plane
+# 3. Deploy a federation control plane
 
 1. To deploy a federation control plane on your host cluster, run:
 
@@ -89,7 +89,7 @@ You need to choose one of your Kubernetes worker node clusters to be the host cl
    ```kubectl create namespace default --context=fellowship```
 
 
-# Error handling during federation setup
+# 4. Error handling during federation setup
 
 If you run into an error when using `kubefed init`, like the one below:
 
@@ -168,7 +168,7 @@ Creating a namespace federation-system for federation system components... done
 Creating federation control plane service......
 ```
 
-# Deploy an application to a federated cluster
+# 5. Deploy an application to a federated cluster
 
 The API for federated deployment is compatible with the API for traditional Kubernetes deployment. 
 
