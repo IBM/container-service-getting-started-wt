@@ -253,9 +253,9 @@ $ calicoctl get wep --workload advanced-policy-demo.nginx-701339712-x1uqe -o yam
 
 ```
 
-1. Now, create a new Kubernetes config yaml file, this time with `kind: NetworkPolicy`. The following example shows a network policy that allows traffic.
+4. Now, create a new Kubernetes config yaml file, this time with `kind: NetworkPolicy`. The following example shows a network policy that allows traffic.
 
-2. Create a file named `networkpol.yaml`, and enter the following information into the file:
+5. Create a file named `networkpol.yaml`, and enter the following information into the file:
 
    ```
    kind: NetworkPolicy
@@ -273,7 +273,7 @@ $ calicoctl get wep --workload advanced-policy-demo.nginx-701339712-x1uqe -o yam
              matchLabels: {}
    ```
 
-3. Apply the policies to the cluster.
+6. Apply the policies to the cluster.
 
    OS X and Linux:
 
