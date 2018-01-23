@@ -2,7 +2,7 @@
 
 In this lab, get an introduction to Kubernetes-specific security features that are used to limit the attack surface and harden your cluster against network threats. You can use built-in security features for risk analysis and security protection. These features help you protect your cluster infrastructure and network communication, isolate your compute resources, and ensure security compliance across your infrastructure components and container deployments.
 
-# Network policies and Kubernetes: Adding network policies
+# 1. Network policies and Kubernetes: Adding network policies
 In most cases, the default policies do not need to be changed. Only advanced security scenarios might require changes. If you find that you must make changes, install the Calico CLI and create your own network policies.
 
 Before you begin:
@@ -38,7 +38,7 @@ To add network policies:
    ```calicoctl version```
 
 
-# Configure the Calico CLI
+# 2. Configure the Calico CLI
 
 1. For OS X and Linux, create the /etc/calico directory:
 
@@ -155,7 +155,7 @@ To add network policies:
 
    ```calicoctl get policy -o yaml```
 
-# Define a Calico network policy
+# 3. Define a Calico network policy
 
 Defining a Calico network policy for Kubernetes clusters is simple once the Calico CLI is installed. In this part of the lab, walk through using the Calico APIs directly in conjunction with Kubernetes `NetworkPolicy` in order to define more complex network policies.
 
