@@ -135,7 +135,8 @@ For this lab, you will deploy a small sample application that has a Java Wildfly
 
    **Note:**  svc/kubernetes is a component of IBM Cloud.
 
-6. Better yet, switch over to your Instana instance, and you will notice that there are now two extra containers on the stack, as illustrated in the following screenshots:
+6. Switch over to your Instana instance.
+7. Notice that there are now two extra containers on the stack:
 
   ![Image 006](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Managing-Bluemix-Container-Service-Individual-Container-Running-Multiple-Servers.png)
   ![Image 007](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Managing-Bluemix-Container-Service-JBoss-Data-1024x373.png)
