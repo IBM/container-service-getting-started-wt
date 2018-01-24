@@ -1,8 +1,8 @@
-# Lab 5: Security with IBM Cloud Container Service
+# Lab 5: Set up security with IBM Cloud Container Service
 
 In this lab, get an introduction to Kubernetes-specific security features that are used to limit the attack surface and harden your cluster against network threats. You can use built-in security features for risk analysis and security protection. These features help you protect your cluster infrastructure and network communication, isolate your compute resources, and ensure security compliance across your infrastructure components and container deployments.
 
-# 1. Network policies and Kubernetes: Adding network policies
+# 1. Add network policies
 In most cases, the default policies do not need to be changed. Only advanced security scenarios might require changes. If you find that you must make changes, install the Calico CLI and create your own network policies.
 
 Before you begin:
