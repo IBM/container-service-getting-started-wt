@@ -1,4 +1,4 @@
-# Check the health and performance of your clusters
+# Lab 6: Check the health and performance of your clusters
 
 This lab is designed to get you thinking about Continuous Integration and Continuous Delivery (CI/CD) and monitoring DevOps flows with containers. By the end of this lab, you will understand the CI/CD offerings available to developers to create a highly secure deployment in IBM Cloud Container Service.
 
