@@ -1,14 +1,12 @@
-# Continuous Integration and Continuous Delivery with the IBM Cloud Container Service
+# Build Continuous Integration and Continuous Delivery with the IBM Cloud Container Service
 
 This lab is designed to get you thinking about Continuous Integration and Continuous Delivery (CI/CD) and monitoring DevOps flows with containers. By the end of this lab, you will understand the CI/CD offerings available to developers to create a highly secure deployment in IBM Cloud Container Service.
 
-In CI/CD, it is incredibly useful to see a visual representation of the performance and quality of your running clusters. To accomplish this, a performace visualizer is often used, and that's what you're installing today. This lab will detail the initial deployment of the Instana solution into an application running on the IBM Cloud Container Service.
+In CI/CD, it is incredibly useful to see a visual representation of the performance and quality of your running clusters. To accomplish this, a performance visualizer is often used, and that's what you're installing today. This lab will detail the initial deployment of the Instana solution into an application running on the IBM Cloud Container Service.
 
-# 1. Instana
+You will also need to set up Instana, a Dynamic Application Performance Management solution specifically designed for monitoring the service quality and performance of constantly changing microservice based applications.
 
-Instana is a Dynamic Application Performance Management solution specifically designed for monitoring the service quality and performance of constantly changing microservice based applications.
-
-To get started with this lab:
+# 1. Delete your previous deployments and services
 
 1. Delete the previous deployments and services off of your old cluster, or remove your old cluster entirely. 
 2. Log into IBM Cloud.
@@ -88,7 +86,9 @@ Adding a sample application will allow you to see all the things Instana can do 
 * Capture 100% of service calls
 * Deploy a sample application
 
-For this lab, you will deploy a small sample application that has a Java Wildfly component, making read-only calls into a mysql database. This sample application is provided by Arun Gupta from Amazon Web Services.
+# 3. Deploy a sample application 
+
+For this section, you will deploy a small sample application that has a Java Wildfly component, making read-only calls into a mysql database. This sample application is provided by Arun Gupta from Amazon Web Services.
 
 1. Download the sample application.
    
@@ -147,7 +147,7 @@ For this lab, you will deploy a small sample application that has a Java Wildfly
   ![Image 009](https://github.com/colemanjackson/container-service-getting-started-wt/blob/dwworks-additions/Lab%206/Images/Instana-Container-Map-Sorted-by-Kubernetes-Pod-name-1024x390.png)
 
 
-# 3. Instana automatic application discovery
+# 4. View application metrics
 
 While this is a simple application, the discovery was automatic. And the same principles of automatic discovery apply to very complex applications as well.
 
@@ -168,8 +168,4 @@ Instana discovered the host, a container running on that host, and a process run
    
 A lot goes on inside of a JVM (and any other application component, for that matter) within a second. Imagine what you are missing if you are using a tool that averages metrics every minute.
 
-# 4. Conclusion
-
 IBM Cloud Container Service makes it easy to set up a Kubernetes cluster to host your containerized applications. When running such applications in production, operational visibility and performance monitoring is required to ensure that applications are running as expected. Instana’s Dynamic APM delivers just such visibility and performance management for dynamic containerized applications running in the cloud. 
-
-In the next lab, learn about other tools that can be useful for cluster data visualization; not just monitoring.
