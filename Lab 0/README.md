@@ -73,3 +73,6 @@ To view a local version of the Kubernetes dashboard and to deploy apps into your
 To locally build images and push them to your registry namespace, [install Docker](https://www.docker.com/community-edition#/download). The Docker CLI is used to build apps into images. 
 
 **Note:** The prefix for running commands by using the Docker CLI is `docker`.
+
+# Docker, Version 1.9. or later
+Navigate to https://store.docker.com/ to install Docker for your platform.
