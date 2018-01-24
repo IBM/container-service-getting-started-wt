@@ -1,4 +1,4 @@
-# Lab 4: Highly available deployments with IBM Cloud Container Service
+# Lab 4: Deploy a highly available deployments with IBM Cloud Container Service
 
 The goal of this lab is to learn how to deploy a highly available application. It's easier than many think but can be expensive if deploying across multiple availability zones. In order to explore the concepts, this lab shows how to deploy an application across two worker nodes in the same availability zone, which is a basic level of high availability. 
 
@@ -6,7 +6,7 @@ The goal of this lab is to learn how to deploy a highly available application. I
 
 This section requires a paid cluster, and is thus optional for learning purposes. It contains highly useful real-world examples of Kubernetes and is thus valuable, but you will not see questions relating to this lab on the exam. 
 
-# 1. Federated Kubernetes cluster: Two clusters running the same application
+# 1. Create a federated Kubernetes cluster: Two clusters running the same application
 
 1. To get started, create a paid cluster with two workers and wait for it to provision. If this is your first paid cluster, then you do not need to specify the public vlan and the private vlan.
 
@@ -89,7 +89,7 @@ You need to choose one of your Kubernetes worker node clusters to be the host cl
    ```kubectl create namespace default --context=fellowship```
 
 
-# 4. Error handling during federation setup
+# 4. Check errors
 
 If you run into an error when using `kubefed init`, like the one below:
 
