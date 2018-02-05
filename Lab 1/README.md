@@ -1,60 +1,91 @@
-# Lab 1 - Set up and deploy your first application
+# Lab 1. Set up and deploy your first application
 
-This lab walks through pushing an image of an application to IBM Cloud Container Registry and deploying a basic application to a cluster.
+Learn how to push an image of an application to IBM Cloud Container Registry and deploy a basic application to a cluster.
 
 
-# Pushing an image to IBM Cloud Container Registry
+# 1. Push an image to IBM Cloud Container Registry
 
 If you haven't already:
-1. Install the CLIs and Docker in [Lab 0](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%200).  
-2. Provision a cluster: `bx cs cluster-create --name <name-of-cluster>`
+1. Install the CLIs and Docker, as described in the "Prerequesite" section.  
+2. Provision a cluster: 
+
+   ```bx cs cluster-create --name <name-of-cluster>```
 
 To push an image:
 
 1. Download from https://github.com/IBM/container-service-getting-started-wt
 
-2. cd into Lab 1 `cd "Lab 1"`
+2. Change directory to Lab 1: 
 
-3. Log in to the IBM Cloud CLI with `bx login`. To specify an IBM Cloud region, include the API endpoint.
+   ```cd "Lab 1"```
 
-Note: If you have a federated ID, use `bx login --sso` to log in to the IBM Cloud CLI. You know you have a federated ID when the login fails without the `--sso` and succeeds with the `--sso` option.
+3. Log in to the IBM Cloud CLI: 
 
-4. Run `bx cr login` and login with your IBM Cloud credentials. This will allow you to push images to the IBM Cloud Container Registry.
+   ```bx login```
+   
+   To specify an IBM Cloud region, include the API endpoint.
 
-Tip: This course's commands show the `ng` region. You replace `ng` with the region outputted from the `bx cr login` command.
+   **Note:** If you have a federated ID, use `bx login --sso` to log in to the IBM Cloud CLI. You know you have a federated ID when the login fails without the `--sso` and succeeds with the `--sso` option.
 
-5. In order to upload our images to the IBM Cloud Container Registry, we first need to create a namespace with the following: `bx cr namespace-add <my_namespace>`
+4. Run `bx cr login`, and log in with your IBM Cloud credentials. This will allow you to push images to the IBM Cloud Container Registry.
 
-6. Build the example docker image: `docker build --tag registry.ng.bluemix.net/<my_namespace>/hello-world .`
+   **Tip:** This course's commands show the `ng` region. Replace `ng` with the region outputted from the `bx cr login` command.
 
-7. Verify the image is built: `docker images`
+5. In order to upload images to the IBM Cloud Container Registry, you first need to create a namespace with the following command: 
 
-8. Now push that image up to IBM Cloud Container Registry: `docker push registry.ng.bluemix.net/<namespace>/hello-world`
+   ```bx cr namespace-add <my_namespace>```
+   
+6. Build the example Docker image: 
 
-9. If you created your cluster at the beginning of this, make sure it's ready for use. Run `bx cs clusters` and make sure that your cluster is in state "Normal".  Then use `bx cs workers <yourclustername>` and make sure that all workers are in state "normal" with Status "Ready".  Make a note of the public IP of the worker!
+   ```docker build --tag registry.ng.bluemix.net/<my_namespace>/hello-world```
+
+7. Verify the image is built: 
+
+   ```docker images```
+
+8. Now push that image up to IBM Cloud Container Registry: 
+
+   ```docker push registry.ng.bluemix.net/<namespace>/hello-world```
+
+9. If you created your cluster at the beginning of this, make sure it's ready for use. 
+   1. Run `bx cs clusters` and make sure that your cluster is in "Normal" state.  
+   2. Use `bx cs workers <yourclustername>`, and make sure that all workers are in "Normal" state with "Ready" status.  
+   3. Make a note of the public IP of the worker.
 
 You are now ready to use Kubernetes to deploy the hello-world application.
 
-# Deploying your application
+# 2. Deploy your application
 
-1. Run `bx cs cluster-config <yourclustername>` and set the variables based on the output of the command.
+1. Run `bx cs cluster-config <yourclustername>`, and set the variables based on the output of the command.
 
-2. Start by running your image as a deployment: `kubectl run hello-world --image=registry.ng.bluemix.net/<namespace>/hello-world`
+2. Start by running your image as a deployment: 
 
-This action will take a bit of time. To check the status of your deployment, you can use `kubectl get pods`
+   ```kubectl run hello-world --image=registry.ng.bluemix.net/<namespace>/hello-world```
 
-You should see output similar to the following:
-```
-=> kubectl get pods
-NAME                          READY     STATUS              RESTARTS   AGE
-hello-world-562211614-0g2kd   0/1       ContainerCreating   0          1m
-```
-3. Once the status reads `Running`, expose that deployment as a service, accessed through the IP of the worker nodes.  Our example listens on port 8080.  run `kubectl expose deployment/hello-world --type="NodePort" --port=8080`
+   This action will take a bit of time. To check the status of your deployment, you can use `kubectl get pods`.
 
-4. To find the port used on that worker node, now examine your new service: `kubectl describe service <name-of-deployment>`, take note of the "NodePort:" line as `<nodeport>`
+   You should see output similar to the following:
+   
+   ```
+   => kubectl get pods
+   NAME                          READY     STATUS              RESTARTS   AGE
+   hello-world-562211614-0g2kd   0/1       ContainerCreating   0          1m
+   ```
+3. Once the status reads `Running`, expose that deployment as a service, accessed through the IP of the worker nodes.  The example for this course listens on port 8080.  Run:
 
-5. Run `bx cs workers <name-of-cluster>` and note the public IP as `<public-IP>`
+   ```kubectl expose deployment/hello-world --type="NodePort" --port=8080```
 
-6. You can now access your container/service via `curl <public-IP>:<nodeport>` (or your favorite web browser). If you see a "Hello world! Your app is up and running in a cluster!" you're done!
+4. To find the port used on that worker node, examine your new service: 
 
-When you're all done, you can either use this deployment in the Lab 2 of this demo, or you can remove the deployment and thus stop taking the course.  To remove the deployment, use `kubectl delete deployment hello-world`, to remove the service use `kubectl delete service hello-world`
+   ```kubectl describe service <name-of-deployment>```
+
+   Take note of the "NodePort:" line as `<nodeport>`
+
+5. Run `bx cs workers <name-of-cluster>`, and note the public IP as `<public-IP>`.
+
+6. You can now access your container/service using `curl <public-IP>:<nodeport>` (or your favorite web browser). If you see, "Hello world! Your app is up and running in a cluster!" you're done!
+
+When you're all done, you can either use this deployment in the next lab of this course, or you can remove the deployment and thus stop taking the course.  
+
+1. To remove the deployment, use `kubectl delete deployment hello-world`. 
+2. To remove the service, use `kubectl delete service hello-world`.
