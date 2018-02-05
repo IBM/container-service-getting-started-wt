@@ -10,7 +10,7 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
 2. Change the directory to Lab 3/watson.
 
 3. Build the `watson` image:
-   ```docker build -t registry.ng.bluemix.net/<namespace>/watson```
+   ```docker build -t registry.ng.bluemix.net/<namespace>/watson .```
 
 4. Push the `watson` image to IBM Cloud Container Registry:
    ```docker push registry.ng.bluemix.net/<namespace>/watson```
@@ -21,7 +21,7 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
 5. Change the directory to Lab 3/watson-talk.
 
 6. Build the `watson-talk` image:
-   ```docker build -t registry.ng.bluemix.net/<namespace>/watson-talk```
+   ```docker build -t registry.ng.bluemix.net/<namespace>/watson-talk .```
 
 7. Push the `watson-talk` image to IBM Cloud Container Registry:
    ```docker push registry.ng.bluemix.net/<namespace>/watson-talk```
