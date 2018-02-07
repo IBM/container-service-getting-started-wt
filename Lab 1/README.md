@@ -13,7 +13,7 @@ If you haven't already:
 
 To push an image:
 
-1. Download from https://github.com/IBM/container-service-getting-started-wt
+1. [Clone or download](https://github.com/IBM/container-service-getting-started-wt) the GitHub repository associated with this course.
 
 2. Change directory to Lab 1: 
 
