@@ -42,25 +42,22 @@ To view a local version of the Kubernetes dashboard and to deploy apps into your
 * [Linux](https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/linux/amd64/kubectl)
 * [Windows](https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/windows/amd64/kubectl.exe)
 
-**Tip:** If you are using Windows, install the Kubernetes CLI in the same directory as the IBM Cloud CLI. This setup saves you some filepath changes when you run commands later.
+**For Windows users:** Install the Kubernetes CLI in the same directory as the IBM Cloud CLI. This setup saves you some filepath changes when you run commands later.
 
-*For OS X and Linux users*, complete the following steps:
+**For OS X and Linux users:**
 
 1. Move the executable file to the /usr/local/bin directory using the command `mv /<path_to_file>/kubectl /usr/local/bin/kubectl` .
 
 2. Make sure that /usr/local/bin is listed in your PATH system variable.
 
- ```txt
- echo $PATH
- /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
- ```
+ ```echo $PATH          /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin```
 
 3. Convert the binary file to an executable: `chmod +x /usr/local/bin/kubectl`
 
 # Download the IBM Cloud Container Registry plug-in
 
 1. To manage a private image repository, install the IBM Cloud Container Registry plug-in:
-````bx plugin install container-registry -r Bluemix```
+```bx plugin install container-registry -r Bluemix```
    
    Use this plug-in to set up your own namespace in a multi-tenant, highly available, and scalable private image registry that is hosted by IBM, and to store and share Docker images with other users. Docker images are required to deploy containers into a cluster. 
    
