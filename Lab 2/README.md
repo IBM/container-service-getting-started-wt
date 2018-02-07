@@ -117,7 +117,7 @@ docker push registry.ng.bluemix.net/<namespace>/hello-world:1
 To update and roll back:
 1. Make a change to your code and build a new docker image with a new tag:
 
-   ```docker build --tag registry.ng.bluemix.net/<namespace>/hello-world:2```
+   ```docker build --tag registry.ng.bluemix.net/<namespace>/hello-world:2 .```
 
 2. Push the image to the IBM Cloud Container Registry:
 
