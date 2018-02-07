@@ -4,7 +4,7 @@ In this lab, understand how to update the number of replicas a deployment has an
 
 For this lab, you need a running deployment with a single replica. The previous lab helped you set up a deployment with a single replica, if you don't have one running.
 
-# Scale apps with replicas
+# 1. Scale apps with replicas
 
 A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica is a copy of a pod that already contains a running service. By having multiple replicas of a pod, you can ensure your deployment has the available resources to handle increasing load on your application.
 
@@ -102,7 +102,7 @@ A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica i
 
 ![HA with more clusters and regions](../images/cluster_ha_roadmap.png) 
 
-# Update and roll back apps
+# 2. Update and roll back apps
 
 Kubernetes allows you to use a rollout to update an app deployment with a new Docker image.  This allows you to easily update the running image and also allows you to easily undo a rollout, if a problem is discovered after deployment.
 
@@ -192,7 +192,7 @@ To update and roll back:
 
 6. If you decide to undo your latest rollout, call: `kubectl rollout undo deployment/<name-of-deployment>`.
 
-# Check the health of apps
+# 3. Check the health of apps
 
 Kubernetes uses availability checks (liveness probes) to know when to restart a container. For example, liveness probes could catch a deadlock, where an application is running, but unable to make progress. Restarting a container in such a state can help to make the application more available despite bugs.
 
