@@ -60,7 +60,9 @@ To view a local version of the Kubernetes dashboard and to deploy apps into your
 # Download the IBM Cloud Container Registry plug-in
 
 1. To manage a private image repository, install the IBM Cloud Container Registry plug-in:
-````bx plugin install container-registry -r Bluemix```
+```
+bx plugin install container-registry -r Bluemix
+```
    
    Use this plug-in to set up your own namespace in a multi-tenant, highly available, and scalable private image registry that is hosted by IBM, and to store and share Docker images with other users. Docker images are required to deploy containers into a cluster. 
    
