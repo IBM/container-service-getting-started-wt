@@ -72,6 +72,8 @@ bx plugin install container-registry -r Bluemix
 
    The plug-in is displayed in the results as `container-registry`.
 
+
+# Install Docker
 To locally build images and push them to your registry namespace, [install Docker](https://www.docker.com/community-edition#/download). The Docker CLI is used to build apps into images. 
 
 **Note:** The prefix for running commands by using the Docker CLI is `docker`.
