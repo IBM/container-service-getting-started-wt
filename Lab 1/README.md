@@ -37,7 +37,7 @@ To push an image:
    
 6. Build the example Docker image: 
 
-   ```docker build --tag registry.ng.bluemix.net/<my_namespace>/hello-world```
+   ```docker build -tag registry.ng.bluemix.net/<my_namespace>/hello-world```
 
 7. Verify the image is built: 
 
