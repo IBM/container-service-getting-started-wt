@@ -23,7 +23,7 @@ which your cluster has access.
 
 1. Download a copy of this repository:
 
-    ```git clone https://github.com/IBM/container-service-getting-started-wt```
+1a. [Clone or download](https://github.com/IBM/container-service-getting-started-wt) the GitHub repository associated with this cours
 
 2. Change directory to Lab 1: 
 
