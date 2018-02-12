@@ -7,26 +7,22 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
 1. Login to IBM Cloud Container Registry:
    ```bx cr login```
 
-2. Change the directory to Lab 3/watson.
+2. Build the `watson` image:
+   ```docker build -t registry.ng.bluemix.net/<namespace>/watson ./watson```
 
-3. Build the `watson` image:
-   ```docker build -t registry.ng.bluemix.net/<namespace>/watson```
-
-4. Push the `watson` image to IBM Cloud Container Registry:
+3. Push the `watson` image to IBM Cloud Container Registry:
    ```docker push registry.ng.bluemix.net/<namespace>/watson```
 
    **Tip:** If you run out of registry space, clean up the previous lab's images with this example command: 
       ```bx cr image-rm registry.ng.bluemix.net/<namespace>/hello-world:2```
 
-5. Change the directory to Lab 3/watson-talk.
+4. Build the `watson-talk` image:
+   ```docker build -t registry.ng.bluemix.net/<namespace>/watson-talk ./watson-talk```
 
-6. Build the `watson-talk` image:
-   ```docker build -t registry.ng.bluemix.net/<namespace>/watson-talk```
-
-7. Push the `watson-talk` image to IBM Cloud Container Registry:
+5. Push the `watson-talk` image to IBM Cloud Container Registry:
    ```docker push registry.ng.bluemix.net/<namespace>/watson-talk```
 
-8. In watson-deployment.yml, update the image tag with the registry path to the image you created in the following two sections:
+6. In watson-deployment.yml, update the image tag with the registry path to the image you created in the following two sections:
 
    ```yml
        spec:
@@ -75,7 +71,7 @@ Now that the service is bound to the cluster, you want to expose the secret to y
         - name: service-bind-volume
           secret:
             defaultMode: 420
-            secretName: 2a5baa4b-a52d-4911-9019-69ac01afbb7f-key0 
+            secretName: binding-tone
             # from the kubectl get secrets command above
 ```
 

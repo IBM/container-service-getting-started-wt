@@ -2,8 +2,7 @@
 
 Learn how to push an image of an application to IBM Cloud Container Registry and deploy a basic application to a cluster.
 
-
-# 1. Push an image to IBM Cloud Container Registry
+# 0. Install Prerequisite CLIs and Provision a Kubernetes Cluster
 
 If you haven't already:
 1. Install the CLIs and Docker, as described in the "Prerequesite" section.  
@@ -11,9 +10,20 @@ If you haven't already:
 
    ```bx cs cluster-create --name <name-of-cluster>```
 
-To push an image:
+# 1. Push an image to IBM Cloud Container Registry
 
-1. [Clone or download](https://github.com/IBM/container-service-getting-started-wt) the GitHub repository associated with this course.
+To push an image, we first must have an image to push. We have
+prepared several `Dockerfile`s in this repository that will create the
+images. We will be running the images, and creating new ones, in the
+later labs. 
+
+This lab uses the Container Registry built in to IBM Cloud, but the
+image can be created and uploaded to any standard Docker registry to
+which your cluster has access.
+
+1. Download a copy of this repository:
+
+1a. [Clone or download](https://github.com/IBM/container-service-getting-started-wt) the GitHub repository associated with this cours
 
 2. Change directory to Lab 1: 
 
@@ -23,7 +33,7 @@ To push an image:
 
    ```bx login```
    
-   To specify an IBM Cloud region, include the API endpoint.
+   To specify an IBM Cloud region, include the API endpoint. <!-- what does this mean? can we add an example? -->
 
    **Note:** If you have a federated ID, use `bx login --sso` to log in to the IBM Cloud CLI. You know you have a federated ID when the login fails without the `--sso` and succeeds with the `--sso` option.
 
@@ -37,7 +47,7 @@ To push an image:
    
 6. Build the example Docker image: 
 
-   ```docker build -tag registry.ng.bluemix.net/<my_namespace>/hello-world```
+   ```docker build --tag registry.ng.bluemix.net/<my_namespace>/hello-world .```
 
 7. Verify the image is built: 
 
@@ -45,11 +55,11 @@ To push an image:
 
 8. Now push that image up to IBM Cloud Container Registry: 
 
-   ```docker push registry.ng.bluemix.net/<namespace>/hello-world```
+   ```docker push registry.ng.bluemix.net/<my_namespace>/hello-world```
 
 9. If you created your cluster at the beginning of this, make sure it's ready for use. 
    1. Run `bx cs clusters` and make sure that your cluster is in "Normal" state.  
-   2. Use `bx cs workers <yourclustername>`, and make sure that all workers are in "Normal" state with "Ready" status.  
+   2. Use `bx cs workers <yourclustername>`, and make sure that all workers are in "Normal" state with "Ready" status.
    3. Make a note of the public IP of the worker.
 
 You are now ready to use Kubernetes to deploy the hello-world application.
@@ -60,7 +70,7 @@ You are now ready to use Kubernetes to deploy the hello-world application.
 
 2. Start by running your image as a deployment: 
 
-   ```kubectl run hello-world --image=registry.ng.bluemix.net/<namespace>/hello-world```
+   ```kubectl run hello-world --image=registry.ng.bluemix.net/<my_namespace>/hello-world```
 
    This action will take a bit of time. To check the status of your deployment, you can use `kubectl get pods`.
 
