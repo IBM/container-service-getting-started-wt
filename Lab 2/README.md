@@ -200,7 +200,7 @@ Also, Kubernetes uses readiness checks to know when a container is ready to star
 
 In this example, we have defined a HTTP liveness probe to check health of the container every five seconds. For the first 10-15 seconds the `/healthz` returns a `200` response and will fail afterward. Kubernetes will automatically restart the service.  
 
-1. Open the <username_home_directory>/container-service-getting-started-wt/Stage2/healthcheck.yml file with a text editor. This configuration script combines a few steps from the previous lesson to create a deployment and a service at the same time. App developers can use these scripts when updates are made or to troubleshoot issues by re-creating the pods:
+1. Open `healthcheck.yml` with a text editor. This configuration script combines a few steps from the previous lesson to create a deployment and a service at the same time. App developers can use these scripts when updates are made or to troubleshoot issues by re-creating the pods:
 
    1. Update the details for the image in your private registry namespace:
 
