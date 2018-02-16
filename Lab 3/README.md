@@ -2,31 +2,27 @@
 
 In this lab, set up an application to leverage the Watson Tone Analyzer service. If you have yet to create a cluster, please refer to first lab of this course.
 
-# Deploy the Watson app
+# 1. Deploy the Watson app
 
 1. Login to IBM Cloud Container Registry:
    ```bx cr login```
 
-2. Change the directory to Lab 3/watson.
+2. Build the `watson` image:
+   ```docker build -t registry.ng.bluemix.net/<namespace>/watson ./watson```
 
-3. Build the `watson` image:
-   ```docker build -t registry.ng.bluemix.net/<namespace>/watson```
-
-4. Push the `watson` image to IBM Cloud Container Registry:
+3. Push the `watson` image to IBM Cloud Container Registry:
    ```docker push registry.ng.bluemix.net/<namespace>/watson```
 
    **Tip:** If you run out of registry space, clean up the previous lab's images with this example command: 
       ```bx cr image-rm registry.ng.bluemix.net/<namespace>/hello-world:2```
 
-5. Change the directory to Lab 3/watson-talk.
+4. Build the `watson-talk` image:
+   ```docker build -t registry.ng.bluemix.net/<namespace>/watson-talk ./watson-talk```
 
-6. Build the `watson-talk` image:
-   ```docker build -t registry.ng.bluemix.net/<namespace>/watson-talk```
-
-7. Push the `watson-talk` image to IBM Cloud Container Registry:
+5. Push the `watson-talk` image to IBM Cloud Container Registry:
    ```docker push registry.ng.bluemix.net/<namespace>/watson-talk```
 
-8. In watson-deployment.yml, update the image tag with the registry path to the image you created in the following two sections:
+6. In watson-deployment.yml, update the image tag with the registry path to the image you created in the following two sections:
 
    ```yml
        spec:
@@ -45,7 +41,7 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
    ```
 
 
-# Create an instance of the IBM Watson service via the CLI
+# 2. Create an instance of the IBM Watson service via the CLI
 
 In order to begin using the Watson Tone Analyzer (the IBM Cloud service for this application), you must first request an instance of the Watson service in the org and space where you have set up our cluster.
 
@@ -57,13 +53,13 @@ In order to begin using the Watson Tone Analyzer (the IBM Cloud service for this
 
 3. Run `bx cf services` to ensure a service named `tone` was created.
 
-# Bind the Watson service to your cluster
+# 3. Bind the Watson service to your cluster
 
 1. Run `bx cs cluster-service-bind <name-of-cluster> default tone` to bind the service to your cluster. This command will create a secret for the service.
 
 2. Verify the secret was created by running `kubectl get secrets`.
 
-# Create pods and services
+# 4. Create pods and services
 
 Now that the service is bound to the cluster, you want to expose the secret to your pod so that it can utilize the service. To do this, create a secret datastore as a part of your deployment configuration. This has been done for you in watson-deployment.yml:
 
@@ -89,7 +85,7 @@ Now that the service is bound to the cluster, you want to expose the secret to y
 
 Your secret has now been created. Note that for this lab, this has been done for you.
 
-# Putting it all together - Run the application and service
+# 5. Putting it all together - Run the application and service
 
 By this time you have created pods, services, and volumes for this lab.
 
