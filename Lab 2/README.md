@@ -2,64 +2,29 @@
 
 In this lab, understand how to update the number of replicas a deployment has and how to safely roll out an update on Kubernetes. Learn, also, how to perform a simple health check.
 
-For this lab, you need a running deployment with a single replica. The previous lab helped you set up a deployment with a single replica, if you don't have one running.
+For this lab, you need a running deployment with a single replica. At
+the end of the previous lab, we cleaned up the running
+deployment. Let's first recreate that deployment with:
+```
+kubectl run hello-world --image=registry.ng.bluemix.net/<my_namespace>/hello-world
+```
 
 # 1. Scale apps with replicas
 
 A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica is a copy of a pod that already contains a running service. By having multiple replicas of a pod, you can ensure your deployment has the available resources to handle increasing load on your application.
 
-1. To begin updating the replica set, run: `kubectl edit deployment/<name-of-deployment>`.
-
-   You should now be in a vi editor window with a configuration yaml file on your screen.
+1. `kubectl` provides a `scale` subcommand to change the size of an
+   existing deployment. Let's us it to go from our single running
+   instance to 10 instances.
    
-   This configuration yaml is the configuration of your current deployment, which you can edit to customize the configuration for more fault tolerance.
-
-   You should see a configuration similar to the following:
-   
-   ``` yaml
-   ...
-   spec:
-     replicas: 1
-     selector:
-       matchLabels:
-         run: hello-world
-     strategy:
-       rollingUpdate:
-         maxSurge: 1
-         maxUnavailable: 1
-       type: RollingUpdate
-     template:
-       metadata:
-         creationTimestamp: null
-         labels:
-           run: hello-world
-   ...
+   ``` console 
+   $ kubectl scale --replicas=10 deployment hello-world
+   deployment "hello-world" scaled
    ```
 
-2. Change the replicas number from 1 to 10, so that the configuration now reads:
-
-   ```yaml
-   ...
-   spec:
-     replicas: 10
-     selector:
-       matchLabels:
-         run: hello-world
-     strategy:
-     rollingUpdate:
-         maxSurge: 1
-         maxUnavailable: 1
-       type: RollingUpdate
-     template:
-       metadata:
-         creationTimestamp: null
-         labels:
-           run: hello-world
-   ...
-   ```
-3. Save your changes and exit the editor.
-
-   You now have 10 replicas of the deployment running in the same pod, providing fault tolerance.
+    Kubernetes will now act according to the desired state model to
+    try and make true, the condition of 10 replicas. It will do this
+    by starting new pods with the same configuration.
 
 4. To see your changes being rolled out, you can run: `kubectl rollout status deployment/<name-of-deployment>`.
 
