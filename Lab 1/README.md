@@ -5,7 +5,7 @@ Learn how to push an image of an application to IBM Cloud Container Registry and
 # 0. Install Prerequisite CLIs and Provision a Kubernetes Cluster
 
 If you haven't already:
-1. Install the CLIs and Docker, as described in the "Prerequesite" section.  
+1. Install the CLIs and Docker, as described in [Lab 0](../Lab%200/README.md).
 2. Provision a cluster: 
 
    ```bx cs cluster-create --name <name-of-cluster>```
@@ -81,6 +81,7 @@ You are now ready to use Kubernetes to deploy the hello-world application.
    NAME                          READY     STATUS              RESTARTS   AGE
    hello-world-562211614-0g2kd   0/1       ContainerCreating   0          1m
    ```
+
 3. Once the status reads `Running`, expose that deployment as a service, accessed through the IP of the worker nodes.  The example for this course listens on port 8080.  Run:
 
    ```kubectl expose deployment/hello-world --type="NodePort" --port=8080```
@@ -95,7 +96,7 @@ You are now ready to use Kubernetes to deploy the hello-world application.
 
 6. You can now access your container/service using `curl <public-IP>:<nodeport>` (or your favorite web browser). If you see, "Hello world! Your app is up and running in a cluster!" you're done!
 
-When you're all done, you can either use this deployment in the next lab of this course, or you can remove the deployment and thus stop taking the course.  
+When you're all done, you can either use this deployment in the [next lab of this course](../Lab%202/README.md), or you can remove the deployment and thus stop taking the course.
 
 1. To remove the deployment, use `kubectl delete deployment hello-world`. 
 2. To remove the service, use `kubectl delete service hello-world`.
