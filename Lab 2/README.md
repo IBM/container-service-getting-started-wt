@@ -200,7 +200,7 @@ Also, Kubernetes uses readiness checks to know when a container is ready to star
 
 In this example, we have defined a HTTP liveness probe to check health of the container every five seconds. For the first 10-15 seconds the `/healthz` returns a `200` response and will fail afterward. Kubernetes will automatically restart the service.  
 
-1. Open the <username_home_directory>/container-service-getting-started-wt/Stage2/healthcheck.yml file with a text editor. This configuration script combines a few steps from the previous lesson to create a deployment and a service at the same time. App developers can use these scripts when updates are made or to troubleshoot issues by re-creating the pods:
+1. Open the `healthcheck.yml` file with a text editor. This configuration script combines a few steps from the previous lesson to create a deployment and a service at the same time. App developers can use these scripts when updates are made or to troubleshoot issues by re-creating the pods:
 
    1. Update the details for the image in your private registry namespace:
 
@@ -224,7 +224,7 @@ In this example, we have defined a HTTP liveness probe to check health of the co
 2. Run the configuration script in the cluster. When the deployment and the service are created, the app is available for anyone to see:
 
    ```
-   kubectl apply -f <username_home_directory>/container-service-getting-started-wt/Stage2/healthcheck.yml
+   kubectl apply -f healthcheck.yml
    ```
    
    Now that all the deployment work is done, check how everything turned out. You might notice that because more instances are running, things might run a bit slower.
@@ -258,7 +258,7 @@ In this example, we have defined a HTTP liveness probe to check health of the co
 
 6. Ready to delete what you created before you continue? This time, you can use the same configuration script to delete both of the resources you created.
 
-   ```kubectl delete -f <username_home_directory>/container-service-getting-started-wt/Stage2/healthcheck.yml```
+   ```kubectl delete -f healthcheck.yml```
 
 7. When you are done exploring the Kubernetes dashboard, in your CLI, enter `CTRL+C` to exit the `proxy` command.
 
