@@ -7,8 +7,8 @@ This lab includes the information for installing the following CLIs and plug-ins
 
 * IBM Cloud CLI, Version 0.5.0 or later
 * IBM Cloud Container Service plug-in
+* IBM Cloud Container Registry plug-in
 * Kubernetes CLI, Version 1.7.4 or later
-* Optional: IBM Cloud Container Registry plug-in
 * Optional: Docker, Version 1.9. or later
 
 If you already have the CLIs and plug-ins, you can skip this lab and proceed to the next one.
@@ -33,6 +33,20 @@ If you already have the CLIs and plug-ins, you can skip this lab and proceed to 
 
    The IBM Cloud Container Service plug-in is displayed in the results as `container-service`.
 
+# Download the IBM Cloud Container Registry plug-in
+
+1. To manage a private image repository, install the IBM Cloud Container Registry plug-in:
+```
+bx plugin install container-registry -r Bluemix
+```
+   
+   Use this plug-in to set up your own namespace in a multi-tenant, highly available, and scalable private image registry that is hosted by IBM, and to store and share Docker images with other users. Docker images are required to deploy containers into a cluster. 
+   
+   **Note:** The prefix for running registry commands is `bx cr`.
+
+2. To verify that the plug-in is installed properly, run `bx plugin list`
+
+   The plug-in is displayed in the results as `container-registry`.
 
 # Download the Kubernetes CLI
 
@@ -55,22 +69,6 @@ $echo $PATH
 ```
 
 3. Convert the binary file to an executable: `chmod +x /usr/local/bin/kubectl`
-
-# Download the IBM Cloud Container Registry plug-in
-
-1. To manage a private image repository, install the IBM Cloud Container Registry plug-in:
-```
-bx plugin install container-registry -r Bluemix
-```
-   
-   Use this plug-in to set up your own namespace in a multi-tenant, highly available, and scalable private image registry that is hosted by IBM, and to store and share Docker images with other users. Docker images are required to deploy containers into a cluster. 
-   
-   **Note:** The prefix for running registry commands is `bx cr`.
-
-2. To verify that the plug-in is installed properly, run `bx plugin list`
-
-   The plug-in is displayed in the results as `container-registry`.
-
 
 # Install Docker
 To locally build images and push them to your registry namespace, [install Docker](https://www.docker.com/community-edition#/download). The Docker CLI is used to build apps into images. 
