@@ -46,9 +46,9 @@ To view a local version of the Kubernetes dashboard and to deploy apps into your
 
 **For OS X and Linux users:**
 
-1. Move the executable file to the /usr/local/bin directory using the command `mv /<path_to_file>/kubectl /usr/local/bin/kubectl` .
+1. Move the executable file to the `/usr/local/bin` directory using the command `mv /<path_to_file>/kubectl /usr/local/bin/kubectl` .
 
-2. Make sure that /usr/local/bin is listed in your PATH system variable.
+2. Make sure that `/usr/local/bin` is listed in your PATH system variable.
 ```
 $echo $PATH
 /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
