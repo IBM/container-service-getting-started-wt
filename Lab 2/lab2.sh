@@ -1,3 +1,3 @@
-#!/bin/sh
+#!/bin/bash
 
-sourch lab.sh
+sourch ../lab-scripts/lab.sh
