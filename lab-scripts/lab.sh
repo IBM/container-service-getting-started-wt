@@ -1,15 +1,16 @@
 #!/bin/sh
 
-set -xv
+#set -xv
 
 function get_pods {
     kubectl get pods -l run=hello-world
 }
 
 function prompt {
-    read -p $*
+    read -p $1
 }
 
+#CLUSTER_NAME=osscluster
 CLUSTER_NAME=mhb-pvc-test
 DEPLOYMENT_NAME=hello-world
 IMAGE_NAME=registry.ng.bluemix.net/mhbauer/hello-world
