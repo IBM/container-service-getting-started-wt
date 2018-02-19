@@ -6,8 +6,13 @@ function get_pods {
     kubectl get pods -l run=hello-world
 }
 
+function prompt {
+    read -p $*
+}
+
 CLUSTER_NAME=mhb-pvc-test
 DEPLOYMENT_NAME=hello-world
+IMAGE_NAME=registry.ng.bluemix.net/mhbauer/hello-world
 # get worker ip
 WORKER_IP=$(bx cs workers ${CLUSTER_NAME} --json  | jq -r '.[0].publicIP')
 
