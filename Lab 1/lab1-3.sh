@@ -23,9 +23,10 @@ read -p "in that output, we can see the public IP"
 read -p "next we need the node port assignment of the applicationon the cluster. It was automatically assigned by the kubernetes runtime"
 
 kubectl get svc hello-world
-
 read -p "we can see the port assigned in the output, so like before, we can reach the application"
 
+SERVICE_PORT=$(kubectl get svc hello-world -ojson | jq '.spec.ports[0].nodePort')
+HELLO_CURL=${WORKER_IP}:${SERVICE_PORT}
 
 set -x
 curl -v ${HELLO_CURL}
