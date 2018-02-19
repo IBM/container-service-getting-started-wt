@@ -6,9 +6,6 @@ function get_pods {
     kubectl get pods -l run=hello-world
 }
 
-function prompt {
-    read -p $1
-}
 
 #CLUSTER_NAME=osscluster
 CLUSTER_NAME=mhb-pvc-test
