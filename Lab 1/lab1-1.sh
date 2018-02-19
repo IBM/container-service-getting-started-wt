@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 source ../lab-scripts/lab.sh
 

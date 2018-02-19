@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-source lab2.sh
+source ../lab-scripts/lab.sh
 
 # make sure the service works
 echo "We're starting with the same output as the previous lab"
