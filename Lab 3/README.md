@@ -2,27 +2,32 @@
 
 In this lab, set up an application to leverage the Watson Tone Analyzer service. If you have yet to create a cluster, please refer to first lab of this course.
 
-# 1. Deploy the Watson app
+# 1. Build the Watson images
 
-1. Login to IBM Cloud Container Registry:
+1. Log in to IBM Cloud Container Registry.
+
    ```bx cr login```
 
-2. Build the `watson` image:
+2. Build the `watson` image.
+
    ```docker build -t registry.ng.bluemix.net/<namespace>/watson ./watson```
 
-3. Push the `watson` image to IBM Cloud Container Registry:
+3. Push the `watson` image to IBM Cloud Container Registry.
+
    ```docker push registry.ng.bluemix.net/<namespace>/watson```
 
    **Tip:** If you run out of registry space, clean up the previous lab's images with this example command: 
       ```bx cr image-rm registry.ng.bluemix.net/<namespace>/hello-world:v2```
 
-4. Build the `watson-talk` image:
+4. Build the `watson-talk` image.
+
    ```docker build -t registry.ng.bluemix.net/<namespace>/watson-talk ./watson-talk```
 
-5. Push the `watson-talk` image to IBM Cloud Container Registry:
+5. Push the `watson-talk` image to IBM Cloud Container Registry.
+
    ```docker push registry.ng.bluemix.net/<namespace>/watson-talk```
 
-6. In watson-deployment.yml, update the image tag with the registry path to the image you created in the following two sections:
+6. In watson-deployment.yml, update the image tag with the registry path to the image you created in the following two sections.
 
    ```yml
        spec:
@@ -75,9 +80,9 @@ Now that the service is bound to the cluster, you want to expose the secret to y
             # from the kubectl get secrets command above
 ```
 
-1. Build the application using the yaml:
-   - `cd "Lab 3"`
-   - `kubectl create -f watson-deployment.yml`
+1. Build the application using the yaml.
+
+   ```kubectl create -f watson-deployment.yml```
 
 2. Verify the pod has been created:
 
@@ -89,7 +94,8 @@ Your secret has now been created. Note that for this lab, this has been done for
 
 By this time you have created pods, services, and volumes for this lab.
 
-1. You can open the Kubernetes dashboard and explore all the new objects created or use the following commands:
+1. You can open the Kubernetes dashboard and explore all the new objects created or use the following commands.
+
    ```
    kubectl get pods
    kubectl get deployments
@@ -100,7 +106,8 @@ By this time you have created pods, services, and volumes for this lab.
 
    ```bx cs workers <name-of-cluster>```
 
-3. Now that the you have the container IP and port, go to your favorite web browser and launch the following URL to analyze the text and see output: 
+3. Now that the you have the container IP and port, go to your favorite web browser and launch the following URL to analyze the text and see output.
+ 
    ```http://<public-IP>:30080/analyze/"Today is a beautiful day"```
 
 If you can see JSON output on your screen, congratulations! You are done with this lab!
