@@ -71,23 +71,23 @@ A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica i
 
 Kubernetes allows you to use a rollout to update an app deployment with a new Docker image.  This allows you to easily update the running image and also allows you to easily undo a rollout, if a problem is discovered after deployment.
 
-In the previous lab, we created an image with a `v1` tag. Let's make a `v2` tag with new content. This lab also contains a `Dockerfile`. Let's build and push it up to our image registry.
+In the previous lab, we created an image with a version `1` tag. Let's make a version `2` tag with new content. This lab also contains a `Dockerfile`. Let's build and push it up to our image registry.
 
 To update and roll back:
-1. Build the new docker image with a different `v2` tag:
+1. Build the new docker image with a `2` tag:
 
-   ```docker build --tag registry.ng.bluemix.net/<my_namespace>/hello-world:v2 .```
+   ```docker build --tag registry.ng.bluemix.net/<my_namespace>/hello-world:2 .```
 
 2. Push the image to the IBM Cloud Container Registry:
 
-   ```docker push registry.ng.bluemix.net/<my_namespace>/hello-world:v2```
+   ```docker push registry.ng.bluemix.net/<my_namespace>/hello-world:2```
 
 3. Using `kubectl`, you can now update your deployment to use the
    latest image. `kubectl` allows you to change details about existing
    resources with the `set` subcommand. We can use it to change the
    image being used.
 
-    ```kubectl set image deployment/hello-world hello-world=registry.ng.bluemix.net/<namespace>/hello-world:v2```
+    ```kubectl set image deployment/hello-world hello-world=registry.ng.bluemix.net/<namespace>/hello-world:2```
 
     Note that a pod could have multiple containers, in which case each container will have its own name.  Multiple containers can be updated at the same time.  ([More information](https://kubernetes.io/docs/user-guide/kubectl/kubectl_set_image/).)
 
@@ -163,7 +163,7 @@ In this example, we have defined a HTTP liveness probe to check health of the co
    1. Update the details for the image in your private registry namespace:
 
       ```
-      image: "registry.<region>.bluemix.net/<namespace>/hello-world:v2"
+      image: "registry.<region>.bluemix.net/<namespace>/hello-world:2"
       ```
 
    2. Note the HTTP liveness probe that checks the health of the container every five seconds.

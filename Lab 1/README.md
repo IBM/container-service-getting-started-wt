@@ -45,9 +45,9 @@ which your cluster has access.
 
    ```bx cr namespace-add <my_namespace>```
    
-6. Build the Docker image in this directory with a `v1` tag:
+6. Build the Docker image in this directory with a version `1` tag:
 
-   ```docker build --tag registry.ng.bluemix.net/<my_namespace>/hello-world:v1 .```
+   ```docker build --tag registry.ng.bluemix.net/<my_namespace>/hello-world:1 .```
 
 7. Verify the image is built: 
 
@@ -55,7 +55,7 @@ which your cluster has access.
 
 8. Now push that image up to IBM Cloud Container Registry: 
 
-   ```docker push registry.ng.bluemix.net/<my_namespace>/hello-world:v1```
+   ```docker push registry.ng.bluemix.net/<my_namespace>/hello-world:1```
 
 9. If you created your cluster at the beginning of this, make sure it's ready for use. 
    1. Run `bx cs clusters` and make sure that your cluster is in "Normal" state.  
@@ -70,7 +70,7 @@ You are now ready to use Kubernetes to deploy the hello-world application.
 
 2. Start by running your image as a deployment: 
 
-   ```kubectl run hello-world --image=registry.ng.bluemix.net/<my_namespace>/hello-world:v1```
+   ```kubectl run hello-world --image=registry.ng.bluemix.net/<my_namespace>/hello-world:1```
 
    This action will take a bit of time. To check the status of your deployment, you can use `kubectl get pods`.
 
