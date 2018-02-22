@@ -45,7 +45,7 @@ which your cluster has access.
 
    ```bx cr namespace-add <my_namespace>```
    
-6. Build the Docker image in this directory with a version `1` tag:
+6. Build the Docker image in this directory with a `1` tag:
 
    ```docker build --tag registry.ng.bluemix.net/<my_namespace>/hello-world:1 .```
 
