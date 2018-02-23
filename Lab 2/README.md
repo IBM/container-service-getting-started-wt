@@ -197,8 +197,17 @@ In this example, we have defined a HTTP liveness probe to check health of the co
 
    For the first 10 - 15 seconds, a 200 message is returned, so you know that the app is running successfully. After those 15 seconds, a timeout message is displayed, as is designed in the app.
 
-4. Launch your Kubernetes dashboard with the default port 8001:
-   1. Set the proxy with the default port number.
+4. Launch your Kubernetes dashboard:
+
+   1. Get your credentials for Kubernetes.
+      
+      ```
+      kubectl config view -o jsonpath='{.users[0].user.auth-provider.config.id-token}'
+      ```
+
+   2. Copy the **id-token** value that is shown in the output.     
+   
+   3. Set the proxy with the default port number.
 
       ```
       kubectl proxy
@@ -209,16 +218,26 @@ In this example, we have defined a HTTP liveness probe to check health of the co
       ```
       Starting to serve on 127.0.0.1:8001
       ```
-
-   2. Open the following URL in a web browser to see the Kubernetes dashboard: http://localhost:8001/ui.
-
+   
+   4. Sign in to the dashboard.
+      
+      1. Open the following URL in a web browser.
+         
+         ```
+         http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+         ```
+      
+      2. In the sign-on page, select the **Token** authentication method.
+ 
+      3. Then, paste the **id-token** value that you previously copied into the **Token** field and click **SIGN IN**.
+  
    In the **Workloads** tab, you can see the resources that you created. From this tab, you can continually refresh and see that the health check is working. In the **Pods** section, you can see how many times the pods are restarted when the containers in them are re-created. You might happen to catch errors in the dashboard, indicating that the health check caught a problem. Give it a few minutes and refresh again. You see the number of restarts changes for each pod.
 
-6. Ready to delete what you created before you continue? This time, you can use the same configuration script to delete both of the resources you created.
+5. Ready to delete what you created before you continue? This time, you can use the same configuration script to delete both of the resources you created.
 
    ```kubectl delete -f healthcheck.yml```
 
-7. When you are done exploring the Kubernetes dashboard, in your CLI, enter `CTRL+C` to exit the `proxy` command.
+6. When you are done exploring the Kubernetes dashboard, in your CLI, enter `CTRL+C` to exit the `proxy` command.
 
 
 Congratulations! You deployed the second version of the app. You had to use fewer commands, learned how health check works, and edited a deployment, which is great! Lab 2 is now complete.
