@@ -17,7 +17,7 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
    ```docker push registry.ng.bluemix.net/<namespace>/watson```
 
    **Tip:** If you run out of registry space, clean up the previous lab's images with this example command: 
-      ```bx cr image-rm registry.ng.bluemix.net/<namespace>/hello-world:v2```
+      ```bx cr image-rm registry.ng.bluemix.net/<namespace>/hello-world:2```
 
 4. Build the `watson-talk` image.
 
