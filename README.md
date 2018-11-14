@@ -172,5 +172,3 @@ IBM Cloud provides the capability to run applications in containers on Kubernete
 
 [Lab 5](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%205): This lab walks through securing your cluster and applications using network policies, and will later add leveraging tools like Vulnerability Advisor to secure images and manage security in your image registry.
 
-[Lab 6](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%206): This lab walks through using Instana for CI/CD monitoring and network patrolling of your cluster.
-
