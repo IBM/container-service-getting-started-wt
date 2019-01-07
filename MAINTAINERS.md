@@ -7,7 +7,7 @@ This guide is intended for maintainers — anybody with commit access to one or 
 | Name | GitHub | email |
 |---|---|---|
 | Nathan Fritze  | nfritze | nfritz@us.ibm.com |
-| Nathan LeViere | nathanleviere | njlevier@gmail.com |
+| Nathan LeViere | nathanleviere | nathanleviere@us.ibm.com |
 
 ## Methodoology:
 
