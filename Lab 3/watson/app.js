@@ -7,11 +7,13 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
 var binding = JSON.parse(fs.readFileSync('/opt/service-bind/binding', 'utf8'));
 
-const tone_analyzer = new ToneAnalyzerV3({
-// ToneAnalyzer has moved to IAM, no more username and password
-// username: binding.username,
-// password: binding.password,
+const tone_analyzer = binding.apikey ? new ToneAnalyzerV3({
  iam_apikey: binding.apikey,
+ url: binding.url,
+ version_date: '2016-05-19'
+}) : new ToneAnalyzerV3({
+ username: binding.username,
+ password: binding.password,
  url: binding.url,
  version_date: '2016-05-19'
 });
