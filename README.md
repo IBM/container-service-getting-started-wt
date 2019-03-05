@@ -1,9 +1,9 @@
-<img src="https://ace-docs-production-red.ng.bluemix.net/docs/api/content/homepage/images/containerServiceIcon.svg" width="200"> <img src="https://kubernetes.io/images/favicon.png" width="200">
+<img src="https://kubernetes.io/images/favicon.png" width="200">
 # IBM Cloud Container Service lab
 
 # An introduction to containers
 
-Hey, are you looking for a containers 101 course? Check out our [Docker Essentials](https://developer.ibm.com/courses/all/docker-essentials-extend-your-apps-with-containers/).
+Hey, are you looking for a containers 101 course? Check out our [Docker Essentials](https://cognitiveclass.ai/courses/docker-essentials/).
 
 Containers allow you to run securely isolated applications with quotas on system resources. Containers started out as an individual feature delivered with the linux kernel. Docker launched with making containers easy to use and developers quickly latched onto that idea. Containers have also sparked an interest in microservice architecture, a design pattern for developing applications in which complex applications are broken down into smaller, composable pieces which work together.
 
@@ -13,13 +13,13 @@ Watch this [video](https://www.youtube.com/watch?v=wlBhtc31I8c) to learn about p
 
 This lab is an introduction to using Docker containers on Kubernetes in the IBM Cloud Container Service. By the end of the course, you'll achieve these objectives:
 * Understand core concepts of Kubernetes
-* Build a Docker image and deploy an application on Kubernetes in the IBM Cloud Container Service 
+* Build a Docker image and deploy an application on Kubernetes in the IBM Cloud Container Service
 * Control application deployments, while minimizing your time with infrastructure management
-* Add AI services to extend your app 
+* Add AI services to extend your app
 * Secure and monitor your cluster and app
 
-# Prerequisites 
-* A Pay-As-You-Go or Subscription [IBM Cloud account](https://console.bluemix.net/registration/)
+# Prerequisites
+* A Pay-As-You-Go or Subscription [IBM Cloud account](https://cloud.ibm.com/registration/)
 
 # Virtual machines
 
@@ -50,11 +50,11 @@ Containers allow you to share the host OS. This reduces duplication while still 
 
 # Get set up
 
-Before we dive into Kubernetes, you need to provision a cluster for your containerized app. Then you won't have to wait for it to be ready for the subsequent labs. 
+Before we dive into Kubernetes, you need to provision a cluster for your containerized app. Then you won't have to wait for it to be ready for the subsequent labs.
 
-1. You must install the CLIs per https://console.ng.bluemix.net/docs/containers/cs_cli_install.html. If you do not yet have these CLIs and the Kubernetes CLI, do [lab 0](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%200) before starting the course.
+1. You must install the CLIs per https://cloud.ibm.com/docs/containers/cs_cli_install.html. If you do not yet have these CLIs and the Kubernetes CLI, do [lab 0](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%200) before starting the course.
 2. If you haven't already, provision a cluster. This can take a few minutes, so let it start first: `bx cs cluster-create --name <name-of-cluster>`
-3. After creation, before using the cluster, make sure it has completed provisioning and is ready for use. Run `bx cs clusters` and make sure that your cluster is in state "deployed".  
+3. After creation, before using the cluster, make sure it has completed provisioning and is ready for use. Run `bx cs clusters` and make sure that your cluster is in state "deployed".
 4. Then use `bx cs workers <name-of-cluster>` and make sure that all worker nodes are in state "normal" with Status "Ready".
 
 # Kubernetes and containers: an overview
@@ -74,7 +74,7 @@ Now that we know what containers are, let's define what Kubernetes is. Kubernete
 
 Your applications may need many other resources to run such as Volumes, Networks,  and Secrets that will help you to do things such as connect to databases, talk to firewalled backends, and secure keys. Kubernetes helps you add these resources into your application. Infrastructure resources needed by applications are managed declaratively.
 
-**Fast fact:** Other orchestration technologies are Mesos and Swarm.  
+**Fast fact:** Other orchestration technologies are Mesos and Swarm.
 
 The key paradigm of kubernetes is it’s Declarative model. The user provides the "desired state" and Kubernetes will do it's best make it happen. If you need 5 instances, you do not start 5 separate instances on your own but rather tell Kubernetes that you need 5 instances and Kubernetes will reconcile the state automatically. Simply at this point you need to know that you declare the state you want and Kubernetes makes that happen. If something goes wrong with one of your instances and it crashes, Kubernetes still knows the desired state and creates a new instances on an available node.
 
@@ -84,7 +84,7 @@ The key paradigm of kubernetes is it’s Declarative model. The user provides th
 
 Google wanted to open source their knowledge of creating and running the internal tools Borg & Omega. It adopted Open Governance for Kubernetes by starting the Cloud Native Computing Foundation (CNCF) and giving Kubernetes to that foundation, therefore making it less influenced by Google directly. Many companies such as RedHat, Microsoft, IBM and Amazon quickly joined the foundation.
 
-Main entry point for the kubernetes project is at [http://kubernetes.io](http://kubernetes.io) and the source code can be found at [https://github.com/kubernetes](https://github.com/kubernetes).
+Main entry point for the kubernetes project is at [https://kubernetes.io/](https://kubernetes.io/) and the source code can be found at [https://github.com/kubernetes](https://github.com/kubernetes).
 
 # Kubernetes architecture
 
@@ -113,7 +113,7 @@ Kubernetes Infrastructure defines a resource for every purpose. Each resource is
 * Secrets are intended to hold sensitive information, such as passwords, OAuth tokens, and ssh keys
 * Service Accounts provides an identity for processes that run in a Pod
 * Services  is an abstraction which defines a logical set of Pods and a policy by which to access them - sometimes called a micro-service.
-* Stateful Sets is the workload API object used to manage stateful applications.   
+* Stateful Sets is the workload API object used to manage stateful applications.
 * and more...
 
 
