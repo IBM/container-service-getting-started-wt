@@ -10,12 +10,12 @@ var binding = JSON.parse(fs.readFileSync('/opt/service-bind/binding', 'utf8'));
 const tone_analyzer = binding.apikey ? new ToneAnalyzerV3({
  iam_apikey: binding.apikey,
  url: binding.url,
- version_date: '2016-05-19'
+ version: '2016-05-19'
 }) : new ToneAnalyzerV3({
  username: binding.username,
  password: binding.password,
  url: binding.url,
- version_date: '2016-05-19'
+ version: '2016-05-19'
 });
 
 app.get('/', function(req, res) {
