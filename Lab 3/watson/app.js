@@ -27,9 +27,9 @@ app.get('/healthz', function(req, res) {
 })
 
 app.get('/analyze', function(req, res) {
- tone_analyzer.tone({
+ tone_analyzer.tone({ tone_input: {
    text: req.query.text
- }, function(err, tone) {
+ } }, function(err, tone) {
    if (err) {
      res.status(500).send(err);
    } else {
