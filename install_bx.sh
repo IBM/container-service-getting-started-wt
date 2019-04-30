@@ -13,7 +13,7 @@ chmod +x /tmp/Bluemix_CLI/bin/cfcli/*
 export PATH="/tmp/Bluemix_CLI/bin:$PATH"
 
 # Install IBM Cloud CS plugin
-echo "Install the IBM Cloud Container Service plugin"
+echo "Install the IBM Cloud Kubernetes Service plugin"
 ibmcloud plugin install container-service -r Bluemix
 ibmcloud plugin install container-registry -r Bluemix
 
