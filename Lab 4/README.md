@@ -10,7 +10,7 @@ This section requires a paid cluster, and is thus optional for learning purposes
 
 1. To get started, create a paid cluster with two workers and wait for it to provision. If this is your first paid cluster, then you do not need to specify the public vlan and the private vlan.
 
-   ```bx cs cluster-create --name <cluster-name> --machine-type b2c.4x16 --location <location> --workers 2 --public-vlan <public-vlan> --private-vlan <private-vlan>```
+   ```ibmcloud ks cluster-create --name <cluster-name> --machine-type b2c.4x16 --location <location> --workers 2 --public-vlan <public-vlan> --private-vlan <private-vlan>```
 
 2. While waiting, you need to download kubefed, which will allow you to set up a Kubernetes federated cluster.
 As this is for lab purposes only, we will be using an IBM Liberty image as a basic template for an imaged application.
@@ -50,7 +50,7 @@ You need to choose one of your Kubernetes worker node clusters to be the host cl
 
 2. Export the kubeconfig file for the admin user of the cluster:
 
-   ```bx cs cluster-config <nameOfCluster> --admin```
+   ```ibmcloud ks cluster-config <nameOfCluster> --admin```
    
    Make a note of it for error handling later.
 
@@ -100,7 +100,7 @@ error: unable to read certificate-authority ca-dal10-Cluster02.pem for Cluster02
 
 This is due to the symbolic path of the .pem file not being sufficient in the kubeconfig. Get the admin kubeconfig file again using:
 
-```bx cs cluster-config <nameOfCluster> --admin```
+```ibmcloud ks cluster-config <nameOfCluster> --admin```
 
 You should get a message like the one below:
 

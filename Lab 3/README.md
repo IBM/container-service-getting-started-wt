@@ -6,7 +6,7 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
 
 1. Log in to IBM Cloud Container Registry.
 
-   ```bx cr login```
+   ```ibmcloud cr login```
 
 2. Build the `watson` image.
 
@@ -17,7 +17,7 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
    ```docker push registry.ng.bluemix.net/<namespace>/watson```
 
    **Tip:** If you run out of registry space, clean up the previous lab's images with this example command: 
-      ```bx cr image-rm registry.ng.bluemix.net/<namespace>/hello-world:2```
+      ```ibmcloud cr image-rm registry.ng.bluemix.net/<namespace>/hello-world:2```
 
 4. Build the `watson-talk` image.
 
@@ -50,17 +50,17 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
 
 In order to begin using the Watson Tone Analyzer (the IBM Cloud service for this application), you must first request an instance of the Watson service in the org and space where you have set up our cluster.
 
-1. If you need to check what space and org you are currently using, simply run `bx login`. Then use `bx target --cf` to select the space and org you were using for the previous labs.
+1. If you need to check what space and org you are currently using, simply run `ibmcloud login`. Then use `ibmcloud target --cf` to select the space and org you were using for the previous labs.
 
-2. Once you have set your space and org, run `bx cf create-service tone_analyzer standard tone`, where `tone` is the name you will use for the Watson Tone Analyzer service.
+2. Once you have set your space and org, run `ibmcloud cf create-service tone_analyzer standard tone`, where `tone` is the name you will use for the Watson Tone Analyzer service.
 
    **Note:** When you add the Tone Analyzer service to your account, a message is displayed that the service is not free. If you [limit your API calls](https://www.ibm.com/watson/developercloud/tone-analyzer.html#pricing-block), this course does not incur charges from the Watson service.
 
-3. Run `bx cf services` to ensure a service named `tone` was created.
+3. Run `ibmcloud cf services` to ensure a service named `tone` was created.
 
 # 3. Bind the Watson service to your cluster
 
-1. Run `bx cs cluster-service-bind <name-of-cluster> default tone` to bind the service to your cluster. This command will create a secret for the service.
+1. Run `ibmcloud ks cluster-service-bind <name-of-cluster> default tone` to bind the service to your cluster. This command will create a secret for the service.
 
 2. Verify the secret was created by running `kubectl get secrets`.
 
@@ -104,7 +104,7 @@ By this time you have created pods, services, and volumes for this lab.
 
 2. Get the public IP for the worker node to access the application:
 
-   ```bx cs workers <name-of-cluster>```
+   ```ibmcloud ks workers <name-of-cluster>```
 
 3. Now that the you have the container IP and port, go to your favorite web browser and launch the following URL to analyze the text and see output.
  
