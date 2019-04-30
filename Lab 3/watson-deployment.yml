@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: watson
-          image: "registry.ng.bluemix.net/turf/watson" # edit here!
+          image: "registry.ng.bluemix.net/<namespace>/watson" # edit here!
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: /opt/service-bind
@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
         - name: watson-talk
-          image: "registry.ng.bluemix.net/turf/watson-talk" # edit here!
+          image: "registry.ng.bluemix.net/<namespace>/watson-talk" # edit here!
           imagePullPolicy: Always
 ---
 apiVersion: v1
