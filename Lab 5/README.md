@@ -1,4 +1,4 @@
-# Lab 5: Set up advance security with IBM Cloud Container Service
+# Lab 5: Set up advance security with IBM Cloud Kubernetes Service
 
 In this lab, get an introduction to Kubernetes-specific security features that are used to limit the attack surface and harden your cluster against network threats. You can use built-in security features for risk analysis and security protection. These features help you protect your cluster infrastructure and network communication, isolate your compute resources, and ensure security compliance across your infrastructure components and container deployments.
 
@@ -7,9 +7,9 @@ In most cases, the default policies do not need to be changed. Only advanced sec
 
 Before you begin:
 
-Target the Kubernetes CLI to the cluster. Include the `--admin` option with the `bx cs cluster-config` command, which is used to download the certificates and permission files. This download also includes the keys for the Administrator RBAC role, which you need to run Calico commands.
+Target the Kubernetes CLI to the cluster. Include the `--admin` option with the `ibmcloud ks cluster-config` command, which is used to download the certificates and permission files. This download also includes the keys for the Administrator RBAC role, which you need to run Calico commands.
 
-```bx cs cluster-config <cluster_name> --admin```
+```ibmcloud ks cluster-config <cluster_name> --admin```
 
 **Note:** Calico CLI, Version 1.6.1, is supported.
 

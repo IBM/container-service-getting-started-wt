@@ -1,5 +1,5 @@
 <img src="https://kubernetes.io/images/favicon.png" width="200">
-# IBM Cloud Container Service lab
+# IBM Cloud Kubernetes Service lab
 
 # An introduction to containers
 
@@ -11,9 +11,9 @@ Watch this [video](https://www.youtube.com/watch?v=wlBhtc31I8c) to learn about p
 
 # Objectives
 
-This lab is an introduction to using Docker containers on Kubernetes in the IBM Cloud Container Service. By the end of the course, you'll achieve these objectives:
+This lab is an introduction to using Docker containers on Kubernetes in the IBM Cloud Kubernetes Service. By the end of the course, you'll achieve these objectives:
 * Understand core concepts of Kubernetes
-* Build a Docker image and deploy an application on Kubernetes in the IBM Cloud Container Service
+* Build a Docker image and deploy an application on Kubernetes in the IBM Cloud Kubernetes Service
 * Control application deployments, while minimizing your time with infrastructure management
 * Add AI services to extend your app
 * Secure and monitor your cluster and app
@@ -53,9 +53,9 @@ Containers allow you to share the host OS. This reduces duplication while still 
 Before we dive into Kubernetes, you need to provision a cluster for your containerized app. Then you won't have to wait for it to be ready for the subsequent labs.
 
 1. You must install the CLIs per https://cloud.ibm.com/docs/containers/cs_cli_install.html. If you do not yet have these CLIs and the Kubernetes CLI, do [lab 0](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%200) before starting the course.
-2. If you haven't already, provision a cluster. This can take a few minutes, so let it start first: `bx cs cluster-create --name <name-of-cluster>`
-3. After creation, before using the cluster, make sure it has completed provisioning and is ready for use. Run `bx cs clusters` and make sure that your cluster is in state "deployed".
-4. Then use `bx cs workers <name-of-cluster>` and make sure that all worker nodes are in state "normal" with Status "Ready".
+2. If you haven't already, provision a cluster. This can take a few minutes, so let it start first: `ibmcloud ks cluster-create --name <name-of-cluster>`
+3. After creation, before using the cluster, make sure it has completed provisioning and is ready for use. Run `ibmcloud ks clusters` and make sure that your cluster is in state "deployed".
+4. Then use `ibmcloud ks workers <name-of-cluster>` and make sure that all worker nodes are in state "normal" with Status "Ready".
 
 # Kubernetes and containers: an overview
 
@@ -149,7 +149,7 @@ Kubernetes provides us with a client interface through ‘kubectl’. Kubectl co
 
 # Lab information
 
-IBM Cloud provides the capability to run applications in containers on Kubernetes. The IBM Cloud Container Service runs Kubernetes clusters which deliver the following:
+IBM Cloud provides the capability to run applications in containers on Kubernetes. The IBM Cloud Kubernetes Service runs Kubernetes clusters which deliver the following:
 
 * Powerful tools
 * Intuitive user experience
@@ -164,7 +164,7 @@ IBM Cloud provides the capability to run applications in containers on Kubernete
 
 [Lab 1](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%201): This lab walks through creating and deploying a simple "hello world" app in Node.JS, then accessing that app.
 
-[Lab 2](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%202): Builds on lab 1 to expand to a more resilient setup which can survive having containers fail and recover. Lab 2 will also walk through basic services you need to get started with Kubernetes and the IBM Cloud Container Service
+[Lab 2](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%202): Builds on lab 1 to expand to a more resilient setup which can survive having containers fail and recover. Lab 2 will also walk through basic services you need to get started with Kubernetes and the IBM Cloud Kubernetes Service
 
 [Lab 3](https://github.com/IBM/container-service-getting-started-wt/tree/master/Lab%203): This lab covers adding external services to a cluster. It walks through adding integration to a Watson service, and discusses storing credentials of external services to the cluster.
 
