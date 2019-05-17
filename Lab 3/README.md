@@ -10,22 +10,22 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
 
 2. Build the `watson` image.
 
-   ```docker build -t registry.ng.bluemix.net/<namespace>/watson ./watson```
+   ```docker build -t au.icr.io/<namespace>/watson ./watson```
 
 3. Push the `watson` image to IBM Cloud Container Registry.
 
-   ```docker push registry.ng.bluemix.net/<namespace>/watson```
+   ```docker push au.icr.io/<namespace>/watson```
 
    **Tip:** If you run out of registry space, clean up the previous lab's images with this example command: 
-      ```ibmcloud cr image-rm registry.ng.bluemix.net/<namespace>/hello-world:2```
+      ```ibmcloud cr image-rm au.icr.io/<namespace>/hello-world:2```
 
 4. Build the `watson-talk` image.
 
-   ```docker build -t registry.ng.bluemix.net/<namespace>/watson-talk ./watson-talk```
+   ```docker build -t au.icr.io/<namespace>/watson-talk ./watson-talk```
 
 5. Push the `watson-talk` image to IBM Cloud Container Registry.
 
-   ```docker push registry.ng.bluemix.net/<namespace>/watson-talk```
+   ```docker push au.icr.io/<namespace>/watson-talk```
 
 6. In watson-deployment.yml, update the image tag with the registry path to the image you created in the following two sections.
 
@@ -33,16 +33,16 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
        spec:
          containers:
            - name: watson
-             image: "registry.ng.bluemix.net/<namespace>/watson" 
+             image: "au.icr.io/<namespace>/watson" 
              # change to the path of the watson image you just pushed
-             # ex: image: "registry.ng.bluemix.net/<namespace>/watson"
+             # ex: image: "au.icr.io/<namespace>/watson"
    ...
        spec:
          containers:
            - name: watson-talk
-             image: "registry.ng.bluemix.net/<namespace>/watson-talk" 
+             image: "au.icr.io/<namespace>/watson-talk" 
              # change to the path of the watson-talk image you just pushed
-             # ex: image: "registry.ng.bluemix.net/<namespace>/watson-talk"
+             # ex: image: "au.icr.io/<namespace>/watson-talk"
    ```
 
 

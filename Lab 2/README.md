@@ -6,7 +6,7 @@ For this lab, you need a running deployment with a single replica. At
 the end of the previous lab, we cleaned up the running
 deployment. Let's first recreate that deployment with:
 ```
-kubectl run hello-world --image=registry.ng.bluemix.net/<my_namespace>/hello-world
+kubectl run hello-world --image=au.icr.io/<my_namespace>/hello-world
 ```
 
 # 1. Scale apps with replicas
@@ -76,18 +76,18 @@ In the previous lab, we created an image with a `1` tag. Let's make a version of
 To update and roll back:
 1. Build the new docker image with a `2` tag:
 
-   ```docker build --tag registry.ng.bluemix.net/<my_namespace>/hello-world:2 .```
+   ```docker build --tag au.icr.io/<my_namespace>/hello-world:2 .```
 
 2. Push the image to the IBM Cloud Container Registry:
 
-   ```docker push registry.ng.bluemix.net/<my_namespace>/hello-world:2```
+   ```docker push au.icr.io/<my_namespace>/hello-world:2```
 
 3. Using `kubectl`, you can now update your deployment to use the
    latest image. `kubectl` allows you to change details about existing
    resources with the `set` subcommand. We can use it to change the
    image being used.
 
-    ```kubectl set image deployment/hello-world hello-world=registry.ng.bluemix.net/<namespace>/hello-world:2```
+    ```kubectl set image deployment/hello-world hello-world=au.icr.io/<namespace>/hello-world:2```
 
     Note that a pod could have multiple containers, in which case each container will have its own name.  Multiple containers can be updated at the same time.  ([More information](https://kubernetes.io/docs/user-guide/kubectl/kubectl_set_image/).)
 
