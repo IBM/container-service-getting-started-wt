@@ -3,7 +3,7 @@ var app = express()
 var startTime = Date.now()
 var fs = require('fs')
 
-const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+const ToneAnalyzerV3 = require('ibm-watson/tone-analyzer/v3');
 
 var binding = JSON.parse(fs.readFileSync('/opt/service-bind/binding', 'utf8'));
 
