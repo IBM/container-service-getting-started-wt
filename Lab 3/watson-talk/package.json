@@ -5,7 +5,6 @@
   "description": "Basic Watson Tone application for Node.js",
   "dependencies": {
     "request": "*",
-    "express": "3.x",
-    "watson-developer-cloud": "*"
+    "express": "4.x"
   }
 }
