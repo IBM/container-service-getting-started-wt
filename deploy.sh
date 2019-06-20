@@ -46,26 +46,26 @@ ibmcloud ks cluster-service-bind $CLUSTER_NAME default tone
 
 echo -e "Building Watson and Watson-talk images..."
 cd watson/
-docker build -t registry.ng.bluemix.net/contbot/watson . &> buildout.txt
+docker build -t us.icr.io/contbot/watson . &> buildout.txt
 if [ $? -ne 0 ]; then
   echo "Could not create the watson image for the build"
   cat buildout.txt
   exit 1
 fi
-docker push registry.ng.bluemix.net/contbot/watson
+docker push us.icr.io/contbot/watson
 if [ $? -ne 0 ]; then
   echo "Could not push the watson image for the build"
   exit 1
 fi
 cd ..
 cd watson-talk/
-docker build -t registry.ng.bluemix.net/contbot/watson-talk . &> buildout.txt
+docker build -t us.icr.io/contbot/watson-talk . &> buildout.txt
 if [ $? -ne 0 ]; then
   echo "Could not create the watson-talk image for the build"
   cat buildout.txt
   exit 1
 fi
-docker push registry.ng.bluemix.net/contbot/watson-talk
+docker push us.icr.io/contbot/watson-talk
 if [ $? -ne 0 ] ; then
   echo "Could not push the watson image for the build"
   exit 1

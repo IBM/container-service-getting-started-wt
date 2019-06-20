@@ -6,7 +6,7 @@ For this lab, you need a running deployment with a single replica. At
 the end of the previous lab, we cleaned up the running
 deployment. Let's first recreate that deployment with:
 ```
-kubectl run hello-world --image=registry.ng.bluemix.net/<my_namespace>/hello-world
+kubectl run hello-world --image=us.icr.io/<my_namespace>/hello-world
 ```
 
 # 1. Scale apps with replicas
@@ -63,7 +63,7 @@ A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica i
    hello-world-562211614-zsp0j   1/1       Running   0          2m
    ```
    
-**Tip:** Another way to improve availability is to [add clusters and regions]( https://console.bluemix.net/docs/containers/cs_planning.html#cs_planning_cluster_config) to your deployment, as shown in the following diagram: 
+**Tip:** Another way to improve availability is to [add clusters and regions](https://cloud.ibm.com/docs/containers?topic=containers-clusters) to your deployment, as shown in the following diagram: 
 
 ![HA with more clusters and regions](../images/cluster_ha_roadmap.png) 
 
@@ -76,18 +76,18 @@ In the previous lab, we created an image with a `1` tag. Let's make a version of
 To update and roll back:
 1. Build the new docker image with a `2` tag:
 
-   ```docker build --tag registry.ng.bluemix.net/<my_namespace>/hello-world:2 .```
+   ```docker build --tag us.icr.io/<my_namespace>/hello-world:2 .```
 
 2. Push the image to the IBM Cloud Container Registry:
 
-   ```docker push registry.ng.bluemix.net/<my_namespace>/hello-world:2```
+   ```docker push us.icr.io/<my_namespace>/hello-world:2```
 
 3. Using `kubectl`, you can now update your deployment to use the
    latest image. `kubectl` allows you to change details about existing
    resources with the `set` subcommand. We can use it to change the
    image being used.
 
-    ```kubectl set image deployment/hello-world hello-world=registry.ng.bluemix.net/<namespace>/hello-world:2```
+    ```kubectl set image deployment/hello-world hello-world=us.icr.io/<namespace>/hello-world:2```
 
     Note that a pod could have multiple containers, in which case each container will have its own name.  Multiple containers can be updated at the same time.  ([More information](https://kubernetes.io/docs/user-guide/kubectl/kubectl_set_image/).)
 
@@ -163,7 +163,7 @@ In this example, we have defined a HTTP liveness probe to check health of the co
    1. Update the details for the image in your private registry namespace:
 
       ```
-      image: "registry.<region>.bluemix.net/<namespace>/hello-world:2"
+      image: "<region>.icr.io/<namespace>/hello-world:2"
       ```
 
    2. Note the HTTP liveness probe that checks the health of the container every five seconds.
