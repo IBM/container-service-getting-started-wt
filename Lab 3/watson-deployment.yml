@@ -1,9 +1,12 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: watson-pod
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      run: watson-demo
   template:
     metadata:
       name: watson-pod
@@ -38,12 +41,15 @@ spec:
      port: 8081
      nodePort: 30081
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: watson-talk-pod
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      run: watson-talk-demo
   template:
     metadata:
       name: watson-talk-pod

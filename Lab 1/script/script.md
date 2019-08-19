@@ -53,7 +53,7 @@ The elements of a Replication Controller definition
 The strategy for transitioning between deployments
 To create a deployment for a nginx webserver, edit the nginx-deploy.yaml file as
 ```
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   generation: 1

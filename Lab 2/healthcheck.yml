@@ -1,8 +1,12 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hw-demo-deployment
 spec:
+  selector:
+    matchLabels:
+      run: hw-demo-health
+      test: hello-world-demo
   replicas: 3
   template:
     metadata:

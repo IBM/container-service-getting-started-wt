@@ -181,7 +181,7 @@ The API for federated deployment is compatible with the API for traditional Kube
    This example will deploy a simple nginx image to your federated cluster. The configuration file is shown below:
 
    ```yml
-   apiVersion: apps/v1beta2
+   apiVersion: apps/v1
    kind: Deployment
    metadata:
      name: nginx-deployment

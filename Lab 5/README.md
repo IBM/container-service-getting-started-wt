@@ -259,7 +259,7 @@ $ calicoctl get wep --workload advanced-policy-demo.nginx-701339712-x1uqe -o yam
 
    ```
    kind: NetworkPolicy
-   apiVersion: extensions/v1beta1
+   apiVersion: networking.k8s.io/v1
    metadata:
      name: access-nginx
      namespace: advanced-policy-demo
