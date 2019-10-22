@@ -40,7 +40,7 @@ If you already have the CLIs and plug-ins, you can skip this lab and proceed to 
 ibmcloud plugin install container-registry -r Bluemix
 ```
    
-   Use this plug-in to set up your own namespace in a multi-tenant, highly available, and scalable private image registry that is hosted by IBM, and to store and share Docker images with other users. Docker images are required to deploy containers into a cluster. 
+   Use this plug-in to set up your own namespace in a multi-tenant, highly available, and scalable private image registry that is hosted by IBM, and to store and share container images with other users. Container images are required to deploy containers into a cluster. 
    
    **Note:** The prefix for running registry commands is `ibmcloud cr`.
 

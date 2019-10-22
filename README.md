@@ -11,9 +11,9 @@ Watch this [video](https://www.youtube.com/watch?v=wlBhtc31I8c) to learn about p
 
 # Objectives
 
-This lab is an introduction to using Docker containers on Kubernetes in the IBM Cloud Kubernetes Service. By the end of the course, you'll achieve these objectives:
+This lab is an introduction to using containers on Kubernetes in the IBM Cloud Kubernetes Service. By the end of the course, you'll achieve these objectives:
 * Understand core concepts of Kubernetes
-* Build a Docker image and deploy an application on Kubernetes in the IBM Cloud Kubernetes Service
+* Build a container image and deploy an application on Kubernetes in the IBM Cloud Kubernetes Service
 * Control application deployments, while minimizing your time with infrastructure management
 * Add AI services to extend your app
 * Secure and monitor your cluster and app
