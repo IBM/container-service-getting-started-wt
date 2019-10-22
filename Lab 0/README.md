@@ -52,9 +52,9 @@ ibmcloud plugin install container-registry -r Bluemix
 
 To view a local version of the Kubernetes dashboard and to deploy apps into your clusters, you will need to install the Kubernetes CLI that corresponds with your operating system:
 
-* [OS X](https://storage.googleapis.com/kubernetes-release/release/v1.12.7/bin/darwin/amd64/kubectl)
-* [Linux](https://storage.googleapis.com/kubernetes-release/release/v1.12.7/bin/linux/amd64/kubectl)
-* [Windows](https://storage.googleapis.com/kubernetes-release/release/v1.12.7/bin/windows/amd64/kubectl.exe)
+* [OS X](https://storage.googleapis.com/kubernetes-release/release/v1.14.8/bin/darwin/amd64/kubectl)
+* [Linux](https://storage.googleapis.com/kubernetes-release/release/v1.14.8/bin/linux/amd64/kubectl)
+* [Windows](https://storage.googleapis.com/kubernetes-release/release/v1.14.8/bin/windows/amd64/kubectl.exe)
 
 **For Windows users:** Install the Kubernetes CLI in the same directory as the IBM Cloud CLI. This setup saves you some filepath changes when you run commands later.
 
