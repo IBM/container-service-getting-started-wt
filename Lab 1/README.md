@@ -5,7 +5,7 @@ Learn how to push an image of an application to IBM Cloud Container Registry and
 # 0. Install Prerequisite CLIs and Provision a Kubernetes Cluster
 
 If you haven't already:
-1. Install the CLIs and Docker, as described in [Lab 0](../Lab%200/README.md).
+1. Install the CLIs, as described in [Lab 0](../Lab%200/README.md).
 2. Provision a cluster: 
 
    ```ibmcloud ks cluster-create --name <name-of-cluster>```
@@ -45,19 +45,15 @@ which your cluster has access.
 
    ```ibmcloud cr namespace-add <my_namespace>```
    
-6. Build the Docker image in this directory with a `1` tag:
+6. Build the container image with a `1` tag and push the image to the IBM Cloud Registry:
 
-   ```docker build --tag us.icr.io/<my_namespace>/hello-world:1 .```
+   ```ibmcloud cr build --tag us.icr.io/<my_namespace>/hello-world:1 .```
 
 7. Verify the image is built: 
 
-   ```docker images```
+   ```ibmcloud cr images```
 
-8. Now push that image up to IBM Cloud Container Registry: 
-
-   ```docker push us.icr.io/<my_namespace>/hello-world:1```
-
-9. If you created your cluster at the beginning of this, make sure it's ready for use. 
+8. If you created your cluster at the beginning of this, make sure it's ready for use. 
    1. Run `ibmcloud ks clusters` and make sure that your cluster is in "Normal" state.  
    2. Use `ibmcloud ks workers <yourclustername>`, and make sure that all workers are in "Normal" state with "Ready" status.
    3. Make a note of the public IP of the worker.

@@ -10,24 +10,16 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
 
 2. Build the `watson` image.
 
-   ```docker build -t us.icr.io/<namespace>/watson ./watson```
-
-3. Push the `watson` image to IBM Cloud Container Registry.
-
-   ```docker push us.icr.io/<namespace>/watson```
+   ```ibmcloud cr build -t us.icr.io/<namespace>/watson ./watson```
 
    **Tip:** If you run out of registry space, clean up the previous lab's images with this example command: 
       ```ibmcloud cr image-rm us.icr.io/<namespace>/hello-world:2```
 
-4. Build the `watson-talk` image.
+3. Build the `watson-talk` image.
 
-   ```docker build -t us.icr.io/<namespace>/watson-talk ./watson-talk```
+   ```ibmcloud cr build -t us.icr.io/<namespace>/watson-talk ./watson-talk```
 
-5. Push the `watson-talk` image to IBM Cloud Container Registry.
-
-   ```docker push us.icr.io/<namespace>/watson-talk```
-
-6. In watson-deployment.yml, update the image tag with the registry path to the image you created in the following two sections.
+4. In watson-deployment.yml, update the image tag with the registry path to the image you created in the following two sections.
 
    ```yml
        spec:

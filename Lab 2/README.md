@@ -69,20 +69,16 @@ A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica i
 
 # 2. Update and roll back apps
 
-Kubernetes allows you to use a rollout to update an app deployment with a new Docker image.  This allows you to easily update the running image and also allows you to easily undo a rollout, if a problem is discovered after deployment.
+Kubernetes allows you to use a rollout to update an app deployment with a new container image.  This allows you to easily update the running image and also allows you to easily undo a rollout, if a problem is discovered after deployment.
 
 In the previous lab, we created an image with a `1` tag. Let's make a version of the image that includes new content and use a `2` tag. This lab also contains a `Dockerfile`. Let's build and push it up to our image registry.
 
 To update and roll back:
-1. Build the new docker image with a `2` tag:
+1. Build the new container image with a `2` tag:
 
-   ```docker build --tag us.icr.io/<my_namespace>/hello-world:2 .```
+   ```ibmcloud cr build --tag us.icr.io/<my_namespace>/hello-world:2 .```
 
-2. Push the image to the IBM Cloud Container Registry:
-
-   ```docker push us.icr.io/<my_namespace>/hello-world:2```
-
-3. Using `kubectl`, you can now update your deployment to use the
+2. Using `kubectl`, you can now update your deployment to use the
    latest image. `kubectl` allows you to change details about existing
    resources with the `set` subcommand. We can use it to change the
    image being used.
@@ -91,7 +87,7 @@ To update and roll back:
 
     Note that a pod could have multiple containers, in which case each container will have its own name.  Multiple containers can be updated at the same time.  ([More information](https://kubernetes.io/docs/user-guide/kubectl/kubectl_set_image/).)
 
-4. Run `kubectl rollout status deployment/hello-world` or `kubectl get replicasets` to check the status of the rollout. The rollout might occur so quickly that the following messages might _not_ display:
+3. Run `kubectl rollout status deployment/hello-world` or `kubectl get replicasets` to check the status of the rollout. The rollout might occur so quickly that the following messages might _not_ display:
 
    ```
    => kubectl rollout status deployment/hello-world
@@ -146,9 +142,9 @@ To update and roll back:
    hello-world-3254495675   10        10        10        1m
    ```
 
-5. Perform a `curl <public-IP>:<nodeport>` to confirm your new code is active.
+4. Perform a `curl <public-IP>:<nodeport>` to confirm your new code is active.
 
-6. If you decide to undo your latest rollout, call: `kubectl rollout undo deployment/<name-of-deployment>`.
+5. If you decide to undo your latest rollout, call: `kubectl rollout undo deployment/<name-of-deployment>`.
 
 # 3. Check the health of apps
 
