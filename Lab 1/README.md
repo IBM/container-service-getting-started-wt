@@ -37,23 +37,19 @@ which your cluster has access.
 
    **Note:** If you have a federated ID, use `ibmcloud login --sso` to log in to the IBM Cloud CLI. You know you have a federated ID when the login fails without the `--sso` and succeeds with the `--sso` option.
 
-4. Run `ibmcloud cr login`, and log in with your IBM Cloud credentials. This will allow you to push images to the IBM Cloud Container Registry.
-
-   **Tip:** This course's commands show the `ng` region. Replace `ng` with the region outputted from the `ibmcloud cr login` command.
-
-5. In order to upload images to the IBM Cloud Container Registry, you first need to create a namespace with the following command: 
+4. In order to upload images to the IBM Cloud Container Registry, you first need to create a namespace with the following command: 
 
    ```ibmcloud cr namespace-add <my_namespace>```
    
-6. Build the container image with a `1` tag and push the image to the IBM Cloud Registry:
+5. Build the container image with a `1` tag and push the image to the IBM Cloud Registry:
 
    ```ibmcloud cr build --tag us.icr.io/<my_namespace>/hello-world:1 .```
 
-7. Verify the image is built: 
+6. Verify the image is built: 
 
    ```ibmcloud cr images```
 
-8. If you created your cluster at the beginning of this, make sure it's ready for use. 
+7. If you created your cluster at the beginning of this, make sure it's ready for use. 
    1. Run `ibmcloud ks clusters` and make sure that your cluster is in "Normal" state.  
    2. Use `ibmcloud ks workers <yourclustername>`, and make sure that all workers are in "Normal" state with "Ready" status.
    3. Make a note of the public IP of the worker.
