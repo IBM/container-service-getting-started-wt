@@ -4,11 +4,14 @@ var startTime = Date.now()
 var fs = require('fs')
 
 const ToneAnalyzerV3 = require('ibm-watson/tone-analyzer/v3');
+const { IamAuthenticator } = require('ibm-watson/auth');
 
 var binding = JSON.parse(fs.readFileSync('/opt/service-bind/binding', 'utf8'));
 
 const tone_analyzer = binding.apikey ? new ToneAnalyzerV3({
- iam_apikey: binding.apikey,
+ authenticator: new IamAuthenticator({
+  apikey: binding.apikey,
+ }),
  url: binding.url,
  version: '2016-05-19'
 }) : new ToneAnalyzerV3({
@@ -27,9 +30,9 @@ app.get('/healthz', function(req, res) {
 })
 
 app.get('/analyze', function(req, res) {
- tone_analyzer.tone({ tone_input: {
-   text: req.query.text
- } }, function(err, tone) {
+ tone_analyzer.tone({ toneInput: {
+   'text': req.query.text,
+ }, }, function(err, tone) {
    if (err) {
      res.status(500).send(err);
    } else {
