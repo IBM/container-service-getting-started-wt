@@ -15,21 +15,7 @@ If you already have the CLIs and plug-ins, you can skip this lab and proceed to 
 
 # Install the IBM Cloud command-line interface
 
-1. As a prerequisite for the IBM Cloud Kubernetes Service plug-in, install the [IBM Cloud command-line interface](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started). Once installed, you can access IBM Cloud from your command-line with the prefix `ibmcloud`.
-
-It will install the latest stand-alone IBM Cloud CLI version available, plus the following tools:
-
-* Homebrew (Mac only)
-* Git
-* Docker
-* Helm
-* kubectl
-* curl (Linux™ only)
-* IBM Cloud Developer Tools plug-in
-* IBM Cloud Functions plug-in
-* IBM Cloud Object Storage plug-in
-* IBM Cloud Container Registry plug-in
-* IBM Cloud Kubernetes Service plug-in
+1. As a prerequisite for the IBM Cloud Kubernetes Service plug-in, install the [IBM Cloud command-line interface](https://cloud.ibm.com/docs/cli?topic=cloud-cli-install-ibmcloud-cli). Once installed, you can access IBM Cloud from your command-line with the prefix `ibmcloud`.
 
 
 2. Log in to the IBM Cloud CLI: `ibmcloud login`. 
