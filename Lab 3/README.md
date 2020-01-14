@@ -8,7 +8,7 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
 
    ```ibmcloud cr build -t us.icr.io/<namespace>/watson ./watson```
 
-   **Tip:** If you run out of registry space, clean up the previous lab's images with this example command: 
+   **Tip:** If you run out of registry space, clean up the previous lab's images with this example command:
       ```ibmcloud cr image-rm us.icr.io/<namespace>/hello-world:2```
 
 2. Build the `watson-talk` image.
@@ -21,14 +21,14 @@ In this lab, set up an application to leverage the Watson Tone Analyzer service.
        spec:
          containers:
            - name: watson
-             image: "us.icr.io/<namespace>/watson" 
+             image: "us.icr.io/<namespace>/watson"
              # change to the path of the watson image you just pushed
              # ex: image: "us.icr.io/<namespace>/watson"
    ...
        spec:
          containers:
            - name: watson-talk
-             image: "us.icr.io/<namespace>/watson-talk" 
+             image: "us.icr.io/<namespace>/watson-talk"
              # change to the path of the watson-talk image you just pushed
              # ex: image: "us.icr.io/<namespace>/watson-talk"
    ```
@@ -48,7 +48,7 @@ In order to begin using the Watson Tone Analyzer (the IBM Cloud service for this
 
 # 3. Bind the Watson service to your cluster
 
-1. Run `ibmcloud ks cluster-service-bind <name-of-cluster> default tone` to bind the service to your cluster. This command will create a secret for the service.
+1. Run `ibmcloud ks cluster service bind --cluster <name-of-cluster> --namespace default --service tone` to bind the service to your cluster. This command will create a secret for the service.
 
 2. Verify the secret was created by running `kubectl get secrets`.
 
@@ -95,7 +95,7 @@ By this time you have created pods, services, and volumes for this lab.
    ```ibmcloud ks workers <name-of-cluster>```
 
 3. Now that the you have the container IP and port, go to your favorite web browser and launch the following URL to analyze the text and see output.
- 
+
    ```http://<public-IP>:30080/analyze/"Today is a beautiful day"```
 
 If you can see JSON output on your screen, congratulations! You are done with this lab!
