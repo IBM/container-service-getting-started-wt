@@ -16,9 +16,14 @@ A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica i
 1. `kubectl` provides a `scale` subcommand to change the size of an
    existing deployment. Let's us it to go from our single running
    instance to 10 instances.
-   
-   ``` console 
+
+   ``` console
    $ kubectl scale --replicas=10 deployment hello-world
+   ```
+
+   You should see output showing that the deployment has been scaled.
+
+   ```
    deployment "hello-world" scaled
    ```
 
@@ -62,10 +67,10 @@ A *replica* is how Kubernetes accomplishes scaling out a deployment. A replica i
    hello-world-562211614-zksw3   1/1       Running   0          2m
    hello-world-562211614-zsp0j   1/1       Running   0          2m
    ```
-   
-**Tip:** Another way to improve availability is to [add clusters and regions](https://cloud.ibm.com/docs/containers?topic=containers-clusters) to your deployment, as shown in the following diagram: 
 
-![HA with more clusters and regions](../images/cluster_ha_roadmap.png) 
+**Tip:** Another way to improve availability is to [add clusters and regions](https://cloud.ibm.com/docs/containers?topic=containers-clusters) to your deployment, as shown in the following diagram:
+
+![HA with more clusters and regions](../images/cluster_ha_roadmap.png)
 
 # 2. Update and roll back apps
 
@@ -180,7 +185,7 @@ In this example, we have defined a HTTP liveness probe to check health of the co
    ```
    kubectl apply -f healthcheck.yml
    ```
-   
+
    Now that all the deployment work is done, check how everything turned out. You might notice that because more instances are running, things might run a bit slower.
 
 3. Open a browser and check out the app. To form the URL, combine the IP with the NodePort that was specified in the configuration script. To get the public IP address for the worker node:
@@ -196,13 +201,13 @@ In this example, we have defined a HTTP liveness probe to check health of the co
 4. Launch your Kubernetes dashboard:
 
    1. Get your credentials for Kubernetes.
-      
+
       ```
       kubectl config view -o jsonpath='{.users[0].user.auth-provider.config.id-token}'
       ```
 
    2. Copy the **id-token** value that is shown in the output.     
-   
+
    3. Set the proxy with the default port number.
 
       ```
@@ -214,19 +219,19 @@ In this example, we have defined a HTTP liveness probe to check health of the co
       ```
       Starting to serve on 127.0.0.1:8001
       ```
-   
+
    4. Sign in to the dashboard.
-      
+
       1. Open the following URL in a web browser.
-         
+
          ```
          http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
          ```
-      
+
       2. In the sign-on page, select the **Token** authentication method.
- 
+
       3. Then, paste the **id-token** value that you previously copied into the **Token** field and click **SIGN IN**.
-  
+
    In the **Workloads** tab, you can see the resources that you created. From this tab, you can continually refresh and see that the health check is working. In the **Pods** section, you can see how many times the pods are restarted when the containers in them are re-created. You might happen to catch errors in the dashboard, indicating that the health check caught a problem. Give it a few minutes and refresh again. You see the number of restarts changes for each pod.
 
 5. Ready to delete what you created before you continue? This time, you can use the same configuration script to delete both of the resources you created.
