@@ -191,7 +191,7 @@ In this example, we have defined a HTTP liveness probe to check health of the co
 3. Open a browser and check out the app. To form the URL, combine the IP with the NodePort that was specified in the configuration script. To get the public IP address for the worker node:
 
    ```
-   ibmcloud ks workers <cluster-name>
+   ibmcloud ks workers --cluster <cluster-name>
    ```
 
    In a browser, you'll see a success message. If you do not see this text, don't worry. This app is designed to go up and down.

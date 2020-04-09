@@ -8,7 +8,7 @@ If you haven't already:
 1. Install the CLIs, as described in [Lab 0](../Lab%200/README.md).
 2. Provision a cluster: 
 
-   ```ibmcloud ks cluster-create --name <name-of-cluster>```
+   ```ibmcloud ks cluster create classic --name <name-of-cluster>```
 
 # 1. Push an image to IBM Cloud Container Registry
 
@@ -51,14 +51,14 @@ which your cluster has access.
 
 7. If you created your cluster at the beginning of this, make sure it's ready for use. 
    1. Run `ibmcloud ks clusters` and make sure that your cluster is in "Normal" state.  
-   2. Use `ibmcloud ks workers <yourclustername>`, and make sure that all workers are in "Normal" state with "Ready" status.
+   2. Use `ibmcloud ks workers --cluster <yourclustername>`, and make sure that all workers are in "Normal" state with "Ready" status.
    3. Make a note of the public IP of the worker.
 
 You are now ready to use Kubernetes to deploy the hello-world application.
 
 # 2. Deploy your application
 
-1. Run `ibmcloud ks cluster-config <yourclustername>`, and set the variables based on the output of the command.
+1. Run `ibmcloud ks cluster config --cluster <yourclustername>`.
 
 2. Start by running your image as a deployment: 
 
@@ -84,7 +84,7 @@ You are now ready to use Kubernetes to deploy the hello-world application.
 
    Take note of the "NodePort:" line as `<nodeport>`
 
-5. Run `ibmcloud ks workers <name-of-cluster>`, and note the public IP as `<public-IP>`.
+5. Run `ibmcloud ks workers --cluster <name-of-cluster>`, and note the public IP as `<public-IP>`.
 
 6. You can now access your container/service using `curl <public-IP>:<nodeport>` (or your favorite web browser). If you see, "Hello world! Your app is up and running in a cluster!" you're done!
 

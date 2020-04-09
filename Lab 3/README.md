@@ -92,7 +92,7 @@ By this time you have created pods, services, and volumes for this lab.
 
 2. Get the public IP for the worker node to access the application:
 
-   ```ibmcloud ks workers <name-of-cluster>```
+   ```ibmcloud ks workers --cluster <name-of-cluster>```
 
 3. Now that the you have the container IP and port, go to your favorite web browser and launch the following URL to analyze the text and see output.
 

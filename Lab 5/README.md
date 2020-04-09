@@ -7,9 +7,9 @@ In most cases, the default policies do not need to be changed. Only advanced sec
 
 Before you begin:
 
-Target the Kubernetes CLI to the cluster. Include the `--admin` option with the `ibmcloud ks cluster-config` command, which is used to download the certificates and permission files. This download also includes the keys for the Administrator RBAC role, which you need to run Calico commands.
+Target the Kubernetes CLI to the cluster. Include the `--admin` option with the `ibmcloud ks cluster config` command, which is used to download the certificates and permission files. This download also includes the keys for the Administrator RBAC role, which you need to run Calico commands.
 
-```ibmcloud ks cluster-config <cluster_name> --admin```
+```ibmcloud ks cluster config --cluster <cluster_name> --admin```
 
 **Note:** Calico CLI, Version 1.6.1, is supported.
 
