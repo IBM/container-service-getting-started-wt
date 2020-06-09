@@ -62,7 +62,7 @@ You are now ready to use Kubernetes to deploy the hello-world application.
 
 2. Start by running your image as a deployment: 
 
-   ```kubectl run hello-world --image=us.icr.io/<my_namespace>/hello-world:1```
+   ```kubectl create deployment hello-world-deployment --image=us.icr.io/<my_namespace>/hello-world:1```
 
    This action will take a bit of time. To check the status of your deployment, you can use `kubectl get pods`.
 
@@ -76,19 +76,18 @@ You are now ready to use Kubernetes to deploy the hello-world application.
 
 3. Once the status reads `Running`, expose that deployment as a service, accessed through the IP of the worker nodes.  The example for this course listens on port 8080.  Run:
 
-   ```kubectl expose deployment/hello-world --type="NodePort" --port=8080```
+   ```kubectl expose deployment/hello-world-deployment --type=NodePort --port=8080 --name=hello-world-service --target-port=8080```
 
 4. To find the port used on that worker node, examine your new service: 
 
-   ```kubectl describe service <name-of-deployment>```
+   ```kubectl describe service hello-world-service```
 
    Take note of the "NodePort:" line as `<nodeport>`
 
-5. Run `ibmcloud ks workers --cluster <name-of-cluster>`, and note the public IP as `<public-IP>`.
+5. Run `ibmcloud ks worker ls --cluster <name-of-cluster>`, and note the public IP as `<public-IP>`.
 
 6. You can now access your container/service using `curl <public-IP>:<nodeport>` (or your favorite web browser). If you see, "Hello world! Your app is up and running in a cluster!" you're done!
 
 When you're all done, you can either use this deployment in the [next lab of this course](../Lab%202/README.md), or you can remove the deployment and thus stop taking the course.
 
-1. To remove the deployment, use `kubectl delete deployment hello-world`. 
-2. To remove the service, use `kubectl delete service hello-world`.
+1. To remove the deployment and service, use `kubectl delete all -l app=hello-world-deployment`. 
